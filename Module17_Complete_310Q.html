@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title id="page-title">EASA Part-66 | Module 17 – Propeller Complete CBT (309Q)</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0a1628;--navy2:#0f1e38;--panel:#132040;--card:#1a2d50;--border:#1e3a6e;--accent:#1e8fff;--accent2:#0066cc;--gold:#f0b429;--correct:#22c55e;--wrong:#ef4444;--skip:#f59e0b;--unattempted:#334155;--text:#e2eaf5;--muted:#8ba4c4;--white:#ffffff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;}
+header{background:var(--navy2);border-bottom:2px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;flex-wrap:wrap;}
+.header-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:1px;white-space:nowrap;}
+.header-title span{color:var(--gold);}
+.live-score{display:flex;gap:8px;align-items:center;}
+.score-chip{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:0.78rem;font-weight:600;}
+.sc-correct{background:rgba(34,197,94,0.15);color:var(--correct);border:1px solid rgba(34,197,94,0.3);}
+.sc-wrong{background:rgba(239,68,68,0.15);color:var(--wrong);border:1px solid rgba(239,68,68,0.3);}
+.sc-skip{background:rgba(245,158,11,0.15);color:var(--skip);border:1px solid rgba(245,158,11,0.3);}
+.progress-bar-wrap{background:var(--border);height:4px;}
+.progress-bar{height:4px;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .4s;}
+.main{max-width:820px;margin:0 auto;padding:20px 16px 100px;}
+.topic-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;font-family:'Rajdhani',sans-serif;letter-spacing:1px;margin-bottom:12px;}
+.t0{background:rgba(30,143,255,0.15);color:#60b4ff;border:1px solid rgba(30,143,255,0.3);}
+.t1{background:rgba(240,180,41,0.15);color:var(--gold);border:1px solid rgba(240,180,41,0.3);}
+.t2{background:rgba(167,139,250,0.15);color:#a78bfa;border:1px solid rgba(167,139,250,0.3);}
+.t3{background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.3);}
+.t4{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3);}
+.t5{background:rgba(251,146,60,0.15);color:#fb923c;border:1px solid rgba(251,146,60,0.3);}
+.t6{background:rgba(20,184,166,0.15);color:#2dd4bf;border:1px solid rgba(20,184,166,0.3);}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.q-num{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:1px;}
+.q-total{font-size:0.8rem;color:var(--muted);}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:18px;line-height:1.65;}
+.q-text{font-size:1rem;font-weight:500;color:var(--white);}
+.options{display:flex;flex-direction:column;gap:10px;}
+.opt-btn{background:var(--panel);border:1.5px solid var(--border);border-radius:9px;padding:13px 18px;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--text);transition:all .2s;display:flex;align-items:flex-start;gap:12px;}
+.opt-btn:hover:not(:disabled){border-color:var(--accent);background:rgba(30,143,255,0.08);}
+.opt-label{font-weight:700;color:var(--accent);min-width:22px;flex-shrink:0;}
+.opt-btn.correct{border-color:var(--correct);background:rgba(34,197,94,0.12);color:var(--white);}
+.opt-btn.correct .opt-label{color:var(--correct);}
+.opt-btn.wrong{border-color:var(--wrong);background:rgba(239,68,68,0.1);color:var(--white);}
+.opt-btn.wrong .opt-label{color:var(--wrong);}
+.opt-btn:disabled{cursor:default;}
+.feedback{margin-top:14px;padding:11px 16px;border-radius:8px;font-size:0.86rem;font-weight:500;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:var(--correct);}
+.feedback.wrong{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;}
+.controls{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.btn{padding:10px 22px;border-radius:8px;border:none;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.5px;transition:all .2s;}
+.btn-prev{background:var(--panel);border:1.5px solid var(--border);color:var(--muted);}
+.btn-prev:hover{border-color:var(--accent);color:var(--accent);}
+.btn-skip{background:rgba(245,158,11,0.1);border:1.5px solid var(--skip);color:var(--skip);}
+.btn-skip:hover{background:rgba(245,158,11,0.2);}
+.btn-next{background:var(--accent2);color:var(--white);}
+.btn-next:hover{background:var(--accent);}
+.btn-finish{background:linear-gradient(135deg,var(--gold),#e07b00);color:var(--navy);font-weight:700;}
+.nav-section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:24px;}
+.nav-title{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.nav-grid{display:flex;flex-wrap:wrap;gap:5px;}
+.nav-dot{width:30px;height:30px;border-radius:6px;border:none;cursor:pointer;font-size:0.7rem;font-weight:700;font-family:'Rajdhani',sans-serif;transition:all .15s;}
+.nav-dot.unattempted{background:var(--unattempted);color:var(--muted);}
+.nav-dot.current{background:var(--accent2);color:var(--white);box-shadow:0 0 0 2px var(--accent);}
+.nav-dot.correct{background:rgba(34,197,94,0.25);color:var(--correct);border:1px solid var(--correct);}
+.nav-dot.wrong{background:rgba(239,68,68,0.2);color:var(--wrong);border:1px solid var(--wrong);}
+.nav-dot.skipped{background:rgba(245,158,11,0.2);color:var(--skip);border:1px solid var(--skip);}
+.nav-legend{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--muted);}
+.leg-dot{width:12px;height:12px;border-radius:3px;}
+#results-screen{display:none;}
+.results-wrap{max-width:820px;margin:0 auto;padding:30px 16px 80px;}
+.results-header{text-align:center;margin-bottom:30px;}
+.results-title{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.results-subtitle{color:var(--muted);font-size:0.9rem;margin-top:6px;}
+.score-meter{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;margin-bottom:24px;}
+.score-pct{font-family:'Rajdhani',sans-serif;font-size:4rem;font-weight:700;line-height:1;}
+.score-grade{font-size:1.1rem;font-weight:600;margin-top:6px;}
+.score-bar-outer{background:var(--border);border-radius:6px;height:12px;margin-top:18px;overflow:hidden;}
+.score-bar-inner{height:12px;border-radius:6px;transition:width 1s ease;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:24px;}
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+.sum-num{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;}
+.sum-label{font-size:0.75rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+.filter-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.filter-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.8rem;font-weight:600;font-family:'Rajdhani',sans-serif;transition:all .2s;}
+.filter-btn.active{background:var(--accent2);border-color:var(--accent2);color:var(--white);}
+.review-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;}
+.review-q{font-size:0.9rem;font-weight:500;margin-bottom:8px;color:var(--white);}
+.review-row{display:flex;gap:8px;align-items:flex-start;margin-top:4px;font-size:0.82rem;}
+.review-label{font-weight:700;min-width:95px;color:var(--muted);}
+.review-val{flex:1;}
+.review-exp{font-size:0.78rem;color:var(--muted);margin-top:6px;font-style:italic;border-top:1px solid var(--border);padding-top:6px;}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.72rem;font-weight:700;}
+.badge-correct{background:rgba(34,197,94,0.15);color:var(--correct);}
+.badge-wrong{background:rgba(239,68,68,0.12);color:var(--wrong);}
+.badge-skipped{background:rgba(245,158,11,0.12);color:var(--skip);}
+.btn-restart{display:block;margin:20px auto 0;padding:12px 40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:1px;cursor:pointer;}
+.btn-restart:hover{filter:brightness(1.15);}
+@media(max-width:520px){.header-title{font-size:0.88rem;}.q-text{font-size:0.9rem;}.opt-btn{font-size:0.83rem;padding:10px 12px;}.nav-dot{width:26px;height:26px;font-size:0.65rem;}.score-pct{font-size:3rem;}}
+.mode-bar{max-width:820px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap;}
+.mode-btn{background:var(--panel);border:1.5px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;}
+.mode-btn:hover{border-color:var(--accent);color:var(--text);}
+.mode-btn.active{background:var(--accent2);border-color:var(--accent2);color:#fff;}
+.mode-btn-ghost{margin-left:auto;background:transparent;}
+.mode-count{background:rgba(239,68,68,0.25);color:var(--wrong);border-radius:10px;padding:1px 7px;font-size:0.72rem;}
+.mode-btn.active .mode-count{background:rgba(255,255,255,0.25);color:#fff;}
+.nav-dot{position:relative;}
+.nav-dot[data-mistakes]:not([data-mistakes="0"])::after{
+  content:attr(data-mistakes);position:absolute;top:-5px;right:-5px;background:var(--wrong);color:#fff;
+  font-size:0.55rem;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1;
+}
+.exam-banner{max-width:820px;margin:0 auto 10px;padding:10px 16px;background:rgba(240,180,41,0.1);border:1px solid rgba(240,180,41,0.3);border-radius:8px;color:var(--gold);font-size:0.82rem;text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="header-title" id="header-title-text">EASA B1 &nbsp;|&nbsp; <span>Module 17 – Propeller</span></div>
+    <div class="live-score">
+      <div class="score-chip" id="timer-chip" style="display:none;background:rgba(240,180,41,0.15);color:var(--gold);border:1px solid rgba(240,180,41,0.3);">⏱ <span id="hdr-timer">--:--</span></div>
+      <div class="score-chip sc-correct">✔ <span id="hdr-c">0</span></div>
+      <div class="score-chip sc-wrong">✘ <span id="hdr-w">0</span></div>
+      <div class="score-chip sc-skip">– <span id="hdr-s">0</span></div>
+    </div>
+  </div>
+</header>
+<div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
+
+<div class="mode-bar" id="mode-bar">
+  <button class="mode-btn active" id="mode-btn-full" onclick="setMode('full')">📖 Full Quiz</button>
+  <button class="mode-btn" id="mode-btn-wrong" onclick="setMode('wrong')">🎯 Wrong Answers Only <span class="mode-count" id="wrong-count-badge">0</span></button>
+  <button class="mode-btn" id="mode-btn-smart" onclick="setMode('smart')">🔄 Smart Review</button>
+  <button class="mode-btn" id="mode-btn-timed" onclick="setMode('timed')">⏱ Timed Exam</button>
+  <button class="mode-btn mode-btn-ghost" onclick="clearMistakeHistory()" title="Clear your mistake history">🗑 Clear Mistake History</button>
+</div>
+
+<div id="quiz-screen">
+  <div class="main">
+    <div class="exam-banner" id="exam-banner" style="display:none;">⏱ Timed Exam Mode — feedback is hidden until you submit, just like a real exam.</div>
+    <div class="q-meta">
+      <div class="q-num" id="q-num-label">Q 1</div>
+      <div class="q-total" id="q-of-total">of 309 Questions</div>
+    </div>
+    <div id="topic-badge-wrap"></div>
+    <div class="q-card"><div class="q-text" id="q-text"></div></div>
+    <div class="options" id="options-wrap"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="controls">
+      <button class="btn btn-prev" id="btn-prev" onclick="navigate(-1)">◀ Prev</button>
+      <button class="btn btn-skip" id="btn-skip" onclick="skipQuestion()">Skip</button>
+      <button class="btn btn-next" id="btn-next" onclick="navigate(1)">Next ▶</button>
+      <button class="btn btn-finish" id="btn-finish" style="display:none" onclick="showResults()">Finish & Review</button>
+      <button class="btn btn-finish" id="btn-submit-exam" style="display:none" onclick="submitExam()">✔ Submit Exam</button>
+      <button class="btn btn-finish" id="btn-end-smart" style="display:none" onclick="endSmartSession()">🏁 End Session & Review</button>
+    </div>
+    <div class="nav-section" id="nav-section">
+      <div class="nav-title">Question Navigator</div>
+      <div class="nav-grid" id="nav-grid"></div>
+      <div class="nav-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:#334155"></div>Unattempted</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(34,197,94,0.3);border:1px solid #22c55e"></div>Correct</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(239,68,68,0.2);border:1px solid #ef4444"></div>Wrong</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(245,158,11,0.2);border:1px solid #f59e0b"></div>Skipped</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="results-screen">
+
+  <div class="results-wrap">
+    <div class="results-header">
+      <div class="results-title">✈ QUIZ COMPLETE</div>
+      <div class="results-subtitle" id="res-subtitle"></div>
+    </div>
+    <div class="score-meter">
+      <div class="score-pct" id="res-pct">0%</div>
+      <div class="score-grade" id="res-grade"></div>
+      <div class="score-bar-outer"><div class="score-bar-inner" id="res-bar"></div></div>
+    </div>
+    <div class="summary-grid">
+      <div class="sum-card"><div class="sum-num" id="sum-total" style="color:var(--accent)">0</div><div class="sum-label">Total</div></div>
+      <div class="sum-card"><div class="sum-num" id="sum-correct" style="color:var(--correct)">0</div><div class="sum-label">Correct</div></div>
+      <div class="sum-card"><div class="sum-num" id="sum-wrong" style="color:var(--wrong)">0</div><div class="sum-label">Wrong</div></div>
+      <div class="sum-card"><div class="sum-num" id="sum-skip" style="color:var(--skip)">0</div><div class="sum-label">Skipped</div></div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✔ Correct</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">✘ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('skipped',this)">– Skipped</button>
+    </div>
+    <div id="review-list"></div>
+    <button class="btn-restart" onclick="restartQuiz()">↺ Restart Quiz</button>
+  </div>
+</div>
+
+<script>
+/* ======================================================================
+   EDIT ZONE — CHANGE THESE 3 THINGS FOR EVERY NEW CBT (SUBJECT/MODULE)
+   1) CONFIG below       -> page title + header text for the new subject
+   2) TOPIC_COLOR_ORDER   -> optional: order topics should get colors in
+                             (leave as [] to auto-color in first-seen order)
+   3) questions array     -> paste your new question set, replacing all
+                             the objects between the [ and ] below.
+                             Any number of questions works — 10 or 1000.
+   Do NOT touch anything below the "DO NOT EDIT BELOW" marker.
+====================================================================== */
+
+const CONFIG = {
+  pageTitle: "EASA/DGCA Part-66 | Module 17 – Propellers Complete CBT",
+  headerLeft: "EASA B1",
+  headerRight: "Module 17 – Propellers (Complete)",
+  resultsTitle: "✈ QUIZ COMPLETE",
+  resultsSubtitle: "EASA/DGCA Module 17 — Propellers (17.1 through 17.7)"
+};
+
+const TOPIC_COLOR_ORDER = []; // e.g. ["Topic A","Topic B"] or leave empty
+
+const questions = [
+  {topic:"Module 17 - Propellers",q:"High speed propellers are designed to",opts:["rotate at high RPM", "operate at high forward speeds", "operate at supersonic tip speeds"],ans:1,exp:""},
+  {topic:"Module 17 - Propellers",q:"When in the windmill position ATM",opts:["opposes CTM", "is not related to CTM", "assists CTM"],ans:2,exp:"ATM normally increases blade angle but in the windmill condition reverses and assists CTM"},
+  {topic:"Module 17 - Propellers",q:"The optimum angle for a fixed pitch propeller is",opts:["15 degrees", "2 - 4 degrees", "6 - 10 degrees"],ans:1,exp:"Jepperson A&P Powerplant Page 12-4 Refers"},
+  {topic:"Module 17 - Propellers",q:"A left handed propeller is one that",opts:["rotates clockwise when viewed from the rear", "rotates clockwise when viewed from the front", "is fitted to an engine on the left side of the aircraft"],ans:1,exp:"Left hand propeller rotates anticlockwise when viewed from the rear"},
+  {topic:"Module 17 - Propellers",q:"Forces acting on a propeller are",opts:["centrifugal, twisting, and bending", "torque, thrust and centrifugal", "torsion, tension and thrust"],ans:0,exp:"Jepperson Powerplant Page 12-5 to 12- 7 refers"},
+  {topic:"Module 17 - Propellers",q:"The blade angle at the root is",opts:["less than the tip", "same from tip to root", "greater than the tip"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 13 Refers"},
+  {topic:"Module 17 - Propellers",q:"What force on a propeller blade turns the blades to a fine pitch?",opts:["ATM", "Torque", "CTM"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 15 refers"},
+  {topic:"Module 17 - Propellers",q:"The purpose of propeller twist is",opts:["coarsen the blade angle at the root", "to maintain Blade Angle along the blade", "to maintain Angle of Attack at the same value along the blade"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 13 Refers"},
+  {topic:"Module 17 - Propellers",q:"The forces acting on a propeller blade are",opts:["bending, twisting and centrifugal", "thrust, aerodynamic and tension", "thrust and torque"],ans:0,exp:"Refer Jepperson Powerplant Page 12- 5 to 7"},
+  {topic:"Module 17 - Propellers",q:"Blade angle at the root is",opts:["low", "high", "master blade angle"],ans:1,exp:"Jepperson Aircraft Propellers and Control Pages 55-58 Refer"},
+  {topic:"Module 17 - Propellers",q:"Blade angle is taken from the chord and",opts:["propeller shaft", "relative airflow", "plane of rotation"],ans:2,exp:"Jepperson Aircraft Propellers and Control Page132 refer"},
+  {topic:"Module 17 - Propellers",q:"What forces act on a propeller blade?",opts:["Thrust and torque", "Bending, thrust, torque", "Bending, CTM and ATM"],ans:2,exp:"Refer Jepperson Aircraft Propellers and Controls Page 14-15 Note Thrust and Torque are both"},
+  {topic:"Module 17 - Propellers",q:"CTM will",opts:["try to bend the blade away from the engine", "turn the blade about the lateral axis", "cause the tips to rotate at supersonic speeds"],ans:1,exp:"Jepperson Aircraft Propellers and Controls page Page 15 refers"},
+  {topic:"Module 17 - Propellers",q:"From reverse pitch, to return to normal pitch it",opts:["passes through coarse then fine", "passes through coarse", "passes through fine"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"When in reverse pitch, CTM will tend to move the propeller blades towards",opts:["a positive pitch", "a position depending on rpm", "a negative pitch"],ans:0,exp:"CTM always rotates towards the plane of rotation"},
+  {topic:"Module 17 - Propellers",q:"If the blade angle is increased",opts:["the pitch becomes finer", "the pitch becomes coarser", "lateral stability decreases"],ans:1,exp:"Pitch is an alternative name for blade angle"},
+  {topic:"Module 17 - Propellers",q:"As a propeller blade moves through the air, forces are produced, which are known as",opts:["lift and torque", "lift and drag", "thrust and torque"],ans:2,exp:"Jepperson A & P Powerplant Page 12- 6"},
+  {topic:"Module 17 - Propellers",q:"A rotating propeller imparts rearwards motion to a",opts:["small mass of air at high velocity", "large mass of air at low velocity", "small mass of air at low velocity"],ans:1,exp:"Kermode Mechanics of Flight Fig 4.4 refers"},
+  {topic:"Module 17 - Propellers",q:"Propeller efficiency is",opts:["the ratio of output speed to input propeller speed", "the ratio of the work applied to the geometric pitch to useful work on the C.S.U", "the ratio of the useful work done by the propeller to work done by the engine on the propeller"],ans:2,exp:"Kermode Mechanics of Flight Page 134 Refers"},
+  {topic:"Module 17 - Propellers",q:"Geometric Pitch is the distance moved",opts:["in one revolution", "in one revolution when slip is maximum", "in one revolution without slip"],ans:2,exp:"Jepperson Aircraft Propellers and Controls page 15. CTM increases as a function of Centrifugal"},
+  {topic:"Module 17 - Propellers",q:"As propeller rotation speed increases the centrifugal turning moment on the blades will",opts:["increase", "decrease", "remain constant through r.p.m. range"],ans:0,exp:"Jepperson Aircraft Propellers and Controls page 15 refers"},
+  {topic:"Module 17 - Propellers",q:"Propeller torque is the resistance offered by the propeller to",opts:["feathering", "changing pitch", "rotation"],ans:2,exp:"Jepperson A&P Powerplant Page 12-4 refers"},
+  {topic:"Module 17 - Propellers",q:"The angle between the resultant airflow direction and the propeller blade plane of rotation is known as",opts:["angle of attack", "blade angle", "helix angle or angle of advance"],ans:2,exp:"The helix angle is the angle between the plane of rotation and the relative airflow"},
+  {topic:"Module 17 - Propellers",q:"At constant rpm, advance per revolution depends on",opts:["SHP", "forward speed", "None of the above"],ans:1,exp:"Jepperson A&P Powerplant Fig 12-12 refers"},
+  {topic:"Module 17 - Propellers",q:"Aerodynamic Twisting Moment",opts:["turns the blade to windmill", "turns the blades to high pitch", "None of the above"],ans:1,exp:"Jepperson A&P Powerplant Page 12/6 refers"},
+  {topic:"Module 17 - Propellers",q:"Under normal operation the point of maximum stress on a propeller blade is at the",opts:["root", "tip", "master station"],ans:0,exp:"Jepperson A&P Powerplant Fig 12-8 refers"},
+  {topic:"Module 17 - Propellers",q:"Propeller blade angle",opts:["is constant along the blade length", "decreases from root to tip", "increases from root to tip"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Fig 11-33 refers"},
+  {topic:"Module 17 - Propellers",q:"Coarse pitch is used for",opts:["take off and climb", "maximum economical cruise in level flight", "landing and power checks"],ans:1,exp:"Jepperson Aircraft Propellers and Controls page 30 refers"},
+  {topic:"Module 17 - Propellers",q:"Effective pitch is",opts:["distance moved in one revolution", "geometric pitch plus slip", "pitch measured at the master station"],ans:0,exp:"Effective pitch is geometric pitch minus slip"},
+  {topic:"Module 17 - Propellers",q:"A windmilling Propeller has",opts:["a small positive blade angle", "a small positive angle of attack", "a small negative angle of attack"],ans:2,exp:"Windmilling occurs with a small negative AoA and a small positive blade angle"},
+  {topic:"Module 17 - Propellers",q:"Windmilling causes",opts:["propeller underspeeding", "maximum propeller drag", "Centrifugal Twisting Moment"],ans:1,exp:""},
+  {topic:"Module 17 - Propellers",q:"Torque acts",opts:["in the same direction as the plane of rotation", "at right angles to the plane of rotation", "in opposition to the direction of rotation"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 15 refers"},
+  {topic:"Module 17 - Propellers",q:"The purpose of blade twist is to",opts:["reduce angle of attack at the blade root", "to ensure that tip speed does not go faster than Mach 1", "to even out thrust distribution across the propeller"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 14 refers"},
+  {topic:"Module 17 - Propellers",q:"Thrust is greatest",opts:["at 70 to 80% of propeller length", "in the first 50%", "the same all along the length"],ans:0,exp:"Beyond this point the blade chord is reduced to lessen tip thrust"},
+  {topic:"Module 17 - Propellers",q:"CTM changes the pitch of a blade",opts:["about its twisting axis", "bending forward", "towards the feather plane"],ans:0,exp:"CTM reduces pitch towards the plane of rotation, about the twisting axis"},
+  {topic:"Module 17 - Propellers",q:"The velocity of the slipstream behind the aircraft in relation to the ambient air is",opts:["less", "greater", "equal"],ans:1,exp:"If there was not a difference then no thrust would be produced. T = mass ( Vout-Vin)"},
+  {topic:"Module 17 - Propellers",q:"High speed aerofoils are employed at",opts:["the master station", "the tips", "the root"],ans:1,exp:"On helicopters they are called BERP tips"},
+  {topic:"Module 17 - Propellers",q:"A right hand propeller",opts:["rotates clockwise when viewed from the rear", "is always fitted to the starboard engine", "rotates clockwise when viewed from the front"],ans:0,exp:"Left or right is determined by sitting in the cockpit and viewing the rotation"},
+  {topic:"Module 17 - Propellers",q:"Given that blade angle is measured from the centre of the hub, the blade angle at the hub is considered to be",opts:["lowest", "Master Station value", "highest"],ans:2,exp:"Refer to Jeppesen Aircraft Propellers and controls page 13"},
+  {topic:"Module 17 - Propellers",q:"A windmilling propeller will create",opts:["more drag in feather", "more drag in fine pitch", "more drag in coarse pitch"],ans:1,exp:"A windmilling propeller is always in fine pitch"},
+  {topic:"Module 17 - Propellers",q:"The chord line of a propeller is",opts:["a line joining the leading and trailing edges", "a line joining the tip to the root of the blade", "a line joining the tips of the blades"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"The plane of rotation is defined as",opts:["the plane in which thrust force acts", "the plane in which the propeller rotates", "the angle at which the blade strikes the airflow"],ans:1,exp:""},
+  {topic:"Module 17 - Propellers",q:"Thrust bending force on a propeller blade",opts:["intensifies the centrifugal forces to some degrees", "can be used in propeller design to reduce some operation stress", "tends to bend the propeller blade forward at the tip"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"What conditions are applied to a propeller blade windmilling?",opts:["Positive angle of attack, thrust negative", "Negative angle of attack, thrust positive", "Negative angle of attack, thrust negative"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"The primary purpose of propeller is to",opts:["change engine horsepower to thrust", "provide static and dynamic stability to aircraft", "create lift on the fixed aerofoils of an aircraft"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"The primary purpose of a feathering propeller is to",opts:["prevent further engine damage when an engine fails in flight", "prevent propeller damage when an engine fails in flight", "eliminate the drag created by a windmilling propeller when an engine fails in flight"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"A fibreglass composite blade",opts:["will never be struck by lighting", "does not require lightning strike protection", "requires lightning strike protection"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"The timber most often used today for propeller construction is",opts:["birch", "spruce", "balsa"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"Electronic torque measuring systems utilise",opts:["strain gauges in the reduction gear", "stress gauges in the reduction gear", "pressure transducers in the reduction gear"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"A conventional turboprop torque meter uses",opts:["hydraulic oil as the pressure medium", "coiled spring levers as the pressure medium", "engine oil as the pressure medium"],ans:2,exp:"Pallett Aircraft Instruments and integrated Systems page 357"},
+  {topic:"Module 17 - Propellers",q:"Metal at the tip and along the leading edge of a wooden propeller is",opts:["for balancing", "for protection", "for Anti-icing"],ans:1,exp:"Jepperson Aircraft Propellers and Control page 18 refers"},
+  {topic:"Module 17 - Propellers",q:"Blade cuffs are fitted to the root of the blades",opts:["to increase the strength of the blade", "to increase thrust", "to increase flow of cooling air into the engine nacelle"],ans:2,exp:"Refer Jepperson Powerplant Page 12- 3"},
+  {topic:"Module 17 - Propellers",q:"Low torque sensing is used to",opts:["increase power", "increase pitch", "initiate auto-feather"],ans:2,exp:"Refer Jepperson Aircraft Propellers and Controls Page 135"},
+  {topic:"Module 17 - Propellers",q:"Torque sensing is used to",opts:["reduce drag", "reduce drag following engine shutdown", "synchronise blade angle"],ans:1,exp:"Jepperson Aircraft Propellers and Controls page 135 Refers"},
+  {topic:"Module 17 - Propellers",q:"The minimum percentage seating on a propeller rear cone should be",opts:["90%", "70%", "95%"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Page 31 shows 70% Old CAIPs shows 80%"},
+  {topic:"Module 17 - Propellers",q:"The propeller is 'feathered' when the blades are at",opts:["0° to plane of rotation", "20° to plane of rotation", "90° to plane of rotation"],ans:2,exp:"Jepperson Aircraft Propellers and Controls page 75 refers"},
+  {topic:"Module 17 - Propellers",q:"The thrust of a propeller is normally taken by the",opts:["torque meter", "propeller rear cone", "front bearing in the reduction gear"],ans:2,exp:"Jepperson A&P Powerplant Page 1- 30/1-31 refers"},
+  {topic:"Module 17 - Propellers",q:"On which type of turbo-propeller would you expect to find a parking brake?",opts:["Compounded twin spool", "Direct coupled twin spool", "Free turbine"],ans:2,exp:"The parking brake stops the propeller rotating when the engine is stopped"},
+  {topic:"Module 17 - Propellers",q:"What does the torquemeter reading indicate in a gas turbine engine?",opts:["Torque reaction at the reduction gear", "The ratio between engine thrust and engine torque", "Engine torque"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 55 refers"},
+  {topic:"Module 17 - Propellers",q:"The gear segments on the blade roots of a hydromatic propeller mesh with the",opts:["stationary cam", "torque tubes and eye bolts", "moving cam"],ans:2,exp:"Jepperson A&P Powerplant Page 12- 16 refers"},
+  {topic:"Module 17 - Propellers",q:"A propeller is centralised on the propeller shaft by",opts:["the front and rear cones", "the front git seal", "the rear pre-load shims"],ans:0,exp:"Front and rear cones - Jepperson Aircraft Propellers and Controls"},
+  {topic:"Module 17 - Propellers",q:"Reduction gearing allows the",opts:["blade tips to operate below the speed of sound", "blade tips to operate above the speed of sound", "blade tips to rotate slower than the root of the propeller blade"],ans:0,exp:"Propellers always operate slower than the engine to ensure the blade tips do not go sonic"},
+  {topic:"Module 17 - Propellers",q:"When fitting a propeller to a tapered shaft",opts:["locate the master spline", "ensure the master spline and blade alignment are in accordance with the MM", "ensure fully seated"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 29 refers"},
+  {topic:"Module 17 - Propellers",q:"What is the purpose of small holes at the tip of wooden propellers?",opts:["Drainage", "Balancing", "Pivot points used during manufacture"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 143 refers"},
+  {topic:"Module 17 - Propellers",q:"The thrust face of a propeller blade is the",opts:["root to which the gear segment is fitted", "blade face or flat side", "blade back or curved side"],ans:1,exp:"Jepperson A&P Powerplant Fig 12-16 Refers"},
+  {topic:"Module 17 - Propellers",q:"Solidity of a propeller can be increased by",opts:["increasing blade chord", "increasing blade angle", "increasing blade thickness"],ans:0,exp:"AC Kermode Mechanics of Flight Page 138 refers"},
+  {topic:"Module 17 - Propellers",q:"A turbo-prop engine",opts:["uses an epicyclic reduction gear system", "uses a spur gear reduction system", "does not require a reduction gear system due to the propshaft being driven from the low speed compressor"],ans:0,exp:"All large engines use Epicyclic reduction gearing"},
+  {topic:"Module 17 - Propellers",q:"Total power of a turbo-prop engine is measured in",opts:["Equivalent Shaft Horsepower (ESHP)", "Shaft Horsepower (SHP)", "Brake Horsepower (BHP)"],ans:0,exp:"ESHP is SHP plus residual thrust"},
+  {topic:"Module 17 - Propellers",q:"The disadvantage of using reverse pitch on a turbo-propeller engine is",opts:["exhaust gas ingestion , high gas temperature and debris ingestion", "debris ingestion", "high gas temperature"],ans:1,exp:"Jepperson A&P Powerplant page 12- 33 refers"},
+  {topic:"Module 17 - Propellers",q:"A compound twin spool engine is",opts:["turbo prop propeller driven by a power turbine", "turbo prop twin spool compressor", "LP Compressor driven by a free turbine"],ans:1,exp:"Rolls Royce Jet Engine Page 5 refers"},
+  {topic:"Module 17 - Propellers",q:"With the engine stationary the indication that the propeller is in ground fine pitch is",opts:["blade and spinner markings aligned", "below stop warning light on", "flight fine pitch stop lever withdrawn"],ans:0,exp:"Unattributed notes"},
+  {topic:"Module 17 - Propellers",q:"When the power lever on a turbo prop engine is moved from ground idle to flight fine the fuel flow increases and the blade angle",opts:["increases", "decreases", "remains the same"],ans:0,exp:"Ground idle is a lower pitch than flight idle"},
+  {topic:"Module 17 - Propellers",q:"How is the blade station measured?",opts:["In inches from the centre of the hub", "In inches from the tip", "As a percentage of blade length from the tip"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 10 refers"},
+  {topic:"Module 17 - Propellers",q:"The oil used in the torquemeter system is",opts:["DTD 5 8 5", "engine oil pressure boosted by a pump driven off the reduction gear", "PCU oil pressure"],ans:1,exp:"Rolls Royce The Jet Engine Fig 12-4 Refers"},
+  {topic:"Module 17 - Propellers",q:"Which type of turboprop engine is practically free from surge and requires low power for starting?",opts:["Compound twin spool", "Directly coupled", "One using a centrifugal compressor"],ans:0,exp:"Rolls Royce The Jet Engine page 5 refers"},
+  {topic:"Module 17 - Propellers",q:"Blade stations are measured from the",opts:["centre of the hub", "tip", "shank"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 13 refers"},
+  {topic:"Module 17 - Propellers",q:"Auto feathering is disarmed",opts:["during landing", "during take off", "in the cruise"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 136 refers"},
+  {topic:"Module 17 - Propellers",q:"With a multi-engined aircraft the torque pressure would be",opts:["There is only one gauge for all engines", "same on all engines", "similar on all engines"],ans:1,exp:"All engines are synchronised to the same RPM and are travelling at the same forward speed"},
+  {topic:"Module 17 - Propellers",q:"If torque pressure fell to zero during the cruise what would indicate that the gauge had failed?",opts:["Engine would auto feather", "Engine would overspeed", "Engine would continue to run"],ans:2,exp:"Auto feather would engage if torque had actually failed, but if it is just the gauge, then the engine would be unaffected"},
+  {topic:"Module 17 - Propellers",q:"The purpose of using reverse pitch propellers is to",opts:["provide aerodynamic breaking", "allow aircraft to taxi backwards", "reverse the direction of rotation of the propeller"],ans:0,exp:"Jepperson aircraft propellers and controls Page 97 Refers"},
+  {topic:"Module 17 - Propellers",q:"The RPM of a windmilling propeller is primarily related to",opts:["EAS", "IAS", "TAS"],ans:2,exp:"Relative airflow is a function of rotational speed and TAS"},
+  {topic:"Module 17 - Propellers",q:"A ducted propeller is used because",opts:["ducted props give more thrust for the diameter of disc", "only ducted propellers can be vectored", "ducted props give less thrust for the diameter of disc"],ans:0,exp:"The duct provides for less tip losses"},
+  {topic:"Module 17 - Propellers",q:"A two position prop uses",opts:["high pitch for take off and low pitch for cruise", "low pitch for take off and climb and high pitch for cruise", "high pitch for take off, low pitch for climb and descent and high pitch for cruise"],ans:1,exp:"Jepperson aircraft propellers and controls Page 49 Refers"},
+  {topic:"Module 17 - Propellers",q:"A propeller operating in the Beta range is operating between",opts:["Flight Idle and Ground Idle", "coarse and flight fine pitch", "maximum reverse pitch and Flight idle pitch"],ans:2,exp:"Jeppesen Aircraft Propellers and controls page 108 refers"},
+  {topic:"Module 17 - Propellers",q:"The CSU oil pump is provided to",opts:["boost engine oil pressure to decrease pitch", "boost engine oil pressure to alter pitch", "boost engine oil pressure to increase pitch"],ans:0,exp:"A CSU is used on a single acting propeller system. Spring pressure + counterweights move it to coarse pitch"},
+  {topic:"Module 17 - Propellers",q:"Counterweights are used to",opts:["counter the ATM of the blades", "counteract the CTM of the blades", "balance the blades"],ans:1,exp:"The counterweights are seen on single acting propeller systems"},
+  {topic:"Module 17 - Propellers",q:"The pressure face of a propeller is",opts:["the flat face", "the leading edge", "the camber face"],ans:0,exp:"The pressure face is the thrust face or blade face. They all mean the same"},
+  {topic:"Module 17 - Propellers",q:"In blade station numbering the stations nearest the hub are",opts:["datum", "highest", "lowest"],ans:2,exp:"Blade stations are measured in inchesfrom the hub"},
+  {topic:"Module 17 - Propellers",q:"A propeller mounted forward of the engine is known as",opts:["hydromatic propeller", "a tractor propeller", "a pusher propeller"],ans:1,exp:"A tractor propeller pulls the aircraft through the air"},
+  {topic:"Module 17 - Propellers",q:"Contra-rotating propellers are",opts:["two propellers on the same shaft on one engineeach revolving in a different direction", "propellers geared to rotate in the opposite direction to the engine", "propellers on a twin engined aircraft revolving in opposite directions"],ans:0,exp:"Enables extra power to be absorbed"},
+  {topic:"Module 17 - Propellers",q:"An aerodynamic braking propeller goes through",opts:["the feathered pitch position to act as a brake", "the coarse pitch position to act as a brake", "the fine pitch position to act as a brake"],ans:2,exp:"You must go through fine to get to reverse- the braking position"},
+  {topic:"Module 17 - Propellers",q:"The term spinner is applied to",opts:["a propeller tip vortex", "a streamline covering over the propeller hub", "an acrobatic manoeuvre"],ans:1,exp:"The spinner covers the front of the hub"},
+  {topic:"Module 17 - Propellers",q:"Turbo-prop engines require a slightly higher viscosity oil than a turbo-jet engine due to",opts:["lower engine rpm", "higher engine rpm", "reduction gear and propeller pitch chang mechanism"],ans:2,exp:"The mechanical gear system exerts higher forces on the lubricant"},
+  {topic:"Module 17 - Propellers",q:"The propulsive efficiency of a propellerturbine engine is higher than that of a jet-turbine engine at aircraft speeds",opts:["above approximately 450 mph", "within the range 450 mph and 700 mph", "below approximately 450 mph"],ans:2,exp:"Turbo props are used only below 450 kts as the prop becomes inefficient above this"},
+  {topic:"Module 17 - Propellers",q:"A propeller has the requirement of a",opts:["manufacturers data plate", "type certificate or equivalent certificate", "batch number"],ans:1,exp:"JAR 25.905 refers"},
+  {topic:"Module 17 - Propellers",q:"Variable pitch propellers are used because they are",opts:["reduce vibration and noise", "have peak efficiency over a greater speed range", "more economical"],ans:1,exp:"range from 150-350 kts"},
+  {topic:"Module 17 - Propellers",q:"The condition lever normally has the following settings",opts:["normal, beta-range and reverse range", "cut-off, idle and high idle", "rich, lean and cut-off"],ans:1,exp:"Jeppersen A&P Powerplant page 12- 36 refers. the condition lever controls the propeller governor"},
+  {topic:"Module 17 - Propellers",q:"What is the ground clearance for a Tricycle Geared Aircraft?",opts:["7 inches", "9 inches", "1 inch"],ans:0,exp:"Jeppersen Aircraft Propellers and Controls Page 9 refers"},
+  {topic:"Module 17 - Propellers",q:"In a variable pitch propeller system, a decrease in propeller RPM will alter the angle of attack on the blade to",opts:["increase angle of attack", "decrease angle of attack", "increase negative torque"],ans:1,exp:"The blade fines off to maintain RPM"},
+  {topic:"Module 17 - Propellers",q:"To achieve reverse pitch the blade angle must be",opts:["more than 17°", "less than 0°", "more than 90°"],ans:1,exp:"Jeppersen Aircraft Propellers and Controls Page 97 refers"},
+  {topic:"Module 17 - Propellers",q:"Centrifugal latches are fitted to lock the propeller",opts:["in the feathered position", "when stationary", "in the fine pitch position"],ans:1,exp:"Used on lightweight single acting propeller systems; latches are used on shutdown to stop spring pressure pushing the blades to the feather position thus making the load on the engine excessive for the next start"},
+  {topic:"Module 17 - Propellers",q:"Counterweights are fitted to blade root to",opts:["counteract ATM", "assist blade to move to fine pitch", "counteract CTM"],ans:2,exp:"Jeppersen Aircraft Propellers and Controls Page 71 refers"},
+  {topic:"Module 17 - Propellers",q:"The limits for blade angle are controlled by pitch stops on the",opts:["propeller shaft", "blade root", "cylinder"],ans:2,exp:"eppersen Aircraft Propellers and Controls Page 81-83 refers"},
+  {topic:"Module 17 - Propellers",q:"The range of angles of a VP propeller is usually limited by",opts:["the fine pitch position", "the feathering angle", "coarse and fine pitch stops"],ans:2,exp:"A Variable Pitch (VP) propeller will have at least 2 stops- coarse and fine; although sophisticated types also have ground fine and reverse pitch stops"},
+  {topic:"Module 17 - Propellers",q:"The purpose of fine pitch stop is to",opts:["maintain constant speed in flight", "prevent the propeller moving below flight fine pitch in flight", "maintain maximum RPM at takeoff"],ans:1,exp:"CAIP's Leaflet PL/1-1 para 5.2.2 refers"},
+  {topic:"Module 17 - Propellers",q:"Which best describes a Variable Pitch propeller?",opts:["The blade angles can be changed in flight", "Its blade angles are set with an automatic system with which the pilot has no input", "Its blade angles can only be set on the ground"],ans:0,exp:"propellers which can only be adjusted on the ground are known as 'ground adjustable' not 'variable pitch'"},
+  {topic:"Module 17 - Propellers",q:"The holding coil of a hydromatic propeller feathering button switch holds a relay closed that applies power to the propeller",opts:["dome feathering mechanism", "feathering pump motor", "governor"],ans:1,exp:"The feathering pump is required as the existing pressure from the engine will be decaying. The pump is held energised until the prop feather switches sense that the propeller has reached the feather position"},
+  {topic:"Module 17 - Propellers",q:"The primary purpose of the front and rear cones for propellers that are installed on splined shafts is to",opts:["prevent metal-to-metal contact between the propeller and the splined shaft", "reduce stresses between the splines of the propeller and the splines of the shaft", "position the propeller hub on the splined shaft"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"The constant-speed control unit is also called a",opts:["propeller pitch control", "accumulator", "governor"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"When the compressive force on a speeder spring is reduced, the propeller blades will",opts:["remain fixed", "fine off", "coarsen"],ans:2,exp:"Aircraft Propellers and Controls"},
+  {topic:"Module 17 - Propellers",q:"A hydraulic pitch lock is utilised in a hydromatic propeller to",opts:["lock out the course pitch oil line in the event of underspeeding", "lock out the fine pitch oil line in the event of overspeeding", "prevent the propeller overspeeding in the event of oil supply failure"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls page 136"},
+  {topic:"Module 17 - Propellers",q:"When in the beta range, the propeller pitch is controlled",opts:["directly from the power lever", "indirectly from the power lever", "directly from the pitch change mechanism to the PCU"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 102"},
+  {topic:"Module 17 - Propellers",q:"The advantage of the beta range is it allows",opts:["high power settings with higher than normal pitch settings when in flight", "low fine pitch settings with high power", "low power settings with higher than normal pitch setting for ground manoeuvres"],ans:2,exp:"Refer Jepperson Aircraft Propellers and Controls Page 102"},
+  {topic:"Module 17 - Propellers",q:"If the speeder spring pressure of a CSU is increased the blade will",opts:["coarsen off", "fine off", "will not move"],ans:1,exp:"Jepperson Aircraft Propellers and Control pages 55-58"},
+  {topic:"Module 17 - Propellers",q:"On an underspeed condition the blades are turned to",opts:["fine", "feather", "coarse"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 55-58 refers"},
+  {topic:"Module 17 - Propellers",q:"In a hydromatic propeller with counterweights, what is used to make the propeller move to fine pitch?",opts:["A T M", "engine oil", "centrifugal force acting on the counterweight"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls Pages 55- 58"},
+  {topic:"Module 17 - Propellers",q:"Relaxing tension on the governor spring will result in the blade coarsening and",opts:["RPM decreasing, manifold pressure increasing", "RPM increasing, manifold pressure increasing", "manifold pressure constant, RPM decreasing"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 59"},
+  {topic:"Module 17 - Propellers",q:"The ground fine pitch stop is",opts:["never removed", "removed on the ground", "removed during flight"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls Page 32 Low pitch stop is an alternative name on some applications"},
+  {topic:"Module 17 - Propellers",q:"If governor flywheel overcomes the speeder spring, it indicates",opts:["underspeed", "overspeed", "onspeed"],ans:1,exp:"Jepperson Powerplant Page 12-4 refers"},
+  {topic:"Module 17 - Propellers",q:"Pitch control using torque measuring is for",opts:["reducing drag in engine failure", "increasing drag", "reducing drag in binding"],ans:0,exp:"Jepperson Aircraft Propellers and Control Pages 135 Refer"},
+  {topic:"Module 17 - Propellers",q:"If force is applied to the speeder spring, what will happen?",opts:["Blade angle is frozen in last known position", "Blade angle coarsen", "Blade angle finer"],ans:2,exp:"Fly-weights will move inwards, tricking the CSU to believing there is a reduction in speed, thus decreasing the blade pitch to speed the propeller back up"},
+  {topic:"Module 17 - Propellers",q:"When is superfine pitch used?",opts:["Landing and takeoff", "In cruise", "Engine starting to reduce propeller torque loading on starter motor"],ans:2,exp:"Caips Leaflet PL/1-1 refers to ground fine pitch; believed to be an alternative to Superfine Pitch"},
+  {topic:"Module 17 - Propellers",q:"When the flyweights fly outwards in a PCU, this is known as",opts:["onspeed", "overspeed", "low power settings with higher than normal pitch setting for ground manoeuvres"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls Page 55-58"},
+  {topic:"Module 17 - Propellers",q:"In an on speed condition, oil in the tube",opts:["remains constant", "flows in the tubes", "flows out of the tubes"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 55-58"},
+  {topic:"Module 17 - Propellers",q:"On a reversing propeller moving to the maximum reversing angle, the propeller goes",opts:["from fine pitch through plane of rotation, course reverse then fine reverse", "from course pitch through plane of rotation course, fine reverse then course reverse", "from fine pitch through plane of rotation, fine reverse then course reverse"],ans:2,exp:"Fine reverse must come before coarse reverse"},
+  {topic:"Module 17 - Propellers",q:"If pressure is increased on the speeder spring, rpm increases. What happens to the blade angle?",opts:["Remains unchanged", "Increases", "Decreases"],ans:2,exp:"Jepperson Aircraft Propellers and Controls pages 55-58 Refers"},
+  {topic:"Module 17 - Propellers",q:"In a prop with counterweights, what is used to make it move to fine pitch?",opts:["ATM", "Centrifugal force acting on the counterweight", "Governor oil pressure"],ans:2,exp:"Jepperson Aircraft Propellers and Controls page 81 refers"},
+  {topic:"Module 17 - Propellers",q:"If a propeller is in fine pitch and then moves to feather it will pass throug",opts:["flight fine only", "reverse", "coarse"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Fig 11.1 refers"},
+  {topic:"Module 17 - Propellers",q:"A 'double' acting propeller has",opts:["nitrogen or air on one side of piston", "oil pressure on one side of piston", "oil pressure on two sides of piston"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Fig 11-32 refers"},
+  {topic:"Module 17 - Propellers",q:"During normal propeller operation, oil pressure for the governor is provided by",opts:["a pump in the governor", "a variable volume pump", "the engine driven pump"],ans:0,exp:"Jepperson Aircraft Propellers and Controls refer. All governors have a built in pump"},
+  {topic:"Module 17 - Propellers",q:"Oil for an on-speed condition passes through",opts:["the coarse pitch line", "the fine pitch line", "neither of the lines"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Pages 55-58 refer"},
+  {topic:"Module 17 - Propellers",q:"If the spur gear pump in a single acting propeller governor failed, the",opts:["blades would turn to a coarse pitch", "blades would rotate to a fine pitch", "blades would move to the feather position"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 62 refer"},
+  {topic:"Module 17 - Propellers",q:"The hydromatic variable pitch propeller is operated on the principle of",opts:["a venturi or 'u' tube with mercury", "an electrical motor moving a gear segment", "oil pressure moving a piston"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 85 refer"},
+  {topic:"Module 17 - Propellers",q:"The constant speed unit (C.S.U.) governor works on the principle of",opts:["manual selection through a gearbox", "centrifugal twisting moments", "spring pressure acting against centrifugal force"],ans:2,exp:"Jepperson A&P Powerplant Page 12- 7/8 refers"},
+  {topic:"Module 17 - Propellers",q:"The purpose of the pitch change cams is to",opts:["convert rotary motion to linear motion", "prevent windmilling", "convert linear motion to rotary motion"],ans:2,exp:"Jepperson Aircraft Gas Turbine Powerplants Fig 12-14 refers"},
+  {topic:"Module 17 - Propellers",q:"The gear type pump in a C.S.U. or P.C.U",opts:["lubricates the entire propeller system", "boosts engine oil system pressure", "assist the governor valve to move"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Fig 11-33 refers"},
+  {topic:"Module 17 - Propellers",q:"When an engine fails",opts:["the propeller is feathered using an electrical feathering pump", "the propeller is feathered using the propeller governor pump", "the propeller is feathered using counterweights"],ans:0,exp:"Jepperson A&P Powerplant Page 12- 30 refers"},
+  {topic:"Module 17 - Propellers",q:"The purpose of an accumulator in a single acting propeller system is to",opts:["to port oil to the coarse pitch oil line to assist in feathering the propelle", "accelerate the unfeathering process", "provide back up to the governor pump"],ans:1,exp:"Jepperson A&P Powerplant Page 12- 26 refers"},
+  {topic:"Module 17 - Propellers",q:"When auto feathering has taken place the feathering pump is switched off by",opts:["pressure control drop switch", "carrying out the manual feather drill", "removing the pump circuit breaker or fuse"],ans:1,exp:"The pump is switched off by pressing the alternate action pump switch-part of the manual feather drill"},
+  {topic:"Module 17 - Propellers",q:"On a free turbine engine it is possible to vary the propeller RPM whilst the engine RPM remains constant",opts:["by operating the Power lever", "it is not possible to vary the propeller RPM", "by operating the PCU control Lever"],ans:2,exp:"The PCU lever changes the pressure on the governor spring thus changing the pitch of the blades"},
+  {topic:"Module 17 - Propellers",q:"A propeller control Unit hydraulic system is supplied with oil from the",opts:["engine lubrication oil tank", "aircraft hydraulic System", "PCU oil tank"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 59 refers"},
+  {topic:"Module 17 - Propellers",q:"Low torque sensing is used to initiate",opts:["relighting", "fine pitch selection", "auto feathering"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 135 refers"},
+  {topic:"Module 17 - Propellers",q:"What is the purpose of the auto coarsening system?",opts:["To prevent overspeeding in the event of the flight fine pitch stop failing", "To reduce drag during power loss", "To save the pilot making minor changes when changing altitude"],ans:0,exp:"CAIP's Leaflet PL/1-1 refer - note this is not an auto feather system"},
+  {topic:"Module 17 - Propellers",q:"In a single acting propeller, blade angle is increased by",opts:["counterweights and a feathering spring", "CTM", "oil pressure"],ans:0,exp:"CAIP's PL leaflets refer. Oil pressure turns the prop to fine. If the oil pressure is released by the CSU the spring and counterweights drive the prop to feather"},
+  {topic:"Module 17 - Propellers",q:"The function of a propeller pitch lock is to prevent the propeller from",opts:["coarsening", "reducing below flight fine pitch", "fining off in the event of pitch lock mechanism failure"],ans:2,exp:"CAIP's PL leaflets refer to a pitch lock that holds the fine pitch stop in position, but also adds that some manufacturers have a pitch lock device that locks the prop in its last position in the event of failure of the pitch lock mechanism. For a description of this system see Jeppesen Aircraft Propellers and Controls page 136"},
+  {topic:"Module 17 - Propellers",q:"The minimum propeller pitch is established by the",opts:["superfine pitch stop", "pitch Lock", "flight fine pitch stop"],ans:0,exp:"CAIP's PL leaflets refer. Oil pressure turns the prop to fine. If the oil pressure is released by the CSU the spring and counterweights drive the prop to feather"},
+  {topic:"Module 17 - Propellers",q:"Oil for the feathering system is taken from",opts:["a separate feathering oil tank", "a feathering reserve in the engine oil tank", "the engine lubrication system"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Page 10 refers"},
+  {topic:"Module 17 - Propellers",q:"What are the centrifugal latches in a single acting propeller used for?",opts:["Prevent CTM", "Prevent feathering of the prop on shutdown", "Prevent Propeller moving to superfine"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Fig 11-4 refers"},
+  {topic:"Module 17 - Propellers",q:"In a two position propeller",opts:["ATM turns the prop to fine", "oil pushes the prop to fine", "oil pushes the prop to coarse"],ans:1,exp:"Jepperson aircraft propellers and controls Page 96 Refers"},
+  {topic:"Module 17 - Propellers",q:"An overspeed condition causes governor spring pressure to be",opts:["the same as centrifugal force", "more than centrifugal force", "less than centrifugal force"],ans:2,exp:"The bob weights lift the governor valve in this condition, thus they have more force than the spring"},
+  {topic:"Module 17 - Propellers",q:"When the engine is running, the CSU is sensing",opts:["propeller tip speed", "propeller blade angle", "engine RPM"],ans:2,exp:"Engine RPM is sensed via the governor bob weights"},
+  {topic:"Module 17 - Propellers",q:"An accumulator may be fitted to",opts:["feather the propeller", "unfeather the propeller", "provide emergency control"],ans:1,exp:"The accumulator is needed to drive the prop out of feather and hence get it rotating. Normally seen on a single acting propeller system"},
+  {topic:"Module 17 - Propellers",q:"If governor weight spring pressure is reduced",opts:["governor weights will pivot inwards raising the governor valve allowing the blades to move to a coarser pitch", "governor weights will spring outwards raising the governor valve allowing the blades to move to a finer pitch", "governor weights will spring outwards raising the governor valve allowing the blades to move to a coarser pitch"],ans:2,exp:"When 'on speed' spring pressure equals the governor centrifugal force"},
+  {topic:"Module 17 - Propellers",q:"A constant speed variable pitch propeller is running whilst stationary on the ground. If it is facing into a headwind it will",opts:["speed up", "remain constant", "slow down"],ans:1,exp:"A headwind acts the same as increased forward speed. The prop will coarsen off and the speed will remain the same"},
+  {topic:"Module 17 - Propellers",q:"If the TAS of an aircraft increases, the CSU will",opts:["increase the blade angle to provide constant RPM", "decrease the blade angle to provide constant RPM", "change the blade angle to provide constant RPM"],ans:0,exp:"This causes blade to coarsen off to stop overspeeding and as a result the speed remains the same"},
+  {topic:"Module 17 - Propellers",q:"When governor spring load is less than governor weights, the CSU is in",opts:["overspeed", "underspeed", "underspeed"],ans:0,exp:"Jeppersen Aircraft Propellers and Controls Page 57 refers"},
+  {topic:"Module 17 - Propellers",q:"An aircraft's propeller system beta range",opts:["is used to achieve maximum thrust during take- off", "refers to the most fuel efficient pitch range to use at a given engine RPM", "is used to produce zero or negative thrust"],ans:2,exp:"Beta range is used on the ground"},
+  {topic:"Module 17 - Propellers",q:"How is a propeller controlled in a large aircraft?",opts:["By engine power lever", "By varying teh engine RPM except for feathering and reversing", "Independently of the engine"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Manually feathering a hydromechanical propeller means to",opts:["block governor oil pressure to the cylinder of the propeller", "port governor oil pressure to the cylinder of the propeller", "block governor oil pressure from the cylinder of the propeller"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"How is the oil pressure delivery on a hydromatic propeller normally stopped after the blades have reached their full-feathered position?",opts:["Stop lugs in the teeth of the rotating cam", "Electric cut-out pressure switch", "Pulling out the feathering push-button"],ans:1,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Counterweights on constant-speed propellers are generally used to",opts:["increase blade angle", "decrease blade angle", "unfeather the propeller"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Constant speed non-feathering McCauley, Hartzell and other propellers of similar design without counterweights increase pitch angle using",opts:["centrifugal twisting moment", "spring pressure", "oil pressure"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"What are the rotational speed and blade pitch angle requirements of a constant-speed propeller during take-off?",opts:["High speed and low pitch angle", "High speed and high pitch angle", "Low speed and high pitch angle"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"A constant speed propeller provides maximum efficiency by",opts:["increasing the lift coefficient of the blades", "adjusting blade angle for most conditions encountered during flight", "increasing blade pitch as the aircraft speed increases"],ans:1,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Synchrophasing reduces vibration by the use of",opts:["pulse probes and a single synchrophase unit", "tachometers and correction motors", "coordinating the rpm of each engine"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 134"},
+  {topic:"Module 17 - Propellers",q:"Synchronising can only be achieved if the slave propeller is",opts:["the same speed as the master", "within 20 rpm of the master", "within 100 rpm of the master"],ans:2,exp:"Jepperson Aircraft Propellers and Control page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"Synchronising is carried out to",opts:["match propeller tip speed", "match engine rpm", "match blade phase angle difference"],ans:0,exp:"Jepperson Aircraft Propellers and Control page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"The synchronisation governor monitors",opts:["RPM", "propeller tip speeds", "thrust tip speeds"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 37 refers"},
+  {topic:"Module 17 - Propellers",q:"Synchronisation is used to",opts:["reduce vibration and noise", "reduce the pitch of the fastest running blade", "preset the phase angle of propellers"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page131"},
+  {topic:"Module 17 - Propellers",q:"Synchronisation is used",opts:["on the ground", "in flight except landing and take off", "in flight"],ans:1,exp:"Jepperson Aircraft Propellers and Control Page136 refer to Auto Feather systems"},
+  {topic:"Module 17 - Propellers",q:"The propeller synchronising system is put into operation by",opts:["adjusting the engine rpm at required cruise speed then switching on the synchroniser", "adjusting the engine rpm then propeller rpm to required speed then switching on", "switching on the synchronizer then adjust the engine rpm so that all engines adjust together"],ans:0,exp:"Jepperson aircraft propellers and controls Page 132 Refers"},
+  {topic:"Module 17 - Propellers",q:"Propellers are synchronised by the",opts:["power lever", "PCU governor", "prop lever"],ans:1,exp:"EHJ Pallett Aircraft Electrical Systems Page 182 refers"},
+  {topic:"Module 17 - Propellers",q:"Unlike the automatic synchronizing system, the synchrophasing system of a two-propeller aircraft",opts:["sets the blade phase angle of two constant speed propellers", "causes the same rotation speed of the two propellers", "matches the blade angle of variable pitch propellers"],ans:0,exp:"Synchrophasing is the setting of blade phase angle difference to minimise vibration"},
+  {topic:"Module 17 - Propellers",q:"In a propeller synchrophasing system, an electric actuator",opts:["rotates (controls) the slave engine governor", "equalizes the governor signals", "turns the flexible shaft leading to the trimmer assembly"],ans:0,exp:"Jeppesen Propellers and controls Fig 13-20 shows the actuator attached to the governor"},
+  {topic:"Module 17 - Propellers",q:"If one signal is lost into the comparator unit when Synchrophasing is operating",opts:["Synchrophasing is lost and the engines continue to function normally", "the slower engine immediately goes to feather", "both engines remain running until there is a difference, of commonly, (4 to 5 percent), at which the slower of the engines is then feathered"],ans:0,exp:"Synchrophasing is used in conjunction with synchronising to reduce aircraft vibration"},
+  {topic:"Module 17 - Propellers",q:"Synchronisation controls RPM within what range?",opts:["100 RPM", "150 RPM", "50 RPM"],ans:0,exp:"Jeppersen Aircraft Propellers and Controls Page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"When should synchronisation be used?",opts:["During cruise", "During landing", "Anytime"],ans:0,exp:"Jeppersen Aircraft Propellers and Controls Page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"Propeller Synchronizing works utilizing",opts:["RPM Levers", "propeller lever", "governor"],ans:2,exp:"The governor is sometimes known as a comparator unit"},
+  {topic:"Module 17 - Propellers",q:"In relation to a propeller aircraft, synchrophasing would be used on",opts:["all Aircraft", "all Multi engine aircraft", "turbo prop Aircraft"],ans:1,exp:"Synchrophasing can be used on any multi propeller driven aircraft"},
+  {topic:"Module 17 - Propellers",q:"A propeller synchrophasing system allows a pilot to reduce noise and vibration by",opts:["setting the RPM of all propellers exactly the same", "adjusting the plane of rotation of all propellers", "adjusting the phase angle between the propellers"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"A propeller synchronising system allows a pilot to reduce noise and vibration by",opts:["adjusting the phase angle between the propellers", "setting the RPM of all propellers exactly the same", "adjusting the plane of rotation of all propellers"],ans:1,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"What is the function of automatic propeller synchronizing system on multiengined aircraft?",opts:["To control tip speed of all propellers", "To control the power output of all engines", "To control engine RPM and reduce vibration"],ans:2,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"On most reciprocating multiengined aircraft, automatic propeller synchronization is accomplished through the actuation of the",opts:["propeller governors", "propeller control levers", "throttle levers"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Electrically de-iced propeller slip rings have regular resistance checks for",opts:["oxidisation due to altitude", "open circuit heating elements", "wear between brushes and slip ring"],ans:1,exp:"A pair of slip rings conduct power to the heating elements CAIP's leaflet PL/1-4 refers"},
+  {topic:"Module 17 - Propellers",q:"Propeller anti-icing may be achieved by",opts:["using iso-propyl alcohol de-icing fluid sprayed on the blade", "using commercial de-icing fluid sprayed on the pro", "a using hot air from the compressor"],ans:0,exp:"Jepperson Aircraft Propellers and Control page 124 refers"},
+  {topic:"Module 17 - Propellers",q:"De-icing of the propeller can be monitored by",opts:["viewing the deicing fluid level sight glass", "viewing the blade and observing ice falling off the blade", "an ammeter in the flight deck"],ans:2,exp:"Jepperson Aircraft Propellers and Control page 129 refers"},
+  {topic:"Module 17 - Propellers",q:"Insulation testing of electrical de-icing systems should be periodically carried out because of",opts:["an open circuit in one of the blades", "oxidation due to atmospheric conditions", "wear on the slip rings"],ans:0,exp:"CAIPs leaflet PL/1-4 refers"},
+  {topic:"Module 17 - Propellers",q:"Insulation checks on propeller electrical heating elements should be carried out frequently due to",opts:["short/open circuits in the heating system wires along the propeller blade", "oxidation of slip ring and brush gear assembly", "deposits formed due to the wear of slip ring and brush gear assembly"],ans:0,exp:"CAIP's Leaflet PL/1-4 Para 3.3-2 Refers"},
+  {topic:"Module 17 - Propellers",q:"Where is the de-icing boot?",opts:["Root", "Trailing edge", "Tip"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Pages 126-127"},
+  {topic:"Module 17 - Propellers",q:"How is anti icing fluid fed to the individual blades?",opts:["Pump to a slinger ring", "Pump to each blade rubber feed boot", "Under gravity to the slinger ring then on to the blade"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 124 refers"},
+  {topic:"Module 17 - Propellers",q:"Ice is removed from blades by",opts:["a continuously heated electrical boot", "rubber boots inflated in sequence using compressor hot air", "inboard and outboard boot sections heated in sequence by action of the timer"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 126 refers"},
+  {topic:"Module 17 - Propellers",q:"Propeller blades are de-iced by",opts:["electrical heating elements bound in rubber overshoes on the blade leading edges", "generating eddy currents in the blade", "electrical heating elements wound around rubber shoes"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 126 refers"},
+  {topic:"Module 17 - Propellers",q:"Electrical power supplies on large aircraft, for electrical deicing are",opts:["AC", "DC", "Both AC or DC"],ans:1,exp:"CAIPs PL leaflets Refer"},
+  {topic:"Module 17 - Propellers",q:"Propeller slip rings",opts:["convey oil for PCU to pitch change mechanism", "minimise slip", "conduct electrical power for de-icing"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 126 refers"},
+  {topic:"Module 17 - Propellers",q:"On an electrical deicing system fast cycle is used",opts:["at low air temperature", "at high air temperature", "on the ground"],ans:1,exp:"Rolls Royce page 151 refers. Slow cycle meaning the elements are on for longer"},
+  {topic:"Module 17 - Propellers",q:"The output of an anti-icing pump is controlled by",opts:["a rheostat", "the hand pump", "a cyclic timer"],ans:0,exp:"Jepperson aircraft propellers and controls Page 124 Refers"},
+  {topic:"Module 17 - Propellers",q:"De-icing fluid goes to a slinger ring from",opts:["an electrical pump", "a hand pump", "a tank in the prop hub, providing constant feed once released"],ans:0,exp:"The pump is controlled by a rheostat to quicken or slow the flow"},
+  {topic:"Module 17 - Propellers",q:"To increase anti icing effectiveness",opts:["increase cycle times", "increase the AC or DC current", "use liquid as well as electrical anti icing systems"],ans:1,exp:"Anticing refers to fluid deicing in Jeppersen Propeller and Controls page 123 therefore it is the rheostat that is adjusted to vary current"},
+  {topic:"Module 17 - Propellers",q:"Propeller de-icing for varying rates of icing can be varied by",opts:["increasing propeller RPM", "increasing cyclic timing", "increasing the AC or DC voltage"],ans:1,exp:"Usually a slow and fast cycle are provided"},
+  {topic:"Module 17 - Propellers",q:"Propeller De-icing can be checked by",opts:["checking the torque meter for abnormal readings", "checking the the de-icing ammeter", "visually checking for ice on the blades"],ans:0,exp:"Disturbed airflow due to ice will reduce the eficiency of the propeller"},
+  {topic:"Module 17 - Propellers",q:"Proper operation of electric deicing boots on individual propeller blades may be best determined by",opts:["feeling the sequence of boot heating and have an assistant observe the loadmeter indications", "feeling the boots to see if they are heating", "observing the ammeter or loadmeter for current flow"],ans:0,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"What unit in the propeller anti-icing system controls the output of the pump?",opts:["Pressure relief valve", "Rheostat", "Cycling timer"],ans:1,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"Ice formation on the propellers, when the aircraft is in flight, will",opts:["decrease available engine power", "increase aircraft stall speed and increase noise", "decrease thrust and cause excessive vibration"],ans:2,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"Propeller fluid anti-icing systems generally use which of the following?",opts:["Ethyl alcohol", "Ethylene glycol", "Isopropyl alcohol"],ans:2,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"Thrust and camber faces of a propeller should be blended out to",opts:["5 times the depth of damage", "10 times to the depth of damage", "30 times to the depth of damage"],ans:2,exp:"Answer found in unattributed notes"},
+  {topic:"Module 17 - Propellers",q:"An aerodynamic correction factor that is preceded by the letter Q indicates",opts:["thrust balance", "dynamic balance", "torque balance"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"Leading edges should be blended out to",opts:["5 times the depth of damage", "10 times the depth of damage", "30 times the depth of damage"],ans:1,exp:"Answer found in unattributed notes"},
+  {topic:"Module 17 - Propellers",q:"If the tip of an electrical overshoe is torn",opts:["it may be cut back", "it may be classified as acceptable damage", "it must not be cut back"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"The shank of the propeller is permitted to have",opts:["no repairs", "minor repairs", "no decals fitted"],ans:0,exp:"Refer Jepperson A&P Powerplant Page 12-55"},
+  {topic:"Module 17 - Propellers",q:"When blending out a gouge on the face or camber side of a blade, the additional metal to be removed for stress relief is",opts:["0.02 inch", "0.002 inch", "0.2 inch"],ans:1,exp:""},
+  {topic:"Module 17 - Propellers",q:"Wooden propellers are permitted",opts:["repairs that do not affect weight and balance", "no repairs", "repairs using sawdust and aeroglue"],ans:2,exp:"Jepperson A&P Powerplant page 12- 53 refers"},
+  {topic:"Module 17 - Propellers",q:"The preservative used to protect metal blades is",opts:["lanolin", "brown storage wax", "petroleum jelly"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"Composite propellers may have minor repairs carried out by",opts:["any approved 3rd party maintenance organization", "the operator", "any approved composite repair facility"],ans:2,exp:"Must be composite specialist organization"},
+  {topic:"Module 17 - Propellers",q:"Details of propeller overhaul may be found in",opts:["Airworthiness Notice 75", "the AMM", "Airworthiness Notice 55"],ans:0,exp:"Refer CAA Airworthiness Notice 75"},
+  {topic:"Module 17 - Propellers",q:"The ground clearance of a single engine tail wheel aircraft propeller is measured with the aircraft",opts:["tail wheel on the ground", "tail wheel in the take off position", "in the rigging position"],ans:1,exp:"Refer JAR 25.925"},
+  {topic:"Module 17 - Propellers",q:"The structural clearance of a multi engine aircraft propeller",opts:["is taken between the engines with the props aligned", "is taken between the prop and the fuselage", "is taken from the ground"],ans:1,exp:"Refer JAR 25.925. Sometimes known as tip clearance"},
+  {topic:"Module 17 - Propellers",q:"What position should the blades be when installing the pitch change mechanism onto a hydromatic propeller?",opts:["Feather", "Zero pitch", "Full reverse"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"The ground (sea) clearance of a sea plane propeller is",opts:["1 inch", "9 inches", "18 inches"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Fig 2-5 refers"},
+  {topic:"Module 17 - Propellers",q:"Cropping is permitted to a maximum of",opts:["1 inch on all blades", "½ inch on all blades", "½ inch on one blade only"],ans:0,exp:"If 1 blade is cropped all must be cropped equally"},
+  {topic:"Module 17 - Propellers",q:"Dynamic balance is confirmed by use of",opts:["knife edges and mandrel", "a tracking check", "a vibration analyser"],ans:2,exp:"Refer Jepperson Powerplant Page 12- 60"},
+  {topic:"Module 17 - Propellers",q:"A metal propeller may be statically balanced by",opts:["adding varnish to the lighter blade", "removing metal from the opposite blade", "adding or removing lead wool to the hollow blade roots"],ans:2,exp:"Refer Jepperson Powerplant Page 12- 12"},
+  {topic:"Module 17 - Propellers",q:"Mechanical vibration relating to propellers in a piston powered aircraft",opts:["is due to the crankshaft at intermittent power settings", "is due to the lead lag of the propeller compared to the engine", "is due to the power stroke of the engine and may have a more detrimental effect than aerodynamic vibration"],ans:2,exp:"Jepperson Aircraft Propellers and Control page 16 refers"},
+  {topic:"Module 17 - Propellers",q:"Aerodynamic Correction Factor (A C F)",opts:["corrects for static balance", "is indicated in the form of degrees and minutes of pitch", "corrects for dynamic balance"],ans:1,exp:"A C F adjusts individual blade pitch angle to compensate for aerodynamic differences of blades in manufacture"},
+  {topic:"Module 17 - Propellers",q:"A propeller with an adjustable blade can be adjusted",opts:["on the ground with the engine stationary", "in flight", "on the ground with the engine running"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 37 refers"},
+  {topic:"Module 17 - Propellers",q:"When on the ground with the engine idling the prop control should be",opts:["fully aft with the mixture at idle", "fully aft with the mixture at rich", "fully forward with the mixture at idle"],ans:1,exp:"Jepperson Powerplant Page 2-16 refers- rich mixture cools the cylinders"},
+  {topic:"Module 17 - Propellers",q:"Operation with the engine at maximum boost should be limited to",opts:["prop at fine to prevent overstressing the engine", "prop at course to prevent overstressing the engine", "prop at windmill to prevent overstressing the engine"],ans:1,exp:"Maximum Boost indicates maximum power is applied to the prop"},
+  {topic:"Module 17 - Propellers",q:"Damage to a leading edge can be blended in comparison to a blade face",opts:["by maintaining a smooth depression", "by not exceeding 25% of the chord", "at a steeper angle"],ans:2,exp:"10:1 compared to 30:1"},
+  {topic:"Module 17 - Propellers",q:"The longitudinal clearance between the nose wheel and the propeller on a tricycle geared propeller is",opts:["9 inches", "18 inches", "1/2 inch"],ans:2,exp:"Refer JAR-25.925"},
+  {topic:"Module 17 - Propellers",q:"A tracking check compares",opts:["2 Adjacent blades", "2 Opposite blades", "any 2 blades"],ans:2,exp:"Refer Jepperson Aircraft Propellers and Controls Page 32"},
+  {topic:"Module 17 - Propellers",q:"A line of indentations at one blade section can be",opts:["blended within limits", "left for up to 12 months", "declared unserviceable"],ans:2,exp:"Jepperson Aircraft Propellers and Control Page 126 Refer"},
+  {topic:"Module 17 - Propellers",q:"Propeller vibration due to a problem with propeller installations would have a",opts:["the same frequency as turbine vibration", "lower frequency than turbine vibration", "higher frequency than turbine vibration"],ans:1,exp:"Propeller RPM is always less than Gas Turbine RPM therefore vibration frequency will always be less"},
+  {topic:"Module 17 - Propellers",q:"Preloading propeller blades before installation prevents",opts:["blade distortion", "blade flutter", "aerodynamic imbalance on the blades"],ans:1,exp:"Preloading refers to shimming the blade gear boss when being mated with the bevel gear cams in the hub"},
+  {topic:"Module 17 - Propellers",q:"When unfeathering a propeller, the blade should be put into what position to stop propeller overspeed?",opts:["Negative pitch", "Fine pitch", "Coarse pitch"],ans:2,exp:"A Prop moved to coarse pitch will rotate the engine without overspeeding"},
+  {topic:"Module 17 - Propellers",q:"Blade angle is measured using a",opts:["clinometer", "propeller protractor", "bevel protractor"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls Fig 1-7"},
+  {topic:"Module 17 - Propellers",q:"In the Beta range, angle of attack increases. The fuel flow increases, and what else increases?",opts:["Fuel temperature", "EPR and fuel temperature", "RPM and EGT"],ans:2,exp:"If fuel flow increases then RPM and EGT of the Gas Generator must increase"},
+  {topic:"Module 17 - Propellers",q:"With a propeller defect, the frequency of vibration will be",opts:["higher than a auxiliary gearbox defect", "lower than a turbine defect", "higher than a turbine defect"],ans:1,exp:"Propeller vibration is always lower then turbine vibration"},
+  {topic:"Module 17 - Propellers",q:"Blending of propeller blade defects refers to the",opts:["repainting of blade tips after cropping", "matching of paint finishes for appearances", "conversion of rough or sharp edges into smooth depression"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 21.Blending is the smoothing of a defect"},
+  {topic:"Module 17 - Propellers",q:"Removal of material from the propeller blade tips, resulting in a reduction in propeller diameter is called",opts:["tipping", "cropping", "topping"],ans:1,exp:"If you crop one blade (normally 1 inch maximum) the opposite blade must also be cropped"},
+  {topic:"Module 17 - Propellers",q:"Prior to using the universal propeller protractor",opts:["ensure the propeller blade is at the horizontal", "determine the reference blade station", "check date stamp for serviceability"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Page 3 refers"},
+  {topic:"Module 17 - Propellers",q:"To fit a new front cone to a prop shaft firstly",opts:["etch the propeller serial number to the rear face", "cut in half with a hacksaw and etch a unique serial number to both halves", "coat in Engineers blue to ensure seating in the propeller front boss"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Page 30 refers"},
+  {topic:"Module 17 - Propellers",q:"Blade tracking is adjusted by",opts:["adding lead wool to the blade shank", "re-seating the propeller on the front and rear cones", "by fitting shims to the propeller shaft hub"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 33 refers"},
+  {topic:"Module 17 - Propellers",q:"Which of the following functions requires the use of a propeller blade station?",opts:["Indexing blades", "Propeller balancing", "Measuring blade angle"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"To conduct a power check of an internal combustion engine requires",opts:["coarse pitch setting and advance the throttle to the target RPM", "fine pitch setting and advance the engine to the target RPM setting", "fine pitch setting and advance the engine to the max RPM setting"],ans:1,exp:"Jepperson A&P Powerplant Page 2-16 refers"},
+  {topic:"Module 17 - Propellers",q:"The power output of a turboprop engine is checked by",opts:["reference RPM", "reference Thrust", "reference Torque"],ans:2,exp:"Rolls Royce Jet Engine Page 137"},
+  {topic:"Module 17 - Propellers",q:"Immediately after blending out damage to to a blade the repair must be",opts:["re-protected against corrosion", "crack checked", "balanced"],ans:1,exp:"Crack check before re-protection"},
+  {topic:"Module 17 - Propellers",q:"How is the efficiency of a turbo prop engine assessed?",opts:["By correcting propeller RPM for ambient Air temperature and barometric pressure", "By comparing compressor and propeller RPM against a reference figure", "By comparing torque meter pressure against a reference figure"],ans:0,exp:"Rolls Royce The Jet Engine Page 138 Refers"},
+  {topic:"Module 17 - Propellers",q:"The limits for a tracking check are",opts:["1/4 inch maximum difference between adjacent blades", "1/8 inch maximum difference between opposite blades", "1/8 inch maximum difference between all blades"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 43 refers"},
+  {topic:"Module 17 - Propellers",q:"After a lightning strike",opts:["the prop must be tracked", "the propeller shaft should be checked for concentricity", "the heater elements should be checked for continuity and insulation"],ans:2,exp:"Taken from unattributed notes- has anyone got a reference?"},
+  {topic:"Module 17 - Propellers",q:"After overspeeding to 110%",opts:["no action is required", "return propeller for overhaul", "remove propeller for inspection"],ans:0,exp:"Up to 115% no action is necessary"},
+  {topic:"Module 17 - Propellers",q:"Indentations to the blade face are measured",opts:["individually", "individually and collectively", "collectively"],ans:1,exp:"Taken from unattributed notes- has anyone got a reference?"},
+  {topic:"Module 17 - Propellers",q:"When a propeller has had a report of overspeeding",opts:["procedure is dependant on the extent of overspeeding", "the propeller must be removed and sent to the manufacturer", "the propeller must be removed and tracked"],ans:0,exp:"CAIPS Lflt PL/1-4 refers inspection after overspeeding depends upon amount of overspeed"},
+  {topic:"Module 17 - Propellers",q:"The most significant effect of stone chips on a propeller is",opts:["thrust output of the propeller", "structural integrity of the propeller", "aerodynamic capability of the propeller"],ans:1,exp:"Cracks are initiated by stone chips etc"},
+  {topic:"Module 17 - Propellers",q:"Ground running an aircraft with a fixed pitch prop with its tail into wind causes the engine RPM to",opts:["increase", "stay the same regardless of wind direction", "decrease"],ans:2,exp:"A head wind on a dead engine will cause the prop to windmill. Therefore a tail wind must do the opposite"},
+  {topic:"Module 17 - Propellers",q:"Adjustments to a variable pitch propeller are",opts:["made in the air using the synchronizer", "made on the ground with the engine stationary", "made on the ground with the engine running"],ans:1,exp:"Governor spring pressure may be adjusted but only with the engine stationary!!"},
+  {topic:"Module 17 - Propellers",q:"When a propeller is removed, the securing parts are kept with",opts:["all separately in cases", "the propeller", "the engine"],ans:2,exp:"It is believed that the securing parts stay with the engine, but no reference can be found to support this"},
+  {topic:"Module 17 - Propellers",q:"During engine warm up the mixture should be at",opts:["rich, blades at feather", "lean, blades at superfine", "rich, blades at superfine"],ans:2,exp:"A&P Mechanics EA65 states that engines should not be warmed up with a lean mixture and you would not do it with the prop in feather, the engine load would be too great therefore b must be correct"},
+  {topic:"Module 17 - Propellers",q:"When unfeathering a propeller use",opts:["minimum RPM/min throttle", "any RPM min throttle", "maximum RPM/min throttle"],ans:0,exp:"A correspondent reports that for a SAAB 340 the power lever is set at ground idle (940 RPM) and the condition lever at unfeather"},
+  {topic:"Module 17 - Propellers",q:"How is the concentricity of a propeller shaft checked?",opts:["Micrometer", "Dial Test Indicator (DTI)", "Ring gauge"],ans:1,exp:"CAIPs show DTI's checking concentricity of crankshafts etc"},
+  {topic:"Module 17 - Propellers",q:"Propeller slip rings should be",opts:["lubricated with silicon grease", "lubricated with graphite grease", "cleaned and left dry"],ans:2,exp:"CAIPs PL/1-4 para 3.2.8 refers"},
+  {topic:"Module 17 - Propellers",q:"A splined hub is found be loose with the",opts:["excessive spline wear", "front cones bottomed against the front end of the splines", "retaining nut torque loading too low"],ans:1,exp:"Cones used to centralise hubs on shafts. If they do not seat properly the hub cannot be held firm. See Jeppesen propellers and controls fig 5-19"},
+  {topic:"Module 17 - Propellers",q:"When measuring RPM on a supercharged engine with variable pitch",opts:["maximum boost pressure and actual air pressure is used", "engine boost pressure and actual air pressure is used", "zero boost pressure and actual air pressure is used"],ans:2,exp:"CAIPs Leaflet EL/3-2 para 9.8.3 refers to testing on the fine pitch stops and at the same manifold pressure indicated before the engine was started (IE zero boost), corrected for"},
+  {topic:"Module 17 - Propellers",q:"On propeller securing plates circlips should be",opts:["annealed and the springiness put back into the circlip before it can be used again", "used once only", "used again as long as the circlip springs back first time"],ans:1,exp:"Lycoming have issued mandatory service bulletin 240S dated 3 Feb 2003 stating that circlips, lockplates shims and retaining rings must be replaced at overhaul or removal regardless of condition"},
+  {topic:"Module 17 - Propellers",q:"The cause of propeller out-of-track vibration is",opts:["propeller blade angle too large", "static imbalance", "blade stiffness not exactly matched"],ans:2,exp:"Vibration caused by blades being out of track means that the blades do not rotate in the same plane of rotation. Variable blade stiffness could cause the blades to flex and thus cause the blades not to track in the same plane"},
+  {topic:"Module 17 - Propellers",q:"How is blending carried out on an aluminium propeller blade?",opts:["By using a course file and peening", "By using a needle file and finish with emery cloth", "By using a scraper"],ans:1,exp:"Jeppersen Aircraft Propellers and Controls Page 21 refers"},
+  {topic:"Module 17 - Propellers",q:"Where would you find information on RPM and Power ratings?",opts:["Painted onto the propeller", "Engine Log book", "Etched on the Propeller"],ans:1,exp:"CAIPs leaflet EL/3-2 states that the reference RPM is recorded in the engine log book for power assurance checks"},
+  {topic:"Module 17 - Propellers",q:"During a test on the feathering and unfeathering systems, 1) after selecting Feather and pressing the feather button, it remained pressed for about 5 seconds then automatically deselected. 2) When un-feather was selected and the button pressed, it remained in for a short period and then autodeselected. These 2 situations would indicate",opts:["both systems are working correctly", "the Feathering Pump is Unserviceable since the button did not de-press immediately", "there is nothing wrong with the Feathering motor but the Un-Feathering pump is unserv"],ans:0,exp:"system is a hydromatic type propeller control. The feather/defeather switch is auto deselected by a pressure switch sensing the pressure build up in the hub after the desired position has been reached"},
+  {topic:"Module 17 - Propellers",q:"On a Hartzell prop with counterweights, full oil supply would indicate",opts:["on-speed condition", "overspeed condition", "underspeed condition"],ans:1,exp:"The counterweights are the clue here. This is a single acting propeller, therefore if the tank is full the spring must be fully extended to counteract an overspeed condition"},
+  {topic:"Module 17 - Propellers",q:"If a 2 blade prop is placed on a knife edge and it ends up horizontal (blades at 3 and 9 o'clock positions), it is said to be in balance",opts:["vertically", "horizontally", "dynamically"],ans:1,exp:"Jeppersen Aircraft Propellers and Controls Page 20 refers"},
+  {topic:"Module 17 - Propellers",q:"High Engine Oil pressure may be caused by",opts:["blocked scavenge filter", "restricted pump operation", "higher oil pressure"],ans:0,exp:"Restriction of flow in the circuit, assuming the pump is a full flow (gear) type, will give this indication"},
+  {topic:"Module 17 - Propellers",q:"Which of the following defects is cause for rejection of wooden propellers?",opts:["An oversize hub or bolthole or elongated bolt holes", "No protective coating on propeller", "Solder missing from screw heads securing metal tipping"],ans:0,exp:"Solder or finish can be replaced elongated holes cannot"},
+  {topic:"Module 17 - Propellers",q:"Inspection of a propeller blade by dye penetrant inspection is accomplished to detect",opts:["cracks", "corrosion at the blade tip", "torsional stress"],ans:0,exp:"Dye penetrant techniques are used to detect surface cracks"},
+  {topic:"Module 17 - Propellers",q:"Which of the following is used to correct horizontal imbalance of a wooden propeller?",opts:["Shellac", "Brass screws", "Solder"],ans:2,exp:"CAIPs state that adding solder to the metal tiping of the blade is the correct method for horizontal balance. Brass screws are added for vertical imbalance on the lightwieght side of the hub"},
+  {topic:"Module 17 - Propellers",q:"Which of the following determines oil and grease specifications for lubrication of propellers?",opts:["Propeller manufacturers", "Engine Manufacturers", "Airframe manufacturers"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"What type of imbalance will cause a twobladed propeller to have a persistent tendency to come to rest in a horizontal position (with the blades parallel to the ground) while being checked on a propeller balance beam?",opts:["Harmonic", "Vertical", "Horizontal"],ans:1,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"What is the purpose of an arbor used in balancing a propeller?",opts:["To support the propeller on the balance knives", "To mark the propeller blades where weights are to be be attached", "To level the balance stand"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"The application of more protective coating on one blade than another when refinishing a wood propeller",opts:["has little or no effect on operating characteristics", "may be necessary to achieve final balancing", "should never be done"],ans:1,exp:""},
+  {topic:"Module 17 - Propellers",q:"Apparent engine roughness is often a result of propeller unbalance. The effect of an unbalanced propeller will usually be",opts:["greater at high RPM", "greater at low RPM", "approximately the same at all speeds"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Propeller aerodynamic (thrust) imbalance can be largely eliminated by",opts:["correct blade contouring and angle setting", "static balancing", "keeping the propeller blades within the same plane of rotation"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Propellers exposed to salt spray should be flushed with",opts:["fresh water", "soapy water", "stoddard solvent"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"How can a steel propeller hub be tested for cracks?",opts:["By magnetic particle inspection", "By anodizing", "By etching"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Which of the following defects is cause of rejection of a wood propeller?",opts:["An oversize hub or bolt hole, or elongated bolt holes", "Solder missing from screw heads securing metal tipping", "No protective coating on propeller"],ans:0,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"Longitudinal (fore and aft) clearance of constant speed propeller blades or cuffs must be at least 1/2 inch (12.7 mm) between propeller parts and stationary parts of the aircraft. This clearance is with the propeller blades",opts:["at the lowest pitch angle", "at take-off pitch (maximum thrust) angle", "feathered or in the most critical pitch configuration"],ans:2,exp:"JAR 23"},
+  {topic:"Module 17 - Propellers",q:"When lubricating a Hartzell propeller blade with grease, to prevent damage to the blade seals, the service manual may recommend on some models to",opts:["remove the seals prior to greasing and reinstall them afterwards", "remove one of the two grease nipples for the blade, and grease the blade through the remaining nipple", "pump grease into both grease nipples for the blade simultaneously"],ans:1,exp:""},
+  {topic:"Module 17 - Propellers",q:"When running-up an engine and testing a newly installed hydromatic propeller, it is necessary to exercise the propeller by moving the governor control through its entire travel several times to",opts:["remove any entrapped air", "test the maximum RPM setting of the governor", "seat the blades fully against the low pitch stop"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"What is indicated when the front cone bottoms while installing a propeller?",opts:["Blade angles are incorrect", "Propeller-dome combination is incorrect", "Rear cone should be moved forward"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Which of the following statements concerning the installation of a new fixed-pitch wood propeller is true?",opts:["If a separate metal hub is used, final track should be accomplished prior to installing the hub in the propeller", "NAS close-tolerance bolts should be used to install the propeller", "Inspect the bolts for tightness after the first flight and again after the first 25 hours of flying"],ans:2,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"If the propeller cone or hub cone seats show evidence of galling and wear, the most likely cause is",opts:["the propeller retaining nut was not tight enough during previous operation", "the front cone was not fully bottomed against the crankshaft splines during installation", "the pitch change stops were located incorrectly, causing the cone seats to act as the high pitch stop"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"On aircraft equiped with hydraulically operated constant speed propellers, all ignition and magneto checking is done with the propeller in which position?",opts:["Low RPM", "High pitch range", "High RPM"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Oil leakage around the rear cone of a hydromatic propeller usually indicates a defective",opts:["spider-shaft oil seal", "piston gasket", "dome-barrel oil seal"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"Maximum taper contact between crankshaft and propeller hub is determined by using",opts:["a micrometer", "a surface gauge", "bearing blue colour transfer"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"Propeller blade tracking is the process of determining",opts:["the plane of rotation of the propeller with respect to the aircraft longitudinal axis", "that the blade angles are within specified tolerance of each other", "the positions of the tips of the propeller blades relative to each other"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"In what position is the constant-speed propeller control placed to check the magnetos?",opts:["Full decrease, low propeller blade pitch angle", "Full increase, low propeller blade pitch angle", "Full increase, high propeller blade pitch angle"],ans:1,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"If a flanged propeller shaft has dowel pins",opts:["the propeller can be installed in only one position", "check carefully for front cone bottoming against the pins", "install the propeller so that the blades are positioned for hand propping"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Repairs of aluminium alloy adjustable pitch propellers are not permitted to be made on the",opts:["face", "shank", "back"],ans:1,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"Which of the following methods is used to straighten a bent aluminium propeller blade that is within repairable limits?",opts:["Either hot or cold straightening, depending on the location and severity of damage", "Cold straightening only", "Careful heating to accomplish straightening, followed by heat treatment to store original strength"],ans:1,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"It is important that nicks in aluminium alloy propeller blades be repaired as soon as possible in order to",opts:["maintain equal aerodynamic characteristics between blades", "eliminate stress concentration points", "equalize the centrifugal loads between the blades"],ans:1,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"Minor surface damage located in a repairable area, but not on the leading or trailing edges of aluminium blades, may be repaired by first",opts:["filing with a half round or flat file", "sanding and applying a proper filler", "filing with a riffle file"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"Minor surface damage located in a repairable area, but not on the leading or trailing edges of composite blades, may be repaired by",opts:["filing with a riffle file", "sanding and applying a proper filler", "filing with a half round or flat file"],ans:1,exp:""},
+  {topic:"Module 17 - Propellers",q:"After removal of aluminium blade damage, the affected surface should be polished with",opts:["fine steel wool", "very fine sandpaper", "powdered soapstone"],ans:1,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"When preparing a propeller blade for inspection it should be cleaned with",opts:["mild soap and water", "steel wool", "methyl ethyl ketone"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"What method would you use to inspect an aluminium propeller blade when a crack is suspected?",opts:["Dye penetrant inspection", "Magnetic particle inspection", "A bright light and magnifying glass"],ans:0,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"Removal of propeller blade tips within the Type Certificate Data Sheet limits to correct a defect is",opts:["a major repair", "permitted under the privileges and limitations of a category B1 licence", "a major modification"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"Which of the following generally renders an aluminium alloy propeller unrepairable?",opts:["A transverse crack of any size", "Any slag inclusions or cold shuts", "Any repairs that would require shortening and re-contouring of blades"],ans:0,exp:"AC43.13-1B"},
+  {topic:"Module 17 - Propellers",q:"What is the acceptable amount of cushion in a governor control lever?",opts:["1/8 inch", "3/8 inch", "1/4 inch"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"Rubber components should be stored in",opts:["the dark", "natural light", "flouresent light"],ans:0,exp:""},
+  {topic:"Module 17 - Propellers",q:"The maximum storage periods for installed propellers are detailed in the",opts:["propeller overhaul and repair manual", "Airworthiness Notices", "aircraft Maintenance Manual"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"When storing wooden propellers",opts:["store in a dry well ventilated and illuminated location", "store in a horizontal position", "wrap in greaseproof paper"],ans:1,exp:"Jepperson A&P Powerplant Page 12- 54 refers"},
+  {topic:"Module 17 - Propellers",q:"A wooden propeller should be stored",opts:["a dry and well ventilated area", "in a room with high humidity to stop it drying and cracking", "a warm but light storeroom"],ans:0,exp:"A&P Technician Powerplant textbook 12-54"},
+  {topic:"Module 17 - Propellers",q:"A wooden propeller in storage",opts:["should not be wrapped at-all", "should be wrapped tightly", "should be wrapped loosely"],ans:0,exp:"A&P Technician Powerplant textbook 12-54"},
+  {topic:"Module 17 - Propellers",q:"A VP propeller mechanism, for storage for long periods should",opts:["should be completely emptied and dried", "be filled with special inhibiting oil to prevent condensation and corrosion", "be filled with the normal operating oil to prevent condensation and corrosion"],ans:0,exp:""}
+];
+
+/* ====================== DO NOT EDIT BELOW ============================
+   Everything from here down is the quiz engine. It auto-adapts to
+   whatever is in `questions` above — any number of questions, any
+   number of topics, any topic names. No manual changes needed here
+   when you swap in a new PDF's worth of questions.
+====================================================================== */
+
+// Auto-detect topics from the questions array (in first-seen order),
+// unless TOPIC_COLOR_ORDER above specifies an explicit order.
+const TOPICS = TOPIC_COLOR_ORDER.length
+  ? TOPIC_COLOR_ORDER
+  : [...new Set(questions.map(q => q.topic))];
+
+// 7 distinct badge colors defined in CSS (t0-t6). Cycles automatically
+// if there are more than 7 topics, so it never breaks on more topics.
+const TCLASS = TOPICS.map((_, i) => 't' + (i % 7));
+
+// ===================== AUTOSAVE =====================
+// Unique-ish storage key per quiz, so different CBT files saved/opened
+// from the same browser don't overwrite each other's saved progress.
+const QUIZ_ID = (CONFIG.pageTitle + '_' + questions.length)
+  .toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,80);
+const STORAGE_KEY = 'cbt_progress_' + QUIZ_ID;
+
+function saveProgress(){
+  try{
+    const payload = {answers, statuses, correctCount, wrongCount, skipCount, current, total:questions.length};
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  }catch(e){ /* storage unavailable (private mode etc.) — fail silently */ }
+  reportProgressToOpener();
+}
+
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    const d = JSON.parse(raw);
+    if(!d || d.total !== questions.length || !Array.isArray(d.answers) || d.answers.length !== questions.length) return false;
+    answers = d.answers; statuses = d.statuses;
+    correctCount = d.correctCount||0; wrongCount = d.wrongCount||0; skipCount = d.skipCount||0;
+    current = d.current||0;
+    return true;
+  }catch(e){ return false; }
+}
+
+function clearProgress(){
+  try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+}
+
+// If this quiz was opened from a CBT Library Dashboard tab (via window.open),
+// report live score back to it so the dashboard can show progress on its card.
+// Uses postMessage, which works across origins/local-file contexts alike —
+// unlike localStorage, it doesn't require the two pages to share storage.
+function reportProgressToOpener(){
+  try{
+    if(!window.opener || window.opener.closed) return;
+    const done = statuses.filter(s=>s!=='unattempted').length;
+    const pct = questions.length ? Math.round((done/questions.length)*100) : 0;
+    window.opener.postMessage({
+      type:'cbt-progress-update',
+      correct:correctCount, wrong:wrongCount, skip:skipCount,
+      total:questions.length, pct
+    }, '*');
+  }catch(e){ /* no opener, or cross-origin restriction — fail silently */ }
+}
+// =====================================================
+
+// ===================== STATE =====================
+// `answers`/`statuses`/`correctCount`/`wrongCount`/`skipCount` always track the
+// FULL, sequential practice run (Full Quiz mode) — this is what drives the
+// overall progress bar and what gets reported to the dashboard. Wrong-Answers
+// and Timed modes use their own separate, non-persistent answer tracking so
+// practicing there never distorts your overall progress stats.
+let current=0,answers=new Array(questions.length).fill(null),statuses=new Array(questions.length).fill('unattempted');
+let correctCount=0,wrongCount=0,skipCount=0;
+
+let mode='full'; // 'full' | 'wrong' | 'timed'
+let activeIndices=questions.map((_,i)=>i);
+let activePos=0;
+
+// Persistent mistake history — survives Restart Quiz, only cleared explicitly.
+const MISTAKES_KEY='cbt_mistakes_'+QUIZ_ID;
+const LASTSEEN_KEY='cbt_lastseen_'+QUIZ_ID;
+let mistakes=new Array(questions.length).fill(0);
+let lastSeen=new Array(questions.length).fill(null); // ms timestamp or null (never seen)
+
+function loadLastSeen(){
+  try{
+    const raw=localStorage.getItem(LASTSEEN_KEY);
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    if(Array.isArray(d)&&d.length===questions.length) lastSeen=d;
+  }catch(e){}
+}
+function saveLastSeen(){
+  try{ localStorage.setItem(LASTSEEN_KEY, JSON.stringify(lastSeen)); }catch(e){}
+}
+
+// Wrong-mode / timed-mode transient answer tracking (not persisted, resets each session)
+let modeAnswers={}; // idx -> selected option index, for wrong/timed modes
+
+// Timed exam state
+let sessionShuffle={}; // idx -> {opts:[...], ans:N} shuffled per exam session
+let timedSecondsLeft=0, timedTimerHandle=null, examRevealed=true;
+
+function loadMistakes(){
+  try{
+    const raw=localStorage.getItem(MISTAKES_KEY);
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    if(Array.isArray(d)&&d.length===questions.length) mistakes=d;
+  }catch(e){}
+}
+function saveMistakes(){
+  try{ localStorage.setItem(MISTAKES_KEY, JSON.stringify(mistakes)); }catch(e){}
+}
+function clearMistakeHistory(){
+  if(!confirm('Clear your mistake history? This resets what "Wrong Answers Only" mode shows you.'))return;
+  mistakes=new Array(questions.length).fill(0);
+  saveMistakes();
+  updateWrongCountBadge();
+  if(mode==='wrong') setMode('full');
+}
+function updateWrongCountBadge(){
+  const n=mistakes.filter(m=>m>0).length;
+  document.getElementById('wrong-count-badge').textContent=n;
+}
+function shuffleArray(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+// ===================== SMART REVIEW (continuous spaced repetition) =====================
+// Unlike Wrong-Only (fixed snapshot) or Timed (fixed sample), Smart Review has
+// no pre-built list — every time you move on, it re-evaluates ALL questions
+// and picks the single best one to show next, based on live mistake count AND
+// how long it's been since you last saw it. That's what makes it "automatic":
+// it keeps adapting as you go, not just once when you start it.
+let smartHistory=[]; // [{idx, answered:null|optionIdx}] — one entry per VIEW, so the
+                      // same question can reappear later as an independent attempt
+let smartPos=-1;
+let smartSessionCorrect=0, smartSessionWrong=0;
+
+function smartWeight(i){
+  // Cap the "staleness" bonus so a question you've simply never seen yet
+  // doesn't outweigh one you keep actually getting wrong — mistakes should
+  // dominate the ranking, staleness is a secondary nudge, not the main driver.
+  const daysSince = lastSeen[i] ? Math.min((Date.now()-lastSeen[i])/86400000, 14) : 3;
+  return (1 + mistakes[i]*5) * (1 + daysSince);
+}
+function pickNextSmartIndex(excludeIdx){
+  const all=questions.map((_,i)=>i);
+  const candidates = all.length>1 ? all.filter(i=>i!==excludeIdx) : all;
+  const weights = candidates.map(smartWeight);
+  const totalW = weights.reduce((s,w)=>s+w,0);
+  let r=Math.random()*totalW;
+  for(let k=0;k<candidates.length;k++){
+    r-=weights[k];
+    if(r<=0) return candidates[k];
+  }
+  return candidates[candidates.length-1];
+}
+function smartAdvance(){
+  const prevIdx = smartHistory.length ? smartHistory[smartHistory.length-1].idx : null;
+  const nextIdx = pickNextSmartIndex(prevIdx);
+  smartHistory.push({idx:nextIdx, answered:null});
+  smartPos=smartHistory.length-1;
+  lastSeen[nextIdx]=Date.now();
+  saveLastSeen();
+  renderQ(nextIdx);
+}
+function smartPrev(){
+  if(smartPos<=0)return;
+  smartPos--;
+  renderQ(smartHistory[smartPos].idx);
+}
+function endSmartSession(){
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('results-screen').style.display='block';
+  window.scrollTo(0,0);
+  const answeredVisits = smartHistory.filter(v=>v.answered!==null);
+  const total = answeredVisits.length;
+  const ec = smartSessionCorrect, ew = smartSessionWrong;
+  const pct = total ? Math.round(ec/total*100) : 0;
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('sum-total').textContent=total;
+  document.getElementById('sum-correct').textContent=ec;
+  document.getElementById('sum-wrong').textContent=ew;
+  document.getElementById('sum-skip').textContent=0;
+  document.getElementById('res-grade').textContent='SMART REVIEW SESSION COMPLETE';
+  document.getElementById('res-grade').style.color='var(--accent)';
+  document.getElementById('res-bar').style.width=pct+'%';
+  document.getElementById('res-bar').style.background='var(--accent)';
+  const list=document.getElementById('review-list');list.innerHTML='';
+  const L=['A','B','C','D'];
+  answeredVisits.forEach(v=>{
+    const q=questions[v.idx];
+    const st = v.answered===q.ans ? 'correct' : 'wrong';
+    const bc=st==='correct'?'badge-correct':'badge-wrong';
+    const bt=st==='correct'?'✔ Correct':'✘ Wrong';
+    const div=document.createElement('div');div.className='review-item';
+    div.innerHTML=`<div class="review-q">
+      <span class="topic-badge ${topicClass(q.topic)}" style="font-size:0.65rem;padding:1px 7px;margin-right:6px;">${q.topic}</span>
+      <strong>Q${v.idx+1}.</strong> ${q.q} <span class="badge ${bc}">${bt}</span></div>
+      <div class="review-row"><span class="review-label">Your Answer:</span>
+      <span class="review-val" style="color:${st==='correct'?'var(--correct)':'var(--wrong)'}">${L[v.answered]}. ${q.opts[v.answered]}</span></div>
+      <div class="review-row"><span class="review-label">Correct:</span>
+      <span class="review-val" style="color:var(--correct)">${L[q.ans]}. ${q.opts[q.ans]}</span></div>
+      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}`;
+    list.appendChild(div);
+  });
+}
+
+// ===================== MODE SWITCHING =====================
+function setMode(m){
+  stopTimer();
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+
+  if(m==='wrong'){
+    const wrongIdxs=questions.map((_,i)=>i).filter(i=>mistakes[i]>0);
+    if(wrongIdxs.length===0){
+      alert('No mistake history yet. Answer some questions wrong first (in any mode) and they\'ll show up here for focused review.');
+      return;
+    }
+    wrongIdxs.sort((a,b)=>mistakes[b]-mistakes[a]); // worst-missed first
+    activeIndices=wrongIdxs;
+    modeAnswers={};
+    mode='wrong';
+    examRevealed=true;
+    document.getElementById('mode-btn-wrong').classList.add('active');
+    document.getElementById('exam-banner').style.display='none';
+    document.getElementById('timer-chip').style.display='none';
+    document.getElementById('nav-section').style.display='';
+    activePos=0;
+    buildNav();
+    renderQ(activeIndices[0]);
+
+  }else if(m==='timed'){
+    const countStr=prompt('How many questions in this timed exam?','20');
+    if(countStr===null)return;
+    const count=Math.max(1,Math.min(questions.length,parseInt(countStr,10)||20));
+    const minStr=prompt('Time limit in minutes?','30');
+    if(minStr===null)return;
+    const minutes=Math.max(1,parseInt(minStr,10)||30);
+
+    // Weighted sample: questions you've missed more often are more likely to
+    // be included (a lightweight spaced-repetition effect), but it's still a
+    // realistic simulated mix, not ONLY your weak spots.
+    const weighted=[];
+    questions.forEach((_,i)=>{ const w=1+mistakes[i]; for(let k=0;k<w;k++) weighted.push(i); });
+    const chosen=new Set();
+    let guard=0;
+    while(chosen.size<count && chosen.size<questions.length && guard<count*50){
+      chosen.add(weighted[Math.floor(Math.random()*weighted.length)]);
+      guard++;
+    }
+    activeIndices=shuffleArray([...chosen]);
+    sessionShuffle={};
+    activeIndices.forEach(i=>{
+      const q=questions[i];
+      const order=shuffleArray(q.opts.map((_,k)=>k));
+      sessionShuffle[i]={opts:order.map(k=>q.opts[k]), ans:order.indexOf(q.ans)};
+    });
+    modeAnswers={};
+    mode='timed';
+    examRevealed=false;
+    document.getElementById('mode-btn-timed').classList.add('active');
+    document.getElementById('exam-banner').style.display='block';
+    document.getElementById('timer-chip').style.display='';
+    document.getElementById('nav-section').style.display='';
+    startTimer(minutes*60);
+    activePos=0;
+    buildNav();
+    renderQ(activeIndices[0]);
+
+  }else if(m==='smart'){
+    smartHistory=[];
+    smartPos=-1;
+    smartSessionCorrect=0;smartSessionWrong=0;
+    modeAnswers={};
+    mode='smart';
+    examRevealed=true;
+    document.getElementById('mode-btn-smart').classList.add('active');
+    document.getElementById('exam-banner').style.display='none';
+    document.getElementById('timer-chip').style.display='none';
+    document.getElementById('nav-section').style.display='none';
+    smartAdvance();
+
+  }else{ // full
+    activeIndices=questions.map((_,i)=>i);
+    mode='full';
+    examRevealed=true;
+    document.getElementById('mode-btn-full').classList.add('active');
+    document.getElementById('exam-banner').style.display='none';
+    document.getElementById('timer-chip').style.display='none';
+    document.getElementById('nav-section').style.display='';
+    buildNav();
+    const firstUnattempted=statuses.findIndex(s=>s==='unattempted');
+    renderQ(firstUnattempted===-1?0:firstUnattempted);
+  }
+}
+
+function startTimer(seconds){
+  timedSecondsLeft=seconds;
+  updateTimerDisplay();
+  timedTimerHandle=setInterval(()=>{
+    timedSecondsLeft--;
+    updateTimerDisplay();
+    if(timedSecondsLeft<=0){ stopTimer(); submitExam(true); }
+  },1000);
+}
+function stopTimer(){
+  if(timedTimerHandle){ clearInterval(timedTimerHandle); timedTimerHandle=null; }
+}
+function updateTimerDisplay(){
+  const m=Math.floor(timedSecondsLeft/60), s=timedSecondsLeft%60;
+  document.getElementById('hdr-timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+// ===================== CORE ENGINE =====================
+function topicClass(t){const i=TOPICS.indexOf(t);return i>=0?TCLASS[i]:'t0';}
+
+function applyConfig(){
+  document.getElementById('page-title').textContent=CONFIG.pageTitle+' ('+questions.length+'Q)';
+  document.getElementById('header-title-text').innerHTML=
+    CONFIG.headerLeft+' &nbsp;|&nbsp; <span>'+CONFIG.headerRight+'</span>';
+  document.querySelector('.results-title').textContent=CONFIG.resultsTitle;
+  document.getElementById('res-subtitle').textContent=
+    CONFIG.resultsSubtitle+' · '+questions.length+' Questions';
+}
+
+function init(){
+  applyConfig();
+  loadProgress();
+  loadMistakes();
+  loadLastSeen();
+  updateWrongCountBadge();
+  buildNav();
+  updateScoreHeader();
+  reportProgressToOpener();
+  let resumeIdx=0;
+  const firstUnattempted=statuses.findIndex(s=>s==='unattempted');
+  resumeIdx=firstUnattempted===-1?0:firstUnattempted;
+  renderQ(resumeIdx);
+}
+
+function buildNav(){
+  const g=document.getElementById('nav-grid');g.innerHTML='';
+  activeIndices.forEach((i,pos)=>{
+    const b=document.createElement('button');
+    b.className='nav-dot unattempted';b.textContent=i+1;b.id='nav-'+i;
+    b.setAttribute('data-mistakes', mistakes[i]||0);
+    b.onclick=()=>renderQ(i);g.appendChild(b);
+  });
+}
+
+function updateNav(){
+  if(mode==='smart')return; // smart mode has no fixed nav grid (see nav-section hidden)
+  activeIndices.forEach(i=>{
+    const el=document.getElementById('nav-'+i);
+    if(!el)return;
+    el.setAttribute('data-mistakes', mistakes[i]||0);
+    if(mode==='full'){
+      el.className='nav-dot '+(i===current?'current':statuses[i]);
+    }else{
+      const st = modeAnswers[i]===undefined ? 'unattempted' :
+        (!examRevealed ? 'answered' : (modeAnswers[i]===effectiveAns(i) ? 'correct':'wrong'));
+      el.className='nav-dot '+(i===current?'current':st);
+    }
+  });
+}
+
+// returns the correct-answer index for question i, accounting for timed-mode shuffling
+function effectiveOpts(i){ return mode==='timed'&&sessionShuffle[i] ? sessionShuffle[i].opts : questions[i].opts; }
+function effectiveAns(i){ return mode==='timed'&&sessionShuffle[i] ? sessionShuffle[i].ans : questions[i].ans; }
+
+function renderQ(idx){
+  current=idx;
+  activePos=activeIndices.indexOf(idx);
+  const q=questions[idx];
+  const opts=effectiveOpts(idx);
+  const ansIdx=effectiveAns(idx);
+
+  document.getElementById('q-num-label').textContent = mode==='smart' ? 'Review #'+(smartPos+1) : 'Q '+(activePos+1);
+  document.getElementById('q-of-total').textContent =
+    mode==='full' ? 'of '+questions.length+' Questions' :
+    mode==='smart' ? 'Smart Review session · '+(smartPos+1)+' viewed so far (original Q'+(idx+1)+')' :
+    'of '+activeIndices.length+' in this session (original Q'+(idx+1)+')';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('topic-badge-wrap').innerHTML=
+    `<div class="topic-badge ${topicClass(q.topic)}">${q.topic}</div>`;
+
+  const answeredVal = mode==='full' ? answers[idx] :
+    mode==='smart' ? (smartHistory[smartPos] ? smartHistory[smartPos].answered : null) :
+    (modeAnswers[idx]!==undefined?modeAnswers[idx]:null);
+  const showFeedbackNow = mode!=='timed' || examRevealed;
+
+  const ow=document.getElementById('options-wrap');ow.innerHTML='';
+  const L=['A','B','C','D'];
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt-btn';
+    btn.innerHTML=`<span class="opt-label">${L[i]}.</span><span>${opt}</span>`;
+    btn.onclick=()=>selectAnswer(i);
+    if(answeredVal!==null){
+      btn.disabled=true;
+      if(showFeedbackNow){
+        if(i===ansIdx)btn.classList.add('correct');
+        else if(i===answeredVal)btn.classList.add('wrong');
+      }else if(i===answeredVal){
+        btn.classList.add('selected-pending');
+        btn.style.borderColor='var(--accent)';
+      }
+    }
+    ow.appendChild(btn);
+  });
+
+  const fb=document.getElementById('feedback');
+  if(answeredVal!==null && showFeedbackNow){
+    const isC=answeredVal===ansIdx;
+    fb.className='feedback show '+(isC?'correct':'wrong');
+    fb.innerHTML=isC
+      ?`✔ Correct!${q.exp?'<br><small style="opacity:.8">'+q.exp+'</small>':''}`
+      :`✘ Incorrect. Correct: <strong>${L[ansIdx]}. ${opts[ansIdx]}</strong>${q.exp?'<br><small style="opacity:.8">'+q.exp+'</small>':''}`;
+  }else if(answeredVal!==null && !showFeedbackNow){
+    fb.className='feedback show';
+    fb.style.background='rgba(30,143,255,0.1)';fb.style.borderColor='rgba(30,143,255,0.3)';fb.style.color='var(--accent)';
+    fb.innerHTML='Answer recorded — feedback shown after you submit the exam.';
+  }else{fb.className='feedback';fb.textContent='';}
+
+  if(mode==='smart'){
+    document.getElementById('btn-prev').style.display=smartPos<=0?'none':'';
+    document.getElementById('btn-skip').style.display='none';
+    document.getElementById('btn-next').style.display='';
+    document.getElementById('btn-next').textContent='Next (Smart Pick) ▶';
+    document.getElementById('btn-finish').style.display='none';
+    document.getElementById('btn-submit-exam').style.display='none';
+    document.getElementById('btn-end-smart').style.display='';
+  }else{
+    document.getElementById('btn-next').textContent='Next ▶';
+    document.getElementById('btn-end-smart').style.display='none';
+    const isFirst=activePos===0, isLast=activePos===activeIndices.length-1;
+    document.getElementById('btn-prev').style.display=isFirst?'none':'';
+    document.getElementById('btn-skip').style.display=mode==='timed'?'none':'';
+    document.getElementById('btn-skip').disabled=answeredVal!==null;
+    document.getElementById('btn-next').style.display=isLast?'none':'';
+    document.getElementById('btn-finish').style.display=(isLast&&mode!=='timed')?'':'none';
+    document.getElementById('btn-submit-exam').style.display=(mode==='timed')?'':'none';
+  }
+
+  if(mode==='full'){
+    const done=statuses.filter(s=>s!=='unattempted').length;
+    document.getElementById('prog-bar').style.width=(done/questions.length*100)+'%';
+  }else if(mode==='smart'){
+    const seen=smartHistory.filter(v=>v.answered!==null).length;
+    const pct = seen ? Math.round(smartSessionCorrect/seen*100) : 0;
+    document.getElementById('prog-bar').style.width=pct+'%';
+  }else{
+    const done=Object.keys(modeAnswers).length;
+    document.getElementById('prog-bar').style.width=(done/activeIndices.length*100)+'%';
+  }
+  updateNav();
+}
+
+function selectAnswer(optIdx){
+  if(mode==='full'){
+    if(answers[current]!==null)return;
+    answers[current]=optIdx;
+    const isCorrect=(optIdx===questions[current].ans);
+    if(isCorrect){statuses[current]='correct';correctCount++; mistakes[current]=Math.max(0,(mistakes[current]||0)-1);}
+    else{statuses[current]='wrong';wrongCount++; mistakes[current]=(mistakes[current]||0)+1;}
+    lastSeen[current]=Date.now();
+    saveMistakes();saveLastSeen();updateWrongCountBadge();
+    updateScoreHeader();
+    renderQ(current);
+    saveProgress();
+    if(isCorrect&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),1200);}
+  }else if(mode==='smart'){
+    const visit=smartHistory[smartPos];
+    if(!visit||visit.answered!==null)return;
+    visit.answered=optIdx;
+    const isCorrect=(optIdx===questions[current].ans);
+    if(isCorrect){ mistakes[current]=Math.max(0,(mistakes[current]||0)-1); smartSessionCorrect++; }
+    else{ mistakes[current]=(mistakes[current]||0)+1; smartSessionWrong++; }
+    saveMistakes();updateWrongCountBadge();
+    renderQ(current);
+    if(isCorrect){ setTimeout(()=>smartAdvance(),1200); }
+  }else{
+    if(modeAnswers[current]!==undefined)return;
+    modeAnswers[current]=optIdx;
+    const isCorrect=(optIdx===effectiveAns(current));
+    if(isCorrect){ mistakes[current]=Math.max(0,(mistakes[current]||0)-1); }
+    else{ mistakes[current]=(mistakes[current]||0)+1; }
+    saveMistakes();updateWrongCountBadge();
+    renderQ(current);
+    if(mode==='wrong'&&isCorrect&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),1200);}
+    else if(mode==='timed'&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),400);}
+  }
+}
+
+function skipQuestion(){
+  if(mode!=='full')return; // no skipping mid-exam; not applicable in wrong/smart modes
+  if(answers[current]!==null)return;
+  statuses[current]='skipped';skipCount++;
+  updateScoreHeader();saveProgress();navigate(1);
+}
+
+function navigate(dir){
+  if(mode==='smart'){
+    if(dir<0) smartPrev(); else smartAdvance();
+    return;
+  }
+  const nextPos=activePos+dir;
+  if(nextPos<0||nextPos>=activeIndices.length)return;
+  renderQ(activeIndices[nextPos]);
+  if(mode==='full') saveProgress();
+}
+
+function updateScoreHeader(){
+  document.getElementById('hdr-c').textContent=correctCount;
+  document.getElementById('hdr-w').textContent=wrongCount;
+  document.getElementById('hdr-s').textContent=skipCount;
+}
+
+// ===================== EXAM SUBMIT =====================
+function submitExam(auto){
+  stopTimer();
+  examRevealed=true;
+  let ec=0,ew=0;
+  activeIndices.forEach(i=>{
+    if(modeAnswers[i]===undefined)return;
+    if(modeAnswers[i]===effectiveAns(i)) ec++; else ew++;
+  });
+  const unanswered=activeIndices.length-(ec+ew);
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('results-screen').style.display='block';
+  window.scrollTo(0,0);
+  const total=activeIndices.length,pct=total?Math.round(ec/total*100):0;
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('sum-total').textContent=total;
+  document.getElementById('sum-correct').textContent=ec;
+  document.getElementById('sum-wrong').textContent=ew;
+  document.getElementById('sum-skip').textContent=unanswered;
+  let grade,gc;
+  if(auto){grade='TIME UP — '+(pct>=75?'PASS':'REVIEW REQUIRED');gc=pct>=75?'#22c55e':'#ef4444';}
+  else if(pct>=90){grade='EXCELLENT — PASS';gc='#22c55e';}
+  else if(pct>=75){grade='GOOD — PASS';gc='#22c55e';}
+  else if(pct>=60){grade='AVERAGE — MARGINAL';gc='#f59e0b';}
+  else{grade='BELOW STANDARD — REVIEW REQUIRED';gc='#ef4444';}
+  document.getElementById('res-grade').textContent=grade;
+  document.getElementById('res-grade').style.color=gc;
+  document.getElementById('res-bar').style.width=pct+'%';
+  document.getElementById('res-bar').style.background=gc;
+  buildExamReview();
+}
+
+function buildExamReview(){
+  const list=document.getElementById('review-list');list.innerHTML='';
+  const L=['A','B','C','D'];
+  activeIndices.forEach(i=>{
+    const q=questions[i];
+    const opts=effectiveOpts(i), ansIdx=effectiveAns(i);
+    const given=modeAnswers[i];
+    const st = given===undefined ? 'skipped' : (given===ansIdx?'correct':'wrong');
+    const bc=st==='correct'?'badge-correct':st==='wrong'?'badge-wrong':'badge-skipped';
+    const bt=st==='correct'?'✔ Correct':st==='wrong'?'✘ Wrong':'– Not answered';
+    const ya=given!==undefined?L[given]+'. '+opts[given]:'Not answered';
+    const div=document.createElement('div');div.className='review-item';
+    div.innerHTML=`<div class="review-q">
+      <span class="topic-badge ${topicClass(q.topic)}" style="font-size:0.65rem;padding:1px 7px;margin-right:6px;">${q.topic}</span>
+      <strong>Q${i+1}.</strong> ${q.q} <span class="badge ${bc}">${bt}</span></div>
+      <div class="review-row"><span class="review-label">Your Answer:</span>
+      <span class="review-val" style="color:${st==='correct'?'var(--correct)':st==='wrong'?'var(--wrong)':'var(--skip)'}">${ya}</span></div>
+      <div class="review-row"><span class="review-label">Correct:</span>
+      <span class="review-val" style="color:var(--correct)">${L[ansIdx]}. ${opts[ansIdx]}</span></div>
+      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}`;
+    list.appendChild(div);
+  });
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.filter-btn').classList.add('active');
+}
+
+function showResults(){
+  if(mode!=='full'){ submitExam(false); return; }
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('results-screen').style.display='block';
+  window.scrollTo(0,0);
+  const total=questions.length,pct=Math.round(correctCount/total*100);
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('sum-total').textContent=total;
+  document.getElementById('sum-correct').textContent=correctCount;
+  document.getElementById('sum-wrong').textContent=wrongCount;
+  document.getElementById('sum-skip').textContent=skipCount;
+  let grade,gc;
+  if(pct>=90){grade='EXCELLENT — PASS';gc='#22c55e';}
+  else if(pct>=75){grade='GOOD — PASS';gc='#22c55e';}
+  else if(pct>=60){grade='AVERAGE — MARGINAL';gc='#f59e0b';}
+  else{grade='BELOW STANDARD — REVIEW REQUIRED';gc='#ef4444';}
+  document.getElementById('res-grade').textContent=grade;
+  document.getElementById('res-grade').style.color=gc;
+  document.getElementById('res-bar').style.width=pct+'%';
+  document.getElementById('res-bar').style.background=gc;
+  filterReview('all',document.querySelector('.filter-btn'));
+}
+
+function filterReview(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const list=document.getElementById('review-list');list.innerHTML='';
+  const L=['A','B','C','D'];
+  questions.forEach((q,i)=>{
+    const st=statuses[i];
+    if(type!=='all'&&st!==type)return;
+    const div=document.createElement('div');div.className='review-item';
+    const bc=st==='correct'?'badge-correct':st==='wrong'?'badge-wrong':'badge-skipped';
+    const bt=st==='correct'?'✔ Correct':st==='wrong'?'✘ Wrong':'– Skipped';
+    const ya=answers[i]!==null?L[answers[i]]+'. '+q.opts[answers[i]]:'Not answered';
+    const tc=topicClass(q.topic);
+    div.innerHTML=`<div class="review-q">
+      <span class="topic-badge ${tc}" style="font-size:0.65rem;padding:1px 7px;margin-right:6px;">${q.topic}</span>
+      <strong>Q${i+1}.</strong> ${q.q} <span class="badge ${bc}">${bt}</span></div>
+      <div class="review-row"><span class="review-label">Your Answer:</span>
+      <span class="review-val" style="color:${st==='correct'?'var(--correct)':st==='wrong'?'var(--wrong)':'var(--skip)'}">${ya}</span></div>
+      <div class="review-row"><span class="review-label">Correct:</span>
+      <span class="review-val" style="color:var(--correct)">${L[q.ans]}. ${q.opts[q.ans]}</span></div>
+      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}`;
+    list.appendChild(div);
+  });
+}
+
+function restartQuiz(){
+  // Restart resets Full Quiz progress only — mistake history is intentionally
+  // NOT cleared here, since it's meant to persist across attempts. Use
+  // "Clear Mistake History" in the mode bar if you want that reset too.
+  answers=new Array(questions.length).fill(null);
+  statuses=new Array(questions.length).fill('unattempted');
+  correctCount=0;wrongCount=0;skipCount=0;
+  clearProgress();
+  updateScoreHeader();
+  reportProgressToOpener();
+  document.getElementById('results-screen').style.display='none';
+  document.getElementById('quiz-screen').style.display='block';
+  document.getElementById('prog-bar').style.width='0%';
+  window.scrollTo(0,0);
+  setMode('full');
+}
+
+init();
+</script>
+</body>
+</html>

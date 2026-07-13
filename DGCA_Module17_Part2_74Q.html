@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title id="page-title">EASA Part-66 | Module 17 – Propeller Complete CBT (309Q)</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0a1628;--navy2:#0f1e38;--panel:#132040;--card:#1a2d50;--border:#1e3a6e;--accent:#1e8fff;--accent2:#0066cc;--gold:#f0b429;--correct:#22c55e;--wrong:#ef4444;--skip:#f59e0b;--unattempted:#334155;--text:#e2eaf5;--muted:#8ba4c4;--white:#ffffff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden;}
+header{background:var(--navy2);border-bottom:2px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;flex-wrap:wrap;}
+.header-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:1px;white-space:nowrap;}
+.header-title span{color:var(--gold);}
+.live-score{display:flex;gap:8px;align-items:center;}
+.score-chip{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:0.78rem;font-weight:600;}
+.sc-correct{background:rgba(34,197,94,0.15);color:var(--correct);border:1px solid rgba(34,197,94,0.3);}
+.sc-wrong{background:rgba(239,68,68,0.15);color:var(--wrong);border:1px solid rgba(239,68,68,0.3);}
+.sc-skip{background:rgba(245,158,11,0.15);color:var(--skip);border:1px solid rgba(245,158,11,0.3);}
+.progress-bar-wrap{background:var(--border);height:4px;}
+.progress-bar{height:4px;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .4s;}
+.main{max-width:820px;margin:0 auto;padding:20px 16px 100px;}
+.topic-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;font-family:'Rajdhani',sans-serif;letter-spacing:1px;margin-bottom:12px;}
+.t0{background:rgba(30,143,255,0.15);color:#60b4ff;border:1px solid rgba(30,143,255,0.3);}
+.t1{background:rgba(240,180,41,0.15);color:var(--gold);border:1px solid rgba(240,180,41,0.3);}
+.t2{background:rgba(167,139,250,0.15);color:#a78bfa;border:1px solid rgba(167,139,250,0.3);}
+.t3{background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.3);}
+.t4{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3);}
+.t5{background:rgba(251,146,60,0.15);color:#fb923c;border:1px solid rgba(251,146,60,0.3);}
+.t6{background:rgba(20,184,166,0.15);color:#2dd4bf;border:1px solid rgba(20,184,166,0.3);}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.q-num{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:1px;}
+.q-total{font-size:0.8rem;color:var(--muted);}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:18px;line-height:1.65;}
+.q-text{font-size:1rem;font-weight:500;color:var(--white);}
+.options{display:flex;flex-direction:column;gap:10px;}
+.opt-btn{background:var(--panel);border:1.5px solid var(--border);border-radius:9px;padding:13px 18px;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--text);transition:all .2s;display:flex;align-items:flex-start;gap:12px;}
+.opt-btn:hover:not(:disabled){border-color:var(--accent);background:rgba(30,143,255,0.08);}
+.opt-label{font-weight:700;color:var(--accent);min-width:22px;flex-shrink:0;}
+.opt-btn.correct{border-color:var(--correct);background:rgba(34,197,94,0.12);color:var(--white);}
+.opt-btn.correct .opt-label{color:var(--correct);}
+.opt-btn.wrong{border-color:var(--wrong);background:rgba(239,68,68,0.1);color:var(--white);}
+.opt-btn.wrong .opt-label{color:var(--wrong);}
+.opt-btn:disabled{cursor:default;}
+.feedback{margin-top:14px;padding:11px 16px;border-radius:8px;font-size:0.86rem;font-weight:500;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:var(--correct);}
+.feedback.wrong{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;}
+.controls{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.btn{padding:10px 22px;border-radius:8px;border:none;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.5px;transition:all .2s;}
+.btn-prev{background:var(--panel);border:1.5px solid var(--border);color:var(--muted);}
+.btn-prev:hover{border-color:var(--accent);color:var(--accent);}
+.btn-skip{background:rgba(245,158,11,0.1);border:1.5px solid var(--skip);color:var(--skip);}
+.btn-skip:hover{background:rgba(245,158,11,0.2);}
+.btn-next{background:var(--accent2);color:var(--white);}
+.btn-next:hover{background:var(--accent);}
+.btn-finish{background:linear-gradient(135deg,var(--gold),#e07b00);color:var(--navy);font-weight:700;}
+.nav-section{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:24px;}
+.nav-title{font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.nav-grid{display:flex;flex-wrap:wrap;gap:5px;}
+.nav-dot{width:30px;height:30px;border-radius:6px;border:none;cursor:pointer;font-size:0.7rem;font-weight:700;font-family:'Rajdhani',sans-serif;transition:all .15s;}
+.nav-dot.unattempted{background:var(--unattempted);color:var(--muted);}
+.nav-dot.current{background:var(--accent2);color:var(--white);box-shadow:0 0 0 2px var(--accent);}
+.nav-dot.correct{background:rgba(34,197,94,0.25);color:var(--correct);border:1px solid var(--correct);}
+.nav-dot.wrong{background:rgba(239,68,68,0.2);color:var(--wrong);border:1px solid var(--wrong);}
+.nav-dot.skipped{background:rgba(245,158,11,0.2);color:var(--skip);border:1px solid var(--skip);}
+.nav-legend{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--muted);}
+.leg-dot{width:12px;height:12px;border-radius:3px;}
+#results-screen{display:none;}
+.results-wrap{max-width:820px;margin:0 auto;padding:30px 16px 80px;}
+.results-header{text-align:center;margin-bottom:30px;}
+.results-title{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);letter-spacing:2px;}
+.results-subtitle{color:var(--muted);font-size:0.9rem;margin-top:6px;}
+.score-meter{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;margin-bottom:24px;}
+.score-pct{font-family:'Rajdhani',sans-serif;font-size:4rem;font-weight:700;line-height:1;}
+.score-grade{font-size:1.1rem;font-weight:600;margin-top:6px;}
+.score-bar-outer{background:var(--border);border-radius:6px;height:12px;margin-top:18px;overflow:hidden;}
+.score-bar-inner{height:12px;border-radius:6px;transition:width 1s ease;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:24px;}
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+.sum-num{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;}
+.sum-label{font-size:0.75rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+.filter-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.filter-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.8rem;font-weight:600;font-family:'Rajdhani',sans-serif;transition:all .2s;}
+.filter-btn.active{background:var(--accent2);border-color:var(--accent2);color:var(--white);}
+.review-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;}
+.review-q{font-size:0.9rem;font-weight:500;margin-bottom:8px;color:var(--white);}
+.review-row{display:flex;gap:8px;align-items:flex-start;margin-top:4px;font-size:0.82rem;}
+.review-label{font-weight:700;min-width:95px;color:var(--muted);}
+.review-val{flex:1;}
+.review-exp{font-size:0.78rem;color:var(--muted);margin-top:6px;font-style:italic;border-top:1px solid var(--border);padding-top:6px;}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.72rem;font-weight:700;}
+.badge-correct{background:rgba(34,197,94,0.15);color:var(--correct);}
+.badge-wrong{background:rgba(239,68,68,0.12);color:var(--wrong);}
+.badge-skipped{background:rgba(245,158,11,0.12);color:var(--skip);}
+.btn-restart{display:block;margin:20px auto 0;padding:12px 40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:1px;cursor:pointer;}
+.btn-restart:hover{filter:brightness(1.15);}
+@media(max-width:520px){.header-title{font-size:0.88rem;}.q-text{font-size:0.9rem;}.opt-btn{font-size:0.83rem;padding:10px 12px;}.nav-dot{width:26px;height:26px;font-size:0.65rem;}.score-pct{font-size:3rem;}}
+.mode-bar{max-width:820px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap;}
+.mode-btn{background:var(--panel);border:1.5px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:20px;font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;}
+.mode-btn:hover{border-color:var(--accent);color:var(--text);}
+.mode-btn.active{background:var(--accent2);border-color:var(--accent2);color:#fff;}
+.mode-btn-ghost{margin-left:auto;background:transparent;}
+.mode-count{background:rgba(239,68,68,0.25);color:var(--wrong);border-radius:10px;padding:1px 7px;font-size:0.72rem;}
+.mode-btn.active .mode-count{background:rgba(255,255,255,0.25);color:#fff;}
+.nav-dot{position:relative;}
+.nav-dot[data-mistakes]:not([data-mistakes="0"])::after{
+  content:attr(data-mistakes);position:absolute;top:-5px;right:-5px;background:var(--wrong);color:#fff;
+  font-size:0.55rem;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1;
+}
+.exam-banner{max-width:820px;margin:0 auto 10px;padding:10px 16px;background:rgba(240,180,41,0.1);border:1px solid rgba(240,180,41,0.3);border-radius:8px;color:var(--gold);font-size:0.82rem;text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="header-title" id="header-title-text">EASA B1 &nbsp;|&nbsp; <span>Module 17 – Propeller</span></div>
+    <div class="live-score">
+      <div class="score-chip" id="timer-chip" style="display:none;background:rgba(240,180,41,0.15);color:var(--gold);border:1px solid rgba(240,180,41,0.3);">⏱ <span id="hdr-timer">--:--</span></div>
+      <div class="score-chip sc-correct">✔ <span id="hdr-c">0</span></div>
+      <div class="score-chip sc-wrong">✘ <span id="hdr-w">0</span></div>
+      <div class="score-chip sc-skip">– <span id="hdr-s">0</span></div>
+    </div>
+  </div>
+</header>
+<div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
+
+<div class="mode-bar" id="mode-bar">
+  <button class="mode-btn active" id="mode-btn-full" onclick="setMode('full')">📖 Full Quiz</button>
+  <button class="mode-btn" id="mode-btn-wrong" onclick="setMode('wrong')">🎯 Wrong Answers Only <span class="mode-count" id="wrong-count-badge">0</span></button>
+  <button class="mode-btn" id="mode-btn-smart" onclick="setMode('smart')">🔄 Smart Review</button>
+  <button class="mode-btn" id="mode-btn-timed" onclick="setMode('timed')">⏱ Timed Exam</button>
+  <button class="mode-btn mode-btn-ghost" onclick="clearMistakeHistory()" title="Clear your mistake history">🗑 Clear Mistake History</button>
+</div>
+
+<div id="quiz-screen">
+  <div class="main">
+    <div class="exam-banner" id="exam-banner" style="display:none;">⏱ Timed Exam Mode — feedback is hidden until you submit, just like a real exam.</div>
+    <div class="q-meta">
+      <div class="q-num" id="q-num-label">Q 1</div>
+      <div class="q-total" id="q-of-total">of 309 Questions</div>
+    </div>
+    <div id="topic-badge-wrap"></div>
+    <div class="q-card"><div class="q-text" id="q-text"></div></div>
+    <div class="options" id="options-wrap"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="controls">
+      <button class="btn btn-prev" id="btn-prev" onclick="navigate(-1)">◀ Prev</button>
+      <button class="btn btn-skip" id="btn-skip" onclick="skipQuestion()">Skip</button>
+      <button class="btn btn-next" id="btn-next" onclick="navigate(1)">Next ▶</button>
+      <button class="btn btn-finish" id="btn-finish" style="display:none" onclick="showResults()">Finish & Review</button>
+      <button class="btn btn-finish" id="btn-submit-exam" style="display:none" onclick="submitExam()">✔ Submit Exam</button>
+      <button class="btn btn-finish" id="btn-end-smart" style="display:none" onclick="endSmartSession()">🏁 End Session & Review</button>
+    </div>
+    <div class="nav-section" id="nav-section">
+      <div class="nav-title">Question Navigator</div>
+      <div class="nav-grid" id="nav-grid"></div>
+      <div class="nav-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:#334155"></div>Unattempted</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(34,197,94,0.3);border:1px solid #22c55e"></div>Correct</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(239,68,68,0.2);border:1px solid #ef4444"></div>Wrong</div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(245,158,11,0.2);border:1px solid #f59e0b"></div>Skipped</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="results-screen">
+
+  <div class="results-wrap">
+    <div class="results-header">
+      <div class="results-title">✈ QUIZ COMPLETE</div>
+      <div class="results-subtitle" id="res-subtitle"></div>
+    </div>
+    <div class="score-meter">
+      <div class="score-pct" id="res-pct">0%</div>
+      <div class="score-grade" id="res-grade"></div>
+      <div class="score-bar-outer"><div class="score-bar-inner" id="res-bar"></div></div>
+    </div>
+    <div class="summary-grid">
+      <div class="sum-card"><div class="sum-num" id="sum-total" style="color:var(--accent)">0</div><div class="sum-label">Total</div></div>
+      <div class="sum-card"><div class="sum-num" id="sum-correct" style="color:var(--correct)">0</div><div class="sum-label">Correct</div></div>
+      <div class="sum-card"><div class="sum-num" id="sum-wrong" style="color:var(--wrong)">0</div><div class="sum-label">Wrong</div></div>
+      <div class="sum-card"><div class="sum-num" id="sum-skip" style="color:var(--skip)">0</div><div class="sum-label">Skipped</div></div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterReview('all',this)">All</button>
+      <button class="filter-btn" onclick="filterReview('correct',this)">✔ Correct</button>
+      <button class="filter-btn" onclick="filterReview('wrong',this)">✘ Wrong</button>
+      <button class="filter-btn" onclick="filterReview('skipped',this)">– Skipped</button>
+    </div>
+    <div id="review-list"></div>
+    <button class="btn-restart" onclick="restartQuiz()">↺ Restart Quiz</button>
+  </div>
+</div>
+
+<script>
+/* ======================================================================
+   EDIT ZONE — CHANGE THESE 3 THINGS FOR EVERY NEW CBT (SUBJECT/MODULE)
+   1) CONFIG below       -> page title + header text for the new subject
+   2) TOPIC_COLOR_ORDER   -> optional: order topics should get colors in
+                             (leave as [] to auto-color in first-seen order)
+   3) questions array     -> paste your new question set, replacing all
+                             the objects between the [ and ] below.
+                             Any number of questions works — 10 or 1000.
+   Do NOT touch anything below the "DO NOT EDIT BELOW" marker.
+====================================================================== */
+
+const CONFIG = {
+  pageTitle: "DGCA CAR-66 | Module 17 Propellers – Pitch Control & Synchronising",
+  headerLeft: "EASA B1",
+  headerRight: "Module 17 – Propellers (74Q)",
+  resultsTitle: "✈ QUIZ COMPLETE",
+  resultsSubtitle: "DGCA CAR-66 Module 17 — Propeller Pitch Control & Synchronising"
+};
+
+const TOPIC_COLOR_ORDER = []; // e.g. ["Topic A","Topic B"] or leave empty
+
+const questions = [
+  {topic:"Module 17 - Propellers",q:"When the compressive force on a speeder spring is reduced, the propeller blades will",opts:["remain fixed", "fine off", "coarsen", "feather immediately"],ans:2,exp:"Aircraft Propellers and Controls"},
+  {topic:"Module 17 - Propellers",q:"A hydraulic pitch lock is utilised in a hydromatic propeller to",opts:["lock out the course pitch oil line in the event of underspeeding", "lock out the fine pitch oil line in the event of overspeeding", "prevent the propeller overspeeding in the event of oil supply failure", "increase oil flow to the pitch change mechanism"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls page 136"},
+  {topic:"Module 17 - Propellers",q:"When in the beta range, the propeller pitch is controlled",opts:["directly from the power lever", "indirectly from the power lever", "directly from the pitch change mechanism to the PCU", "automatically by the governor without pilot input"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 102"},
+  {topic:"Module 17 - Propellers",q:"The advantage of the beta range is it allows",opts:["high power settings with higher than normal pitch settings when in flight", "low fine pitch settings with high power", "low power settings with higher than normal pitch setting for ground manoeuvres", "reduced fuel consumption during cruise"],ans:2,exp:"Refer Jepperson Aircraft Propellers and Controls Page 102"},
+  {topic:"Module 17 - Propellers",q:"If the speeder spring pressure of a CSU is increased the blade will",opts:["coarsen off", "fine off", "will not move", "will feather"],ans:1,exp:"Jepperson Aircraft Propellers and Control pages 55-58"},
+  {topic:"Module 17 - Propellers",q:"On an underspeed condition the blades are turned to",opts:["fine", "feather", "coarse", "reverse"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 55-58 refers"},
+  {topic:"Module 17 - Propellers",q:"In a hydromatic propeller with counterweights, what is used to make the propeller move to fine pitch?",opts:["A T M", "engine oil", "centrifugal force acting on the counterweight", "spring tension in the dome"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls Pages 55- 58"},
+  {topic:"Module 17 - Propellers",q:"Relaxing tension on the governor spring will result in the blade coarsening and",opts:["RPM decreasing, manifold pressure increasing", "RPM increasing, manifold pressure increasing", "manifold pressure constant, RPM decreasing", "RPM increasing, manifold pressure decreasing"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 59"},
+  {topic:"Module 17 - Propellers",q:"The ground fine pitch stop is",opts:["never removed", "removed on the ground", "removed during flight", "locked by a mechanical latch at all times"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls Page 32 Low pitch stop is an alternative name on some applications"},
+  {topic:"Module 17 - Propellers",q:"If governor flywheel overcomes the speeder spring, it indicates",opts:["underspeed", "overspeed", "onspeed", "feather condition"],ans:1,exp:"Jepperson Powerplant Page 12-4 refers"},
+  {topic:"Module 17 - Propellers",q:"Pitch control using torque measuring is for",opts:["reducing drag in engine failure", "increasing drag", "reducing drag in binding", "synchronising blade angle across engines"],ans:0,exp:"Jepperson Aircraft Propellers and Control Pages 135 Refer"},
+  {topic:"Module 17 - Propellers",q:"If force is applied to the speeder spring, what will happen?",opts:["Blade angle is frozen in last known position", "Blade angle coarsen", "Blade angle finer", "Blade moves to feather"],ans:2,exp:"Fly-weights will move inwards, tricking the CSU to believing there is a reduction in speed, thus decreasing the blade pitch to speed the propeller back up"},
+  {topic:"Module 17 - Propellers",q:"When is superfine pitch used?",opts:["Landing and takeoff", "In cruise", "Engine starting to reduce propeller torque loading on starter motor", "Shutdown and parking"],ans:2,exp:"Caips Leaflet PL/1-1 refers to ground fine pitch; believed to be an alternative to Superfine Pitch"},
+  {topic:"Module 17 - Propellers",q:"When the flyweights fly outwards in a PCU, this is known as",opts:["onspeed", "overspeed", "low power settings with higher than normal pitch setting for ground manoeuvres", "underspeed"],ans:1,exp:"Refer Jepperson Aircraft Propellers and Controls Page 55-58"},
+  {topic:"Module 17 - Propellers",q:"In an on speed condition, oil in the tube",opts:["remains constant", "flows in the tubes", "flows out of the tubes", "oscillates between fine and coarse lines"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 55-58"},
+  {topic:"Module 17 - Propellers",q:"On a reversing propeller moving to the maximum reversing angle, the propeller goes",opts:["from fine pitch through plane of rotation, course reverse then fine reverse", "from course pitch through plane of rotation course, fine reverse then course reverse", "from fine pitch through plane of rotation, fine reverse then course reverse", "from feather through coarse, fine reverse then coarse reverse"],ans:2,exp:"Fine reverse must come before coarse reverse"},
+  {topic:"Module 17 - Propellers",q:"If pressure is increased on the speeder spring, rpm increases. What happens to the blade angle?",opts:["Remains unchanged", "Increases", "Decreases", "Increases then decreases"],ans:2,exp:"Jepperson Aircraft Propellers and Controls pages 55-58 Refers"},
+  {topic:"Module 17 - Propellers",q:"In a prop with counterweights, what is used to make it move to fine pitch?",opts:["ATM", "Centrifugal force acting on the counterweight", "Governor oil pressure", "oil pressure boosted by an accumulator"],ans:2,exp:"Jepperson Aircraft Propellers and Controls page 81 refers"},
+  {topic:"Module 17 - Propellers",q:"If a propeller is in fine pitch and then moves to feather it will pass throug",opts:["flight fine only", "reverse", "coarse", "superfine"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Fig 11.1 refers"},
+  {topic:"Module 17 - Propellers",q:"A 'double' acting propeller has",opts:["nitrogen or air on one side of piston", "oil pressure on one side of piston", "oil pressure on two sides of piston", "spring pressure on one side of piston"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Fig 11-32 refers"},
+  {topic:"Module 17 - Propellers",q:"During normal propeller operation, oil pressure for the governor is provided by",opts:["a pump in the governor", "a variable volume pump", "the engine driven pump", "the aircraft hydraulic system"],ans:0,exp:"Jepperson Aircraft Propellers and Controls refer. All governors have a built in pump"},
+  {topic:"Module 17 - Propellers",q:"Oil for an on-speed condition passes through",opts:["the coarse pitch line", "the fine pitch line", "neither of the lines", "both lines simultaneously"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Pages 55-58 refer"},
+  {topic:"Module 17 - Propellers",q:"If the spur gear pump in a single acting propeller governor failed, the",opts:["blades would turn to a coarse pitch", "blades would rotate to a fine pitch", "blades would move to the feather position", "the propeller would fail to rotate"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 62 refer"},
+  {topic:"Module 17 - Propellers",q:"The hydromatic variable pitch propeller is operated on the principle of",opts:["a venturi or 'u' tube with mercury", "an electrical motor moving a gear segment", "oil pressure moving a piston", "a rack and pinion gear mechanism"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 85 refer"},
+  {topic:"Module 17 - Propellers",q:"The constant speed unit (C.S.U.) governor works on the principle of",opts:["manual selection through a gearbox", "centrifugal twisting moments", "spring pressure acting against centrifugal force", "hydraulic accumulator pressure"],ans:2,exp:"Jepperson A&P Powerplant Page 12- 7/8 refers"},
+  {topic:"Module 17 - Propellers",q:"The purpose of the pitch change cams is to",opts:["convert rotary motion to linear motion", "prevent windmilling", "convert linear motion to rotary motion", "increase mechanical advantage of the governor"],ans:2,exp:"Jepperson Aircraft Gas Turbine Powerplants Fig 12-14 refers"},
+  {topic:"Module 17 - Propellers",q:"The gear type pump in a C.S.U. or P.C.U",opts:["lubricates the entire propeller system", "boosts engine oil system pressure", "assist the governor valve to move", "reduces oil pressure to the propeller dome"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Fig 11-33 refers"},
+  {topic:"Module 17 - Propellers",q:"When an engine fails",opts:["the propeller is feathered using an electrical feathering pump", "the propeller is feathered using the propeller governor pump", "the propeller is feathered using counterweights", "the propeller automatically moves to fine pitch"],ans:0,exp:"Jepperson A&P Powerplant Page 12- 30 refers"},
+  {topic:"Module 17 - Propellers",q:"The purpose of an accumulator in a single acting propeller system is to",opts:["to port oil to the coarse pitch oil line to assist in feathering the propelle", "accelerate the unfeathering process", "provide back up to the governor pump", "reduce oil pressure during feathering"],ans:1,exp:"Jepperson A&P Powerplant Page 12- 26 refers"},
+  {topic:"Module 17 - Propellers",q:"When auto feathering has taken place the feathering pump is switched off by",opts:["pressure control drop switch", "carrying out the manual feather drill", "removing the pump circuit breaker or fuse", "an automatic timer circuit"],ans:1,exp:"The pump is switched off by pressing the alternate action pump switch-part of the manual feather drill"},
+  {topic:"Module 17 - Propellers",q:"On a free turbine engine it is possible to vary the propeller RPM whilst the engine RPM remains constant",opts:["by operating the Power lever", "it is not possible to vary the propeller RPM", "by operating the PCU control Lever", "by adjusting the compressor bleed valve"],ans:2,exp:"The PCU lever changes the pressure on the governor spring thus changing the pitch of the blades"},
+  {topic:"Module 17 - Propellers",q:"A propeller control Unit hydraulic system is supplied with oil from the",opts:["engine lubrication oil tank", "aircraft hydraulic System", "PCU oil tank", "an electrically driven auxiliary pump"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 59 refers"},
+  {topic:"Module 17 - Propellers",q:"Low torque sensing is used to initiate",opts:["relighting", "fine pitch selection", "auto feathering", "pitch lock engagement"],ans:2,exp:"Jepperson Aircraft Propellers and Controls Page 135 refers"},
+  {topic:"Module 17 - Propellers",q:"What is the purpose of the auto coarsening system?",opts:["To prevent overspeeding in the event of the flight fine pitch stop failing", "To reduce drag during power loss", "To save the pilot making minor changes when changing altitude", "to assist synchronising of propellers"],ans:0,exp:"CAIP's Leaflet PL/1-1 refer - note this is not an auto feather system"},
+  {topic:"Module 17 - Propellers",q:"In a single acting propeller, blade angle is increased by",opts:["counterweights and a feathering spring", "CTM", "oil pressure", "governor oil pressure"],ans:0,exp:"CAIP's PL leaflets refer. Oil pressure turns the prop to fine. If the oil pressure is released by the CSU the spring and counterweights drive the prop to feather"},
+  {topic:"Module 17 - Propellers",q:"The function of a propeller pitch lock is to prevent the propeller from",opts:["coarsening", "reducing below flight fine pitch", "fining off in the event of pitch lock mechanism failure", "the propeller from feathering in flight"],ans:2,exp:"CAIP's PL leaflets refer to a pitch lock that holds the fine pitch stop in position, but also adds that some manufacturers have a pitch lock device that locks the prop in its last position in the event of failure of the pitch lock mechanism. For a description of this system see Jeppesen Aircraft Propellers and Controls page 136"},
+  {topic:"Module 17 - Propellers",q:"The minimum propeller pitch is established by the",opts:["superfine pitch stop", "pitch Lock", "flight fine pitch stop", "the ground idle stop"],ans:0,exp:"CAIP's PL leaflets refer. Oil pressure turns the prop to fine. If the oil pressure is released by the CSU the spring and counterweights drive the prop to feather"},
+  {topic:"Module 17 - Propellers",q:"Oil for the feathering system is taken from",opts:["a separate feathering oil tank", "a feathering reserve in the engine oil tank", "the engine lubrication system", "a pressurised nitrogen accumulator"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Page 10 refers"},
+  {topic:"Module 17 - Propellers",q:"What are the centrifugal latches in a single acting propeller used for?",opts:["Prevent CTM", "Prevent feathering of the prop on shutdown", "Prevent Propeller moving to superfine", "Prevent the blades over-speeding in flight"],ans:1,exp:"Jepperson Aircraft Propellers and Controls Fig 11-4 refers"},
+  {topic:"Module 17 - Propellers",q:"In a two position propeller",opts:["ATM turns the prop to fine", "oil pushes the prop to fine", "oil pushes the prop to coarse", "spring pressure pushes the prop to fine"],ans:1,exp:"Jepperson aircraft propellers and controls Page 96 Refers"},
+  {topic:"Module 17 - Propellers",q:"An overspeed condition causes governor spring pressure to be",opts:["the same as centrifugal force", "more than centrifugal force", "less than centrifugal force", "equal to aerodynamic twisting moment"],ans:2,exp:"The bob weights lift the governor valve in this condition, thus they have more force than the spring"},
+  {topic:"Module 17 - Propellers",q:"When the engine is running, the CSU is sensing",opts:["propeller tip speed", "propeller blade angle", "engine RPM", "oil pressure in the governor"],ans:2,exp:"Engine RPM is sensed via the governor bob weights"},
+  {topic:"Module 17 - Propellers",q:"An accumulator may be fitted to",opts:["feather the propeller", "unfeather the propeller", "provide emergency control", "dampen governor oscillations"],ans:1,exp:"The accumulator is needed to drive the prop out of feather and hence get it rotating. Normally seen on a single acting propeller system"},
+  {topic:"Module 17 - Propellers",q:"If governor weight spring pressure is reduced",opts:["governor weights will pivot inwards raising the governor valve allowing the blades to move to a coarser pitch", "governor weights will spring outwards raising the governor valve allowing the blades to move to a finer pitch", "governor weights will spring outwards raising the governor valve allowing the blades to move to a coarser pitch", "no change occurs to blade pitch"],ans:2,exp:"When 'on speed' spring pressure equals the governor centrifugal force"},
+  {topic:"Module 17 - Propellers",q:"A constant speed variable pitch propeller is running whilst stationary on the ground. If it is facing into a headwind it will",opts:["speed up", "remain constant", "slow down", "oscillate between fine and coarse"],ans:1,exp:"A headwind acts the same as increased forward speed. The prop will coarsen off and the speed will remain the same"},
+  {topic:"Module 17 - Propellers",q:"If the TAS of an aircraft increases, the CSU will",opts:["increase the blade angle to provide constant RPM", "decrease the blade angle to provide constant RPM", "change the blade angle to provide constant RPM", "disengage the governor"],ans:0,exp:"This causes blade to coarsen off to stop overspeeding and as a result the speed remains the same"},
+  {topic:"Module 17 - Propellers",q:"When governor spring load is less than governor weights, the CSU is in",opts:["overspeed", "underspeed", "underspeed", "on speed"],ans:0,exp:"Jeppersen Aircraft Propellers and Controls Page 57 refers"},
+  {topic:"Module 17 - Propellers",q:"An aircraft's propeller system beta range",opts:["is used to achieve maximum thrust during take- off", "refers to the most fuel efficient pitch range to use at a given engine RPM", "is used to produce zero or negative thrust", "increase propeller efficiency in cruise flight"],ans:2,exp:"Beta range is used on the ground"},
+  {topic:"Module 17 - Propellers",q:"How is a propeller controlled in a large aircraft?",opts:["By engine power lever", "By varying teh engine RPM except for feathering and reversing", "Independently of the engine", "by a separate propeller lever only"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Manually feathering a hydromechanical propeller means to",opts:["block governor oil pressure to the cylinder of the propeller", "port governor oil pressure to the cylinder of the propeller", "block governor oil pressure from the cylinder of the propeller", "vent governor oil pressure to atmosphere"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"How is the oil pressure delivery on a hydromatic propeller normally stopped after the blades have reached their full-feathered position?",opts:["Stop lugs in the teeth of the rotating cam", "Electric cut-out pressure switch", "Pulling out the feathering push-button", "a mechanical stop on the piston rod"],ans:1,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Counterweights on constant-speed propellers are generally used to",opts:["increase blade angle", "decrease blade angle", "unfeather the propeller", "balance the propeller statically"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Constant speed non-feathering McCauley, Hartzell and other propellers of similar design without counterweights increase pitch angle using",opts:["centrifugal twisting moment", "spring pressure", "oil pressure", "counterweights and centrifugal force"],ans:2,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"What are the rotational speed and blade pitch angle requirements of a constant-speed propeller during take-off?",opts:["High speed and low pitch angle", "High speed and high pitch angle", "Low speed and high pitch angle", "Low speed and low pitch angle"],ans:0,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"A constant speed propeller provides maximum efficiency by",opts:["increasing the lift coefficient of the blades", "adjusting blade angle for most conditions encountered during flight", "increasing blade pitch as the aircraft speed increases", "increasing propeller RPM continuously"],ans:1,exp:"AC65-12A"},
+  {topic:"Module 17 - Propellers",q:"Synchrophasing reduces vibration by the use of",opts:["pulse probes and a single synchrophase unit", "tachometers and correction motors", "coordinating the rpm of each engine", "adjusting the fuel flow of each engine"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page 134"},
+  {topic:"Module 17 - Propellers",q:"Synchronising can only be achieved if the slave propeller is",opts:["the same speed as the master", "within 20 rpm of the master", "within 100 rpm of the master", "50 rpm of the master"],ans:2,exp:"Jepperson Aircraft Propellers and Control page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"Synchronising is carried out to",opts:["match propeller tip speed", "match engine rpm", "match blade phase angle difference", "reduce fuel consumption in cruise"],ans:0,exp:"Jepperson Aircraft Propellers and Control page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"The synchronisation governor monitors",opts:["RPM", "propeller tip speeds", "thrust tip speeds", "torque output of each engine"],ans:0,exp:"Jepperson Aircraft Propellers and Controls Page 37 refers"},
+  {topic:"Module 17 - Propellers",q:"Synchronisation is used to",opts:["reduce vibration and noise", "reduce the pitch of the fastest running blade", "preset the phase angle of propellers", "increase propeller efficiency"],ans:0,exp:"Refer Jepperson Aircraft Propellers and Controls Page131"},
+  {topic:"Module 17 - Propellers",q:"Synchronisation is used",opts:["on the ground", "in flight except landing and take off", "in flight", "only during ground running"],ans:1,exp:"Jepperson Aircraft Propellers and Control Page136 refer to Auto Feather systems"},
+  {topic:"Module 17 - Propellers",q:"The propeller synchronising system is put into operation by",opts:["adjusting the engine rpm at required cruise speed then switching on the synchroniser", "adjusting the engine rpm then propeller rpm to required speed then switching on", "switching on the synchronizer then adjust the engine rpm so that all engines adjust together", "automatically at engine start-up"],ans:0,exp:"Jepperson aircraft propellers and controls Page 132 Refers"},
+  {topic:"Module 17 - Propellers",q:"Propellers are synchronised by the",opts:["power lever", "PCU governor", "prop lever", "the flight fine pitch stop"],ans:1,exp:"EHJ Pallett Aircraft Electrical Systems Page 182 refers"},
+  {topic:"Module 17 - Propellers",q:"Unlike the automatic synchronizing system, the synchrophasing system of a two-propeller aircraft",opts:["sets the blade phase angle of two constant speed propellers", "causes the same rotation speed of the two propellers", "matches the blade angle of variable pitch propellers", "the RPM of the slave engine only"],ans:0,exp:"Synchrophasing is the setting of blade phase angle difference to minimise vibration"},
+  {topic:"Module 17 - Propellers",q:"In a propeller synchrophasing system, an electric actuator",opts:["rotates (controls) the slave engine governor", "equalizes the governor signals", "turns the flexible shaft leading to the trimmer assembly", "adjusts the master engine throttle"],ans:0,exp:"Jeppesen Propellers and controls Fig 13-20 shows the actuator attached to the governor"},
+  {topic:"Module 17 - Propellers",q:"If one signal is lost into the comparator unit when Synchrophasing is operating",opts:["Synchrophasing is lost and the engines continue to function normally", "the slower engine immediately goes to feather", "both engines remain running until there is a difference, of commonly, (4 to 5 percent), at which the slower of the engines is then feathered", "both engines shut down automatically"],ans:0,exp:"Synchrophasing is used in conjunction with synchronising to reduce aircraft vibration"},
+  {topic:"Module 17 - Propellers",q:"Synchronisation controls RPM within what range?",opts:["100 RPM", "150 RPM", "50 RPM", "10 RPM"],ans:0,exp:"Jeppersen Aircraft Propellers and Controls Page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"When should synchronisation be used?",opts:["During cruise", "During landing", "Anytime", "during climb only"],ans:0,exp:"Jeppersen Aircraft Propellers and Controls Page 132 refers"},
+  {topic:"Module 17 - Propellers",q:"Propeller Synchronizing works utilizing",opts:["RPM Levers", "propeller lever", "governor", "torquemeter signals"],ans:2,exp:"The governor is sometimes known as a comparator unit"},
+  {topic:"Module 17 - Propellers",q:"In relation to a propeller aircraft, synchrophasing would be used on",opts:["all Aircraft", "all Multi engine aircraft", "turbo prop Aircraft", "single engine aircraft only"],ans:1,exp:"Synchrophasing can be used on any multi propeller driven aircraft"},
+  {topic:"Module 17 - Propellers",q:"A propeller synchrophasing system allows a pilot to reduce noise and vibration by",opts:["setting the RPM of all propellers exactly the same", "adjusting the plane of rotation of all propellers", "adjusting the phase angle between the propellers", "increasing propeller diameter"],ans:2,exp:""},
+  {topic:"Module 17 - Propellers",q:"A propeller synchronising system allows a pilot to reduce noise and vibration by",opts:["adjusting the phase angle between the propellers", "setting the RPM of all propellers exactly the same", "adjusting the plane of rotation of all propellers", "reducing propeller blade count"],ans:1,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"What is the function of automatic propeller synchronizing system on multiengined aircraft?",opts:["To control tip speed of all propellers", "To control the power output of all engines", "To control engine RPM and reduce vibration", "control propeller blade angle directly"],ans:2,exp:"65-12A"},
+  {topic:"Module 17 - Propellers",q:"On most reciprocating multiengined aircraft, automatic propeller synchronization is accomplished through the actuation of the",opts:["propeller governors", "propeller control levers", "throttle levers", "magneto timing adjustment"],ans:0,exp:"AC65-12A"}
+];
+
+/* ====================== DO NOT EDIT BELOW ============================
+   Everything from here down is the quiz engine. It auto-adapts to
+   whatever is in `questions` above — any number of questions, any
+   number of topics, any topic names. No manual changes needed here
+   when you swap in a new PDF's worth of questions.
+====================================================================== */
+
+// Auto-detect topics from the questions array (in first-seen order),
+// unless TOPIC_COLOR_ORDER above specifies an explicit order.
+const TOPICS = TOPIC_COLOR_ORDER.length
+  ? TOPIC_COLOR_ORDER
+  : [...new Set(questions.map(q => q.topic))];
+
+// 7 distinct badge colors defined in CSS (t0-t6). Cycles automatically
+// if there are more than 7 topics, so it never breaks on more topics.
+const TCLASS = TOPICS.map((_, i) => 't' + (i % 7));
+
+// ===================== AUTOSAVE =====================
+// Unique-ish storage key per quiz, so different CBT files saved/opened
+// from the same browser don't overwrite each other's saved progress.
+const QUIZ_ID = (CONFIG.pageTitle + '_' + questions.length)
+  .toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,80);
+const STORAGE_KEY = 'cbt_progress_' + QUIZ_ID;
+
+function saveProgress(){
+  try{
+    const payload = {answers, statuses, correctCount, wrongCount, skipCount, current, total:questions.length};
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  }catch(e){ /* storage unavailable (private mode etc.) — fail silently */ }
+  reportProgressToOpener();
+}
+
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    const d = JSON.parse(raw);
+    if(!d || d.total !== questions.length || !Array.isArray(d.answers) || d.answers.length !== questions.length) return false;
+    answers = d.answers; statuses = d.statuses;
+    correctCount = d.correctCount||0; wrongCount = d.wrongCount||0; skipCount = d.skipCount||0;
+    current = d.current||0;
+    return true;
+  }catch(e){ return false; }
+}
+
+function clearProgress(){
+  try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+}
+
+// If this quiz was opened from a CBT Library Dashboard tab (via window.open),
+// report live score back to it so the dashboard can show progress on its card.
+// Uses postMessage, which works across origins/local-file contexts alike —
+// unlike localStorage, it doesn't require the two pages to share storage.
+function reportProgressToOpener(){
+  try{
+    if(!window.opener || window.opener.closed) return;
+    const done = statuses.filter(s=>s!=='unattempted').length;
+    const pct = questions.length ? Math.round((done/questions.length)*100) : 0;
+    window.opener.postMessage({
+      type:'cbt-progress-update',
+      correct:correctCount, wrong:wrongCount, skip:skipCount,
+      total:questions.length, pct
+    }, '*');
+  }catch(e){ /* no opener, or cross-origin restriction — fail silently */ }
+}
+// =====================================================
+
+// ===================== STATE =====================
+// `answers`/`statuses`/`correctCount`/`wrongCount`/`skipCount` always track the
+// FULL, sequential practice run (Full Quiz mode) — this is what drives the
+// overall progress bar and what gets reported to the dashboard. Wrong-Answers
+// and Timed modes use their own separate, non-persistent answer tracking so
+// practicing there never distorts your overall progress stats.
+let current=0,answers=new Array(questions.length).fill(null),statuses=new Array(questions.length).fill('unattempted');
+let correctCount=0,wrongCount=0,skipCount=0;
+
+let mode='full'; // 'full' | 'wrong' | 'timed'
+let activeIndices=questions.map((_,i)=>i);
+let activePos=0;
+
+// Persistent mistake history — survives Restart Quiz, only cleared explicitly.
+const MISTAKES_KEY='cbt_mistakes_'+QUIZ_ID;
+const LASTSEEN_KEY='cbt_lastseen_'+QUIZ_ID;
+let mistakes=new Array(questions.length).fill(0);
+let lastSeen=new Array(questions.length).fill(null); // ms timestamp or null (never seen)
+
+function loadLastSeen(){
+  try{
+    const raw=localStorage.getItem(LASTSEEN_KEY);
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    if(Array.isArray(d)&&d.length===questions.length) lastSeen=d;
+  }catch(e){}
+}
+function saveLastSeen(){
+  try{ localStorage.setItem(LASTSEEN_KEY, JSON.stringify(lastSeen)); }catch(e){}
+}
+
+// Wrong-mode / timed-mode transient answer tracking (not persisted, resets each session)
+let modeAnswers={}; // idx -> selected option index, for wrong/timed modes
+
+// Timed exam state
+let sessionShuffle={}; // idx -> {opts:[...], ans:N} shuffled per exam session
+let timedSecondsLeft=0, timedTimerHandle=null, examRevealed=true;
+
+function loadMistakes(){
+  try{
+    const raw=localStorage.getItem(MISTAKES_KEY);
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    if(Array.isArray(d)&&d.length===questions.length) mistakes=d;
+  }catch(e){}
+}
+function saveMistakes(){
+  try{ localStorage.setItem(MISTAKES_KEY, JSON.stringify(mistakes)); }catch(e){}
+}
+function clearMistakeHistory(){
+  if(!confirm('Clear your mistake history? This resets what "Wrong Answers Only" mode shows you.'))return;
+  mistakes=new Array(questions.length).fill(0);
+  saveMistakes();
+  updateWrongCountBadge();
+  if(mode==='wrong') setMode('full');
+}
+function updateWrongCountBadge(){
+  const n=mistakes.filter(m=>m>0).length;
+  document.getElementById('wrong-count-badge').textContent=n;
+}
+function shuffleArray(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+// ===================== SMART REVIEW (continuous spaced repetition) =====================
+// Unlike Wrong-Only (fixed snapshot) or Timed (fixed sample), Smart Review has
+// no pre-built list — every time you move on, it re-evaluates ALL questions
+// and picks the single best one to show next, based on live mistake count AND
+// how long it's been since you last saw it. That's what makes it "automatic":
+// it keeps adapting as you go, not just once when you start it.
+let smartHistory=[]; // [{idx, answered:null|optionIdx}] — one entry per VIEW, so the
+                      // same question can reappear later as an independent attempt
+let smartPos=-1;
+let smartSessionCorrect=0, smartSessionWrong=0;
+
+function smartWeight(i){
+  // Cap the "staleness" bonus so a question you've simply never seen yet
+  // doesn't outweigh one you keep actually getting wrong — mistakes should
+  // dominate the ranking, staleness is a secondary nudge, not the main driver.
+  const daysSince = lastSeen[i] ? Math.min((Date.now()-lastSeen[i])/86400000, 14) : 3;
+  return (1 + mistakes[i]*5) * (1 + daysSince);
+}
+function pickNextSmartIndex(excludeIdx){
+  const all=questions.map((_,i)=>i);
+  const candidates = all.length>1 ? all.filter(i=>i!==excludeIdx) : all;
+  const weights = candidates.map(smartWeight);
+  const totalW = weights.reduce((s,w)=>s+w,0);
+  let r=Math.random()*totalW;
+  for(let k=0;k<candidates.length;k++){
+    r-=weights[k];
+    if(r<=0) return candidates[k];
+  }
+  return candidates[candidates.length-1];
+}
+function smartAdvance(){
+  const prevIdx = smartHistory.length ? smartHistory[smartHistory.length-1].idx : null;
+  const nextIdx = pickNextSmartIndex(prevIdx);
+  smartHistory.push({idx:nextIdx, answered:null});
+  smartPos=smartHistory.length-1;
+  lastSeen[nextIdx]=Date.now();
+  saveLastSeen();
+  renderQ(nextIdx);
+}
+function smartPrev(){
+  if(smartPos<=0)return;
+  smartPos--;
+  renderQ(smartHistory[smartPos].idx);
+}
+function endSmartSession(){
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('results-screen').style.display='block';
+  window.scrollTo(0,0);
+  const answeredVisits = smartHistory.filter(v=>v.answered!==null);
+  const total = answeredVisits.length;
+  const ec = smartSessionCorrect, ew = smartSessionWrong;
+  const pct = total ? Math.round(ec/total*100) : 0;
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('sum-total').textContent=total;
+  document.getElementById('sum-correct').textContent=ec;
+  document.getElementById('sum-wrong').textContent=ew;
+  document.getElementById('sum-skip').textContent=0;
+  document.getElementById('res-grade').textContent='SMART REVIEW SESSION COMPLETE';
+  document.getElementById('res-grade').style.color='var(--accent)';
+  document.getElementById('res-bar').style.width=pct+'%';
+  document.getElementById('res-bar').style.background='var(--accent)';
+  const list=document.getElementById('review-list');list.innerHTML='';
+  const L=['A','B','C','D'];
+  answeredVisits.forEach(v=>{
+    const q=questions[v.idx];
+    const st = v.answered===q.ans ? 'correct' : 'wrong';
+    const bc=st==='correct'?'badge-correct':'badge-wrong';
+    const bt=st==='correct'?'✔ Correct':'✘ Wrong';
+    const div=document.createElement('div');div.className='review-item';
+    div.innerHTML=`<div class="review-q">
+      <span class="topic-badge ${topicClass(q.topic)}" style="font-size:0.65rem;padding:1px 7px;margin-right:6px;">${q.topic}</span>
+      <strong>Q${v.idx+1}.</strong> ${q.q} <span class="badge ${bc}">${bt}</span></div>
+      <div class="review-row"><span class="review-label">Your Answer:</span>
+      <span class="review-val" style="color:${st==='correct'?'var(--correct)':'var(--wrong)'}">${L[v.answered]}. ${q.opts[v.answered]}</span></div>
+      <div class="review-row"><span class="review-label">Correct:</span>
+      <span class="review-val" style="color:var(--correct)">${L[q.ans]}. ${q.opts[q.ans]}</span></div>
+      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}`;
+    list.appendChild(div);
+  });
+}
+
+// ===================== MODE SWITCHING =====================
+function setMode(m){
+  stopTimer();
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+
+  if(m==='wrong'){
+    const wrongIdxs=questions.map((_,i)=>i).filter(i=>mistakes[i]>0);
+    if(wrongIdxs.length===0){
+      alert('No mistake history yet. Answer some questions wrong first (in any mode) and they\'ll show up here for focused review.');
+      return;
+    }
+    wrongIdxs.sort((a,b)=>mistakes[b]-mistakes[a]); // worst-missed first
+    activeIndices=wrongIdxs;
+    modeAnswers={};
+    mode='wrong';
+    examRevealed=true;
+    document.getElementById('mode-btn-wrong').classList.add('active');
+    document.getElementById('exam-banner').style.display='none';
+    document.getElementById('timer-chip').style.display='none';
+    document.getElementById('nav-section').style.display='';
+    activePos=0;
+    buildNav();
+    renderQ(activeIndices[0]);
+
+  }else if(m==='timed'){
+    const countStr=prompt('How many questions in this timed exam?','20');
+    if(countStr===null)return;
+    const count=Math.max(1,Math.min(questions.length,parseInt(countStr,10)||20));
+    const minStr=prompt('Time limit in minutes?','30');
+    if(minStr===null)return;
+    const minutes=Math.max(1,parseInt(minStr,10)||30);
+
+    // Weighted sample: questions you've missed more often are more likely to
+    // be included (a lightweight spaced-repetition effect), but it's still a
+    // realistic simulated mix, not ONLY your weak spots.
+    const weighted=[];
+    questions.forEach((_,i)=>{ const w=1+mistakes[i]; for(let k=0;k<w;k++) weighted.push(i); });
+    const chosen=new Set();
+    let guard=0;
+    while(chosen.size<count && chosen.size<questions.length && guard<count*50){
+      chosen.add(weighted[Math.floor(Math.random()*weighted.length)]);
+      guard++;
+    }
+    activeIndices=shuffleArray([...chosen]);
+    sessionShuffle={};
+    activeIndices.forEach(i=>{
+      const q=questions[i];
+      const order=shuffleArray(q.opts.map((_,k)=>k));
+      sessionShuffle[i]={opts:order.map(k=>q.opts[k]), ans:order.indexOf(q.ans)};
+    });
+    modeAnswers={};
+    mode='timed';
+    examRevealed=false;
+    document.getElementById('mode-btn-timed').classList.add('active');
+    document.getElementById('exam-banner').style.display='block';
+    document.getElementById('timer-chip').style.display='';
+    document.getElementById('nav-section').style.display='';
+    startTimer(minutes*60);
+    activePos=0;
+    buildNav();
+    renderQ(activeIndices[0]);
+
+  }else if(m==='smart'){
+    smartHistory=[];
+    smartPos=-1;
+    smartSessionCorrect=0;smartSessionWrong=0;
+    modeAnswers={};
+    mode='smart';
+    examRevealed=true;
+    document.getElementById('mode-btn-smart').classList.add('active');
+    document.getElementById('exam-banner').style.display='none';
+    document.getElementById('timer-chip').style.display='none';
+    document.getElementById('nav-section').style.display='none';
+    smartAdvance();
+
+  }else{ // full
+    activeIndices=questions.map((_,i)=>i);
+    mode='full';
+    examRevealed=true;
+    document.getElementById('mode-btn-full').classList.add('active');
+    document.getElementById('exam-banner').style.display='none';
+    document.getElementById('timer-chip').style.display='none';
+    document.getElementById('nav-section').style.display='';
+    buildNav();
+    const firstUnattempted=statuses.findIndex(s=>s==='unattempted');
+    renderQ(firstUnattempted===-1?0:firstUnattempted);
+  }
+}
+
+function startTimer(seconds){
+  timedSecondsLeft=seconds;
+  updateTimerDisplay();
+  timedTimerHandle=setInterval(()=>{
+    timedSecondsLeft--;
+    updateTimerDisplay();
+    if(timedSecondsLeft<=0){ stopTimer(); submitExam(true); }
+  },1000);
+}
+function stopTimer(){
+  if(timedTimerHandle){ clearInterval(timedTimerHandle); timedTimerHandle=null; }
+}
+function updateTimerDisplay(){
+  const m=Math.floor(timedSecondsLeft/60), s=timedSecondsLeft%60;
+  document.getElementById('hdr-timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+// ===================== CORE ENGINE =====================
+function topicClass(t){const i=TOPICS.indexOf(t);return i>=0?TCLASS[i]:'t0';}
+
+function applyConfig(){
+  document.getElementById('page-title').textContent=CONFIG.pageTitle+' ('+questions.length+'Q)';
+  document.getElementById('header-title-text').innerHTML=
+    CONFIG.headerLeft+' &nbsp;|&nbsp; <span>'+CONFIG.headerRight+'</span>';
+  document.querySelector('.results-title').textContent=CONFIG.resultsTitle;
+  document.getElementById('res-subtitle').textContent=
+    CONFIG.resultsSubtitle+' · '+questions.length+' Questions';
+}
+
+function init(){
+  applyConfig();
+  loadProgress();
+  loadMistakes();
+  loadLastSeen();
+  updateWrongCountBadge();
+  buildNav();
+  updateScoreHeader();
+  reportProgressToOpener();
+  let resumeIdx=0;
+  const firstUnattempted=statuses.findIndex(s=>s==='unattempted');
+  resumeIdx=firstUnattempted===-1?0:firstUnattempted;
+  renderQ(resumeIdx);
+}
+
+function buildNav(){
+  const g=document.getElementById('nav-grid');g.innerHTML='';
+  activeIndices.forEach((i,pos)=>{
+    const b=document.createElement('button');
+    b.className='nav-dot unattempted';b.textContent=i+1;b.id='nav-'+i;
+    b.setAttribute('data-mistakes', mistakes[i]||0);
+    b.onclick=()=>renderQ(i);g.appendChild(b);
+  });
+}
+
+function updateNav(){
+  if(mode==='smart')return; // smart mode has no fixed nav grid (see nav-section hidden)
+  activeIndices.forEach(i=>{
+    const el=document.getElementById('nav-'+i);
+    if(!el)return;
+    el.setAttribute('data-mistakes', mistakes[i]||0);
+    if(mode==='full'){
+      el.className='nav-dot '+(i===current?'current':statuses[i]);
+    }else{
+      const st = modeAnswers[i]===undefined ? 'unattempted' :
+        (!examRevealed ? 'answered' : (modeAnswers[i]===effectiveAns(i) ? 'correct':'wrong'));
+      el.className='nav-dot '+(i===current?'current':st);
+    }
+  });
+}
+
+// returns the correct-answer index for question i, accounting for timed-mode shuffling
+function effectiveOpts(i){ return mode==='timed'&&sessionShuffle[i] ? sessionShuffle[i].opts : questions[i].opts; }
+function effectiveAns(i){ return mode==='timed'&&sessionShuffle[i] ? sessionShuffle[i].ans : questions[i].ans; }
+
+function renderQ(idx){
+  current=idx;
+  activePos=activeIndices.indexOf(idx);
+  const q=questions[idx];
+  const opts=effectiveOpts(idx);
+  const ansIdx=effectiveAns(idx);
+
+  document.getElementById('q-num-label').textContent = mode==='smart' ? 'Review #'+(smartPos+1) : 'Q '+(activePos+1);
+  document.getElementById('q-of-total').textContent =
+    mode==='full' ? 'of '+questions.length+' Questions' :
+    mode==='smart' ? 'Smart Review session · '+(smartPos+1)+' viewed so far (original Q'+(idx+1)+')' :
+    'of '+activeIndices.length+' in this session (original Q'+(idx+1)+')';
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('topic-badge-wrap').innerHTML=
+    `<div class="topic-badge ${topicClass(q.topic)}">${q.topic}</div>`;
+
+  const answeredVal = mode==='full' ? answers[idx] :
+    mode==='smart' ? (smartHistory[smartPos] ? smartHistory[smartPos].answered : null) :
+    (modeAnswers[idx]!==undefined?modeAnswers[idx]:null);
+  const showFeedbackNow = mode!=='timed' || examRevealed;
+
+  const ow=document.getElementById('options-wrap');ow.innerHTML='';
+  const L=['A','B','C','D'];
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt-btn';
+    btn.innerHTML=`<span class="opt-label">${L[i]}.</span><span>${opt}</span>`;
+    btn.onclick=()=>selectAnswer(i);
+    if(answeredVal!==null){
+      btn.disabled=true;
+      if(showFeedbackNow){
+        if(i===ansIdx)btn.classList.add('correct');
+        else if(i===answeredVal)btn.classList.add('wrong');
+      }else if(i===answeredVal){
+        btn.classList.add('selected-pending');
+        btn.style.borderColor='var(--accent)';
+      }
+    }
+    ow.appendChild(btn);
+  });
+
+  const fb=document.getElementById('feedback');
+  if(answeredVal!==null && showFeedbackNow){
+    const isC=answeredVal===ansIdx;
+    fb.className='feedback show '+(isC?'correct':'wrong');
+    fb.innerHTML=isC
+      ?`✔ Correct!${q.exp?'<br><small style="opacity:.8">'+q.exp+'</small>':''}`
+      :`✘ Incorrect. Correct: <strong>${L[ansIdx]}. ${opts[ansIdx]}</strong>${q.exp?'<br><small style="opacity:.8">'+q.exp+'</small>':''}`;
+  }else if(answeredVal!==null && !showFeedbackNow){
+    fb.className='feedback show';
+    fb.style.background='rgba(30,143,255,0.1)';fb.style.borderColor='rgba(30,143,255,0.3)';fb.style.color='var(--accent)';
+    fb.innerHTML='Answer recorded — feedback shown after you submit the exam.';
+  }else{fb.className='feedback';fb.textContent='';}
+
+  if(mode==='smart'){
+    document.getElementById('btn-prev').style.display=smartPos<=0?'none':'';
+    document.getElementById('btn-skip').style.display='none';
+    document.getElementById('btn-next').style.display='';
+    document.getElementById('btn-next').textContent='Next (Smart Pick) ▶';
+    document.getElementById('btn-finish').style.display='none';
+    document.getElementById('btn-submit-exam').style.display='none';
+    document.getElementById('btn-end-smart').style.display='';
+  }else{
+    document.getElementById('btn-next').textContent='Next ▶';
+    document.getElementById('btn-end-smart').style.display='none';
+    const isFirst=activePos===0, isLast=activePos===activeIndices.length-1;
+    document.getElementById('btn-prev').style.display=isFirst?'none':'';
+    document.getElementById('btn-skip').style.display=mode==='timed'?'none':'';
+    document.getElementById('btn-skip').disabled=answeredVal!==null;
+    document.getElementById('btn-next').style.display=isLast?'none':'';
+    document.getElementById('btn-finish').style.display=(isLast&&mode!=='timed')?'':'none';
+    document.getElementById('btn-submit-exam').style.display=(mode==='timed')?'':'none';
+  }
+
+  if(mode==='full'){
+    const done=statuses.filter(s=>s!=='unattempted').length;
+    document.getElementById('prog-bar').style.width=(done/questions.length*100)+'%';
+  }else if(mode==='smart'){
+    const seen=smartHistory.filter(v=>v.answered!==null).length;
+    const pct = seen ? Math.round(smartSessionCorrect/seen*100) : 0;
+    document.getElementById('prog-bar').style.width=pct+'%';
+  }else{
+    const done=Object.keys(modeAnswers).length;
+    document.getElementById('prog-bar').style.width=(done/activeIndices.length*100)+'%';
+  }
+  updateNav();
+}
+
+function selectAnswer(optIdx){
+  if(mode==='full'){
+    if(answers[current]!==null)return;
+    answers[current]=optIdx;
+    const isCorrect=(optIdx===questions[current].ans);
+    if(isCorrect){statuses[current]='correct';correctCount++; mistakes[current]=Math.max(0,(mistakes[current]||0)-1);}
+    else{statuses[current]='wrong';wrongCount++; mistakes[current]=(mistakes[current]||0)+1;}
+    lastSeen[current]=Date.now();
+    saveMistakes();saveLastSeen();updateWrongCountBadge();
+    updateScoreHeader();
+    renderQ(current);
+    saveProgress();
+    if(isCorrect&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),1200);}
+  }else if(mode==='smart'){
+    const visit=smartHistory[smartPos];
+    if(!visit||visit.answered!==null)return;
+    visit.answered=optIdx;
+    const isCorrect=(optIdx===questions[current].ans);
+    if(isCorrect){ mistakes[current]=Math.max(0,(mistakes[current]||0)-1); smartSessionCorrect++; }
+    else{ mistakes[current]=(mistakes[current]||0)+1; smartSessionWrong++; }
+    saveMistakes();updateWrongCountBadge();
+    renderQ(current);
+    if(isCorrect){ setTimeout(()=>smartAdvance(),1200); }
+  }else{
+    if(modeAnswers[current]!==undefined)return;
+    modeAnswers[current]=optIdx;
+    const isCorrect=(optIdx===effectiveAns(current));
+    if(isCorrect){ mistakes[current]=Math.max(0,(mistakes[current]||0)-1); }
+    else{ mistakes[current]=(mistakes[current]||0)+1; }
+    saveMistakes();updateWrongCountBadge();
+    renderQ(current);
+    if(mode==='wrong'&&isCorrect&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),1200);}
+    else if(mode==='timed'&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),400);}
+  }
+}
+
+function skipQuestion(){
+  if(mode!=='full')return; // no skipping mid-exam; not applicable in wrong/smart modes
+  if(answers[current]!==null)return;
+  statuses[current]='skipped';skipCount++;
+  updateScoreHeader();saveProgress();navigate(1);
+}
+
+function navigate(dir){
+  if(mode==='smart'){
+    if(dir<0) smartPrev(); else smartAdvance();
+    return;
+  }
+  const nextPos=activePos+dir;
+  if(nextPos<0||nextPos>=activeIndices.length)return;
+  renderQ(activeIndices[nextPos]);
+  if(mode==='full') saveProgress();
+}
+
+function updateScoreHeader(){
+  document.getElementById('hdr-c').textContent=correctCount;
+  document.getElementById('hdr-w').textContent=wrongCount;
+  document.getElementById('hdr-s').textContent=skipCount;
+}
+
+// ===================== EXAM SUBMIT =====================
+function submitExam(auto){
+  stopTimer();
+  examRevealed=true;
+  let ec=0,ew=0;
+  activeIndices.forEach(i=>{
+    if(modeAnswers[i]===undefined)return;
+    if(modeAnswers[i]===effectiveAns(i)) ec++; else ew++;
+  });
+  const unanswered=activeIndices.length-(ec+ew);
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('results-screen').style.display='block';
+  window.scrollTo(0,0);
+  const total=activeIndices.length,pct=total?Math.round(ec/total*100):0;
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('sum-total').textContent=total;
+  document.getElementById('sum-correct').textContent=ec;
+  document.getElementById('sum-wrong').textContent=ew;
+  document.getElementById('sum-skip').textContent=unanswered;
+  let grade,gc;
+  if(auto){grade='TIME UP — '+(pct>=75?'PASS':'REVIEW REQUIRED');gc=pct>=75?'#22c55e':'#ef4444';}
+  else if(pct>=90){grade='EXCELLENT — PASS';gc='#22c55e';}
+  else if(pct>=75){grade='GOOD — PASS';gc='#22c55e';}
+  else if(pct>=60){grade='AVERAGE — MARGINAL';gc='#f59e0b';}
+  else{grade='BELOW STANDARD — REVIEW REQUIRED';gc='#ef4444';}
+  document.getElementById('res-grade').textContent=grade;
+  document.getElementById('res-grade').style.color=gc;
+  document.getElementById('res-bar').style.width=pct+'%';
+  document.getElementById('res-bar').style.background=gc;
+  buildExamReview();
+}
+
+function buildExamReview(){
+  const list=document.getElementById('review-list');list.innerHTML='';
+  const L=['A','B','C','D'];
+  activeIndices.forEach(i=>{
+    const q=questions[i];
+    const opts=effectiveOpts(i), ansIdx=effectiveAns(i);
+    const given=modeAnswers[i];
+    const st = given===undefined ? 'skipped' : (given===ansIdx?'correct':'wrong');
+    const bc=st==='correct'?'badge-correct':st==='wrong'?'badge-wrong':'badge-skipped';
+    const bt=st==='correct'?'✔ Correct':st==='wrong'?'✘ Wrong':'– Not answered';
+    const ya=given!==undefined?L[given]+'. '+opts[given]:'Not answered';
+    const div=document.createElement('div');div.className='review-item';
+    div.innerHTML=`<div class="review-q">
+      <span class="topic-badge ${topicClass(q.topic)}" style="font-size:0.65rem;padding:1px 7px;margin-right:6px;">${q.topic}</span>
+      <strong>Q${i+1}.</strong> ${q.q} <span class="badge ${bc}">${bt}</span></div>
+      <div class="review-row"><span class="review-label">Your Answer:</span>
+      <span class="review-val" style="color:${st==='correct'?'var(--correct)':st==='wrong'?'var(--wrong)':'var(--skip)'}">${ya}</span></div>
+      <div class="review-row"><span class="review-label">Correct:</span>
+      <span class="review-val" style="color:var(--correct)">${L[ansIdx]}. ${opts[ansIdx]}</span></div>
+      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}`;
+    list.appendChild(div);
+  });
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.filter-btn').classList.add('active');
+}
+
+function showResults(){
+  if(mode!=='full'){ submitExam(false); return; }
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('results-screen').style.display='block';
+  window.scrollTo(0,0);
+  const total=questions.length,pct=Math.round(correctCount/total*100);
+  document.getElementById('res-pct').textContent=pct+'%';
+  document.getElementById('sum-total').textContent=total;
+  document.getElementById('sum-correct').textContent=correctCount;
+  document.getElementById('sum-wrong').textContent=wrongCount;
+  document.getElementById('sum-skip').textContent=skipCount;
+  let grade,gc;
+  if(pct>=90){grade='EXCELLENT — PASS';gc='#22c55e';}
+  else if(pct>=75){grade='GOOD — PASS';gc='#22c55e';}
+  else if(pct>=60){grade='AVERAGE — MARGINAL';gc='#f59e0b';}
+  else{grade='BELOW STANDARD — REVIEW REQUIRED';gc='#ef4444';}
+  document.getElementById('res-grade').textContent=grade;
+  document.getElementById('res-grade').style.color=gc;
+  document.getElementById('res-bar').style.width=pct+'%';
+  document.getElementById('res-bar').style.background=gc;
+  filterReview('all',document.querySelector('.filter-btn'));
+}
+
+function filterReview(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const list=document.getElementById('review-list');list.innerHTML='';
+  const L=['A','B','C','D'];
+  questions.forEach((q,i)=>{
+    const st=statuses[i];
+    if(type!=='all'&&st!==type)return;
+    const div=document.createElement('div');div.className='review-item';
+    const bc=st==='correct'?'badge-correct':st==='wrong'?'badge-wrong':'badge-skipped';
+    const bt=st==='correct'?'✔ Correct':st==='wrong'?'✘ Wrong':'– Skipped';
+    const ya=answers[i]!==null?L[answers[i]]+'. '+q.opts[answers[i]]:'Not answered';
+    const tc=topicClass(q.topic);
+    div.innerHTML=`<div class="review-q">
+      <span class="topic-badge ${tc}" style="font-size:0.65rem;padding:1px 7px;margin-right:6px;">${q.topic}</span>
+      <strong>Q${i+1}.</strong> ${q.q} <span class="badge ${bc}">${bt}</span></div>
+      <div class="review-row"><span class="review-label">Your Answer:</span>
+      <span class="review-val" style="color:${st==='correct'?'var(--correct)':st==='wrong'?'var(--wrong)':'var(--skip)'}">${ya}</span></div>
+      <div class="review-row"><span class="review-label">Correct:</span>
+      <span class="review-val" style="color:var(--correct)">${L[q.ans]}. ${q.opts[q.ans]}</span></div>
+      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}`;
+    list.appendChild(div);
+  });
+}
+
+function restartQuiz(){
+  // Restart resets Full Quiz progress only — mistake history is intentionally
+  // NOT cleared here, since it's meant to persist across attempts. Use
+  // "Clear Mistake History" in the mode bar if you want that reset too.
+  answers=new Array(questions.length).fill(null);
+  statuses=new Array(questions.length).fill('unattempted');
+  correctCount=0;wrongCount=0;skipCount=0;
+  clearProgress();
+  updateScoreHeader();
+  reportProgressToOpener();
+  document.getElementById('results-screen').style.display='none';
+  document.getElementById('quiz-screen').style.display='block';
+  document.getElementById('prog-bar').style.width='0%';
+  window.scrollTo(0,0);
+  setMode('full');
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CBT Library — Technical Training Index</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0a1628;--navy2:#0f1e38;--panel:#132040;--card:#1a2d50;--border:#1e3a6e;
+  --accent:#1e8fff;--accent2:#0066cc;--gold:#f0b429;
+  --correct:#22c55e;--wrong:#ef4444;--skip:#f59e0b;
+  --text:#e2eaf5;--muted:#8ba4c4;--white:#ffffff;
+}
+[data-theme="light"]{
+  --navy:#eef2f8;--navy2:#ffffff;--panel:#f4f7fb;--card:#ffffff;--border:#d7e1ee;
+  --accent:#1e6fd8;--accent2:#0d54ad;--gold:#b8790a;
+  --text:#16233b;--muted:#5b7290;--white:#0f1e38;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;transition:background .2s,color .2s;}
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+header{background:var(--navy2);border-bottom:2px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:200;}
+.header-inner{max-width:1360px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;color:#fff;font-size:1rem;flex-shrink:0;}
+.brand-text{font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.5px;color:var(--text);}
+.brand-text span{color:var(--gold);}
+.header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.search-wrap{position:relative;}
+.search-input{background:var(--panel);border:1.5px solid var(--border);border-radius:8px;padding:9px 14px 9px 34px;color:var(--text);font-size:0.88rem;width:210px;font-family:'Inter',sans-serif;}
+.search-input:focus{outline:none;border-color:var(--accent);}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.85rem;}
+
+.btn{padding:9px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:0.92rem;font-weight:700;letter-spacing:.4px;transition:all .15s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+.btn-primary:hover{filter:brightness(1.12);}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--muted);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.btn-danger{background:rgba(239,68,68,0.12);color:var(--wrong);border:1px solid rgba(239,68,68,0.3);}
+.btn-danger:hover{background:rgba(239,68,68,0.22);}
+.btn-sm{padding:6px 12px;font-size:0.8rem;}
+.icon-btn{width:32px;height:32px;border-radius:7px;background:var(--panel);border:1px solid var(--border);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex:0 0 auto !important;}
+.icon-btn:hover{color:var(--text);border-color:var(--accent);}
+.icon-btn.active{color:var(--gold);border-color:var(--gold);}
+
+/* ===== Stats bar ===== */
+.stats-bar{max-width:1360px;margin:18px auto 0;padding:0 20px;display:flex;gap:12px;flex-wrap:wrap;}
+.stat-pill{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;display:flex;flex-direction:column;gap:2px;min-width:110px;}
+.stat-num{font-family:'Rajdhani',sans-serif;font-size:1.35rem;font-weight:700;color:var(--white);}
+.stat-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
+.badges-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.badge-chip{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:0.76rem;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:5px;}
+
+.layout{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;gap:24px;padding:18px 20px 60px;}
+@media(max-width:820px){.layout{grid-template-columns:1fr;}}
+
+.sidebar{position:sticky;top:88px;align-self:start;}
+.sidebar-title{font-family:'Rajdhani',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-left:4px;}
+.module-list{display:flex;flex-direction:column;gap:4px;}
+.module-item{padding:9px 12px;border-radius:8px;cursor:pointer;font-size:0.86rem;color:var(--muted);border-left:3px solid transparent;transition:all .12s;}
+.module-item:hover{background:var(--panel);color:var(--text);}
+.module-item.active{background:var(--panel);color:var(--text);border-left-color:var(--accent);font-weight:600;}
+.module-item-top{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.module-count{font-size:0.7rem;background:var(--panel);padding:2px 8px;border-radius:10px;color:var(--muted);}
+.module-item.active .module-count{background:var(--accent2);color:#fff;}
+.module-progress-track{height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden;}
+.module-progress-fill{height:100%;background:var(--correct);border-radius:2px;}
+
+.filter-tags-row{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px;}
+.filter-tag-chip{font-size:0.72rem;padding:4px 10px;border-radius:12px;background:var(--panel);border:1px solid var(--border);color:var(--muted);cursor:pointer;}
+.filter-tag-chip.active{background:var(--accent2);color:#fff;border-color:var(--accent2);}
+
+.sidebar-tools{display:flex;flex-direction:column;gap:6px;margin-top:18px;}
+.sidebar-hint{font-size:0.68rem;color:var(--muted);line-height:1.4;padding:0 2px;margin-top:4px;}
+
+.main-title-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+.main-title{font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;color:var(--white);letter-spacing:0.5px;}
+.main-subtitle{font-size:0.8rem;color:var(--muted);margin-top:2px;}
+.main-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+select.sort-select{background:var(--panel);border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-size:0.82rem;font-family:'Inter',sans-serif;}
+
+.subtopic-group{margin-bottom:24px;}
+.subtopic-heading{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.subtopic-tab{width:6px;height:18px;border-radius:3px;flex-shrink:0;}
+.subtopic-name{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:0.4px;}
+.subtopic-line{flex:1;height:1px;background:var(--border);}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px;display:flex;flex-direction:column;gap:9px;position:relative;transition:border-color .15s;}
+.quiz-card:hover{border-color:var(--accent);}
+.quiz-card.selected{outline:2px solid var(--accent);}
+.quiz-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.quiz-card-title{font-size:0.93rem;font-weight:600;color:var(--white);line-height:1.35;}
+.card-select-box{width:16px;height:16px;flex-shrink:0;margin-top:2px;}
+.pin-btn{background:none;border:none;cursor:pointer;font-size:1rem;color:var(--muted);flex-shrink:0;line-height:1;}
+.pin-btn.pinned{color:var(--gold);}
+.quiz-card-meta{display:flex;gap:6px;flex-wrap:wrap;font-size:0.7rem;color:var(--muted);}
+.meta-chip{background:var(--panel);padding:3px 8px;border-radius:10px;border:1px solid var(--border);}
+.meta-chip.review{background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.35);color:var(--wrong);}
+.meta-chip.broken{background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.35);color:var(--wrong);}
+.tag-chip{background:rgba(30,143,255,0.12);border:1px solid rgba(30,143,255,0.3);color:var(--accent);padding:2px 8px;border-radius:10px;font-size:0.68rem;}
+.progress-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:3px;}
+.card-progress-label{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--muted);}
+.notes-preview{font-size:0.74rem;color:var(--muted);font-style:italic;background:var(--panel);padding:6px 8px;border-radius:6px;border-left:2px solid var(--border);}
+.quiz-card-actions{display:flex;gap:6px;margin-top:2px;}
+.quiz-card-actions .btn{flex:1;justify-content:center;}
+
+.empty-state{text-align:center;padding:70px 20px;color:var(--muted);}
+.empty-state-icon{font-size:2.6rem;margin-bottom:14px;opacity:0.6;}
+.empty-state-title{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+.empty-state-sub{font-size:0.88rem;max-width:400px;margin:0 auto 20px;line-height:1.5;}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(5,10,20,0.72);display:none;align-items:center;justify-content:center;z-index:500;padding:20px;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:26px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
+.modal-title{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:18px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:0.78rem;color:var(--muted);margin-bottom:6px;font-weight:600;}
+.field input,.field select,.field textarea{width:100%;background:var(--panel);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:0.9rem;font-family:'Inter',sans-serif;}
+.field textarea{resize:vertical;min-height:60px;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.field-hint{font-size:0.72rem;color:var(--muted);margin-top:4px;line-height:1.4;}
+.modal-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end;}
+.qr-box{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.qr-box img{border-radius:10px;background:#fff;padding:10px;}
+.share-textarea{width:100%;background:var(--panel);border:1.5px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-size:0.78rem;font-family:monospace;min-height:80px;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--accent);color:var(--text);padding:12px 22px;border-radius:10px;font-size:0.88rem;font-weight:600;z-index:600;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.toast.show{display:block;animation:toastIn .25s ease;}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,10px);}to{opacity:1;transform:translate(-50%,0);}}
+
+.bulk-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy2);border:1px solid var(--accent);border-radius:12px;padding:12px 18px;display:none;gap:10px;align-items:center;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.bulk-bar.show{display:flex;}
+
+@media(max-width:480px){
+  .search-input{width:140px;}
+  .header-inner{height:auto;padding:12px 0;}
+  .field-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">CBT</div>
+      <div class="brand-text">Technical <span>Library</span></div>
+    </div>
+    <div class="header-actions">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search quizzes..." oninput="renderMain()"/>
+      </div>
+      <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark">🌙</button>
+      <button class="btn btn-ghost btn-sm" onclick="surpriseMe()">🎲 Surprise Me</button>
+      <button class="btn btn-primary" onclick="openAddModal()">+ Add CBT</button>
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar" id="stats-bar"></div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-title">Modules</div>
+    <div class="module-list" id="module-list"></div>
+    <div class="filter-tags-row" id="tag-filter-row"></div>
+    <div class="sidebar-tools">
+      <button class="btn btn-ghost btn-sm" onclick="exportLibrary()">⭳ Export Library</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('import-file').click()">⭱ Import Library</button>
+      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importLibrary(event)"/>
+      <button class="btn btn-ghost btn-sm" onclick="copyShareLink()">🔗 Copy Share Link</button>
+      <button class="btn btn-ghost btn-sm" onclick="checkAllLinks()">✅ Check Links</button>
+      <div class="sidebar-hint">Export/Import back up this list (.json) — to add a quiz itself, use <strong>+ Add CBT</strong> above. "Check Links" only works once this dashboard is hosted online (not as a local file).</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-title-row">
+      <div>
+        <div class="main-title" id="main-title">All Modules</div>
+        <div class="main-subtitle" id="main-subtitle">0 quizzes</div>
+      </div>
+      <div class="main-tools">
+        <select class="sort-select" id="sort-select" onchange="renderMain()">
+          <option value="dateAdded_desc">Newest added</option>
+          <option value="dateAdded_asc">Oldest added</option>
+          <option value="alpha">Alphabetical</option>
+          <option value="count_desc">Most questions</option>
+          <option value="count_asc">Fewest questions</option>
+          <option value="lastOpened">Recently opened</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" id="bulk-toggle-btn" onclick="toggleBulkMode()">☑ Select</button>
+      </div>
+    </div>
+    <div id="content-area"></div>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Add a CBT</div>
+    <input type="hidden" id="f-id"/>
+    <div class="field">
+      <label>Title</label>
+      <input type="text" id="f-title" placeholder="e.g. Module 17 – Propellers Complete CBT"/>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Module</label>
+        <input type="text" id="f-module" list="module-datalist" placeholder="e.g. Module 17"/>
+        <datalist id="module-datalist"></datalist>
+      </div>
+      <div class="field">
+        <label>Sub-topic</label>
+        <input type="text" id="f-subtopic" list="subtopic-datalist" placeholder="e.g. Propellers"/>
+        <datalist id="subtopic-datalist"></datalist>
+      </div>
+    </div>
+    <div class="field">
+      <label>Link (file name or URL)</label>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="f-link" placeholder="Module17_Complete_310Q.html or https://..." style="flex:1;"/>
+        <button type="button" class="btn btn-ghost btn-sm" style="flex:0 0 auto;" onclick="document.getElementById('browse-quiz-file').click()">📁 Browse</button>
+        <input type="file" id="browse-quiz-file" accept=".html,.htm" style="display:none" onchange="handleBrowseFile(event)"/>
+      </div>
+      <div class="field-hint">Browse auto-fills the name (and question count, if detectable). File must stay in this dashboard's folder for "Open" to work, or paste a full web link instead.</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Question count</label>
+        <input type="number" id="f-count" placeholder="e.g. 310"/>
+      </div>
+      <div class="field">
+        <label>Tag color</label>
+        <select id="f-color">
+          <option value="0">Blue</option>
+          <option value="1">Gold</option>
+          <option value="2">Purple</option>
+          <option value="3">Green</option>
+          <option value="4">Red</option>
+          <option value="5">Orange</option>
+          <option value="6">Teal</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Tags (comma separated, optional)</label>
+      <input type="text" id="f-tags" placeholder="e.g. weak area, exam soon"/>
+    </div>
+    <div class="field">
+      <label>Notes (optional)</label>
+      <textarea id="f-notes" placeholder="e.g. Skip Q45 — answer key looks wrong"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEntry()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- QR Modal -->
+<div class="modal-overlay" id="qr-modal-overlay">
+  <div class="modal" style="max-width:320px;">
+    <div class="modal-title">Quick-open QR Code</div>
+    <div class="qr-box">
+      <img id="qr-image" src="" alt="QR code" width="220" height="220"/>
+      <div class="field-hint" style="text-align:center;">Scan with a phone camera to open this quiz. Requires internet to generate (loads from a QR image service) and the link must be reachable from your phone (a full web link, not a local file).</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeQrModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Share Modal -->
+<div class="modal-overlay" id="share-modal-overlay">
+  <div class="modal">
+    <div class="modal-title">Share Your Library</div>
+    <div class="field-hint" style="margin-bottom:10px;">This link encodes your whole list into the URL itself. It only works if the other person opens it on the <strong>same hosted copy</strong> of this dashboard (e.g. your Netlify link) — it can't work with a local file on their computer.</div>
+    <textarea class="share-textarea" id="share-link-text" readonly></textarea>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeShareModal()">Close</button>
+      <button class="btn btn-primary" onclick="copyShareText()">Copy Link</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="bulk-bar" id="bulk-bar">
+  <span id="bulk-count" style="font-size:0.85rem;color:var(--muted);"></span>
+  <button class="btn btn-ghost btn-sm" onclick="bulkTag()">🏷 Tag Selected</button>
+  <button class="btn btn-danger btn-sm" onclick="bulkDelete()">🗑 Delete Selected</button>
+  <button class="btn btn-ghost btn-sm" onclick="toggleBulkMode()">Cancel</button>
+</div>
+
+<script>
+const STORAGE_KEY = 'cbt_library_v1';
+const THEME_KEY = 'cbt_library_theme';
+const TCOLORS = ['#60b4ff','#f0b429','#a78bfa','#4ade80','#f87171','#fb923c','#2dd4bf'];
+
+let library = [];
+let activeModule = 'ALL';
+let activeTag = null;
+let bulkMode = false;
+let selectedIds = new Set();
+const openWindows = {}; // id -> window handle, for postMessage progress tracking
+
+// ===================== PERSISTENCE =====================
+function load(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    library = raw ? JSON.parse(raw) : [];
+  }catch(e){ library = []; }
+  library.forEach(it=>{
+    if(it.pinned===undefined) it.pinned=false;
+    if(!it.tags) it.tags=[];
+    if(it.notes===undefined) it.notes='';
+    if(it.progress===undefined) it.progress=null;
+    if(it.lastOpened===undefined) it.lastOpened=null;
+    if(it.linkStatus===undefined) it.linkStatus=null;
+  });
+}
+function persist(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(library)); }catch(e){}
+}
+function uid(){ return 'q'+Date.now()+Math.random().toString(36).slice(2,8); }
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+// ===================== THEME =====================
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('theme-toggle').textContent = theme==='light' ? '☀️' : '🌙';
+}
+function toggleTheme(){
+  const cur = localStorage.getItem(THEME_KEY) || 'dark';
+  const next = cur==='dark' ? 'light' : 'dark';
+  try{ localStorage.setItem(THEME_KEY, next); }catch(e){}
+  applyTheme(next);
+}
+
+// ===================== CROSS-WINDOW PROGRESS TRACKING =====================
+// If a quiz (built with the matching CBT engine) is opened via openLink() below,
+// it will postMessage its live score back to this window. We match the message
+// to the correct library entry using the actual window handle (not by guessing
+// storage keys), which works regardless of how the quiz computes its own ID.
+window.addEventListener('message', (e)=>{
+  if(!e.data || e.data.type!=='cbt-progress-update') return;
+  for(const id in openWindows){
+    if(openWindows[id]===e.source){
+      const item = library.find(x=>x.id===id);
+      if(item){
+        item.progress = {correct:e.data.correct, wrong:e.data.wrong, skip:e.data.skip, total:e.data.total, pct:e.data.pct};
+        item.lastOpened = new Date().toISOString();
+        persist();
+        renderSidebar();
+        renderMain();
+      }
+      break;
+    }
+  }
+});
+
+function openLink(id, link){
+  const item = library.find(x=>x.id===id);
+  if(item){ item.lastOpened = new Date().toISOString(); persist(); }
+  const w = window.open(link, '_blank');
+  if(w) openWindows[id]=w;
+  renderMain();
+}
+
+// ===================== MODAL: ADD/EDIT =====================
+function openAddModal(){
+  document.getElementById('modal-title').textContent='Add a CBT';
+  document.getElementById('f-id').value='';
+  document.getElementById('f-title').value='';
+  document.getElementById('f-module').value= activeModule!=='ALL' ? activeModule : '';
+  document.getElementById('f-subtopic').value='';
+  document.getElementById('f-link').value='';
+  document.getElementById('f-count').value='';
+  document.getElementById('f-color').value='0';
+  document.getElementById('f-tags').value='';
+  document.getElementById('f-notes').value='';
+  refreshDatalists();
+  document.getElementById('modal-overlay').classList.add('show');
+  document.getElementById('f-title').focus();
+}
+
+function openEditModal(id){
+  const item = library.find(x=>x.id===id);
+  if(!item)return;
+  document.getElementById('modal-title').textContent='Edit CBT';
+  document.getElementById('f-id').value=item.id;
+  document.getElementById('f-title').value=item.title;
+  document.getElementById('f-module').value=item.module;
+  document.getElementById('f-subtopic').value=item.subtopic;
+  document.getElementById('f-link').value=item.link;
+  document.getElementById('f-count').value=item.count||'';
+  document.getElementById('f-color').value=item.color||0;
+  document.getElementById('f-tags').value=(item.tags||[]).join(', ');
+  document.getElementById('f-notes').value=item.notes||'';
+  refreshDatalists();
+  document.getElementById('modal-overlay').classList.add('show');
+}
+
+function closeModal(){ document.getElementById('modal-overlay').classList.remove('show'); }
+
+function refreshDatalists(){
+  const modules=[...new Set(library.map(x=>x.module).filter(Boolean))];
+  const subtopics=[...new Set(library.map(x=>x.subtopic).filter(Boolean))];
+  document.getElementById('module-datalist').innerHTML = modules.map(m=>`<option value="${escHtml(m)}">`).join('');
+  document.getElementById('subtopic-datalist').innerHTML = subtopics.map(s=>`<option value="${escHtml(s)}">`).join('');
+}
+
+function handleBrowseFile(evt){
+  const file = evt.target.files[0];
+  if(!file) return;
+  document.getElementById('f-link').value = file.name;
+  const titleField = document.getElementById('f-title');
+  if(!titleField.value.trim()){
+    titleField.value = file.name.replace(/\.html?$/i,'').replace(/[_-]+/g,' ').trim();
+  }
+  // best-effort auto-detect question count by reading the file's own question array
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try{
+      const text = reader.result;
+      const matches = text.match(/\{topic:/g);
+      if(matches && matches.length){
+        document.getElementById('f-count').value = matches.length;
+        showToast('Selected: '+file.name+' — detected '+matches.length+' questions');
+      }else{
+        showToast('Selected: '+file.name);
+      }
+    }catch(e){ showToast('Selected: '+file.name); }
+  };
+  reader.readAsText(file);
+  evt.target.value='';
+}
+
+function saveEntry(){
+  const title=document.getElementById('f-title').value.trim();
+  const mod=document.getElementById('f-module').value.trim()||'Uncategorized';
+  const sub=document.getElementById('f-subtopic').value.trim()||'General';
+  const link=document.getElementById('f-link').value.trim();
+  const count=document.getElementById('f-count').value.trim();
+  const color=parseInt(document.getElementById('f-color').value,10)||0;
+  const tags=document.getElementById('f-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const notes=document.getElementById('f-notes').value.trim();
+  const id=document.getElementById('f-id').value;
+
+  if(!title||!link){ showToast('Title and link are required'); return; }
+
+  // duplicate link detection
+  const dupe = library.find(x=>x.link===link && x.id!==id);
+  if(dupe && !confirm(`"${dupe.title}" already uses this exact link. Add anyway?`)) return;
+
+  if(id){
+    const item=library.find(x=>x.id===id);
+    Object.assign(item,{title,module:mod,subtopic:sub,link,count:count?parseInt(count,10):null,color,tags,notes});
+    showToast('Updated');
+  }else{
+    library.push({id:uid(),title,module:mod,subtopic:sub,link,count:count?parseInt(count,10):null,color,tags,notes,
+      pinned:false,dateAdded:new Date().toISOString(),lastOpened:null,progress:null,linkStatus:null});
+    showToast('Added to library');
+  }
+  persist();
+  closeModal();
+  renderSidebar();
+  renderMain();
+}
+
+function deleteEntry(id){
+  if(!confirm('Remove this CBT from your library? (The file itself is not deleted, just this entry.)'))return;
+  library = library.filter(x=>x.id!==id);
+  persist();
+  renderSidebar();
+  renderMain();
+  showToast('Removed');
+}
+
+function togglePin(id){
+  const item=library.find(x=>x.id===id);
+  if(item){ item.pinned=!item.pinned; persist(); renderMain(); }
+}
+
+// ===================== BULK ACTIONS =====================
+function toggleBulkMode(){
+  bulkMode=!bulkMode;
+  selectedIds.clear();
+  document.getElementById('bulk-toggle-btn').textContent = bulkMode ? '✕ Cancel Select' : '☑ Select';
+  updateBulkBar();
+  renderMain();
+}
+function toggleCardSelect(id){
+  if(selectedIds.has(id)) selectedIds.delete(id); else selectedIds.add(id);
+  updateBulkBar();
+  renderMain();
+}
+function updateBulkBar(){
+  const bar=document.getElementById('bulk-bar');
+  if(bulkMode && selectedIds.size>0){
+    bar.classList.add('show');
+    document.getElementById('bulk-count').textContent = selectedIds.size+' selected';
+  }else{
+    bar.classList.remove('show');
+  }
+}
+function bulkDelete(){
+  if(selectedIds.size===0)return;
+  if(!confirm(`Remove ${selectedIds.size} quiz(zes) from your library?`))return;
+  library = library.filter(x=>!selectedIds.has(x.id));
+  selectedIds.clear();
+  persist();
+  toggleBulkMode();
+  renderSidebar();
+  renderMain();
+  showToast('Removed selected quizzes');
+}
+function bulkTag(){
+  if(selectedIds.size===0)return;
+  const tag = prompt('Add this tag to all selected quizzes:');
+  if(!tag)return;
+  library.forEach(it=>{
+    if(selectedIds.has(it.id)){
+      if(!it.tags) it.tags=[];
+      if(!it.tags.includes(tag.trim())) it.tags.push(tag.trim());
+    }
+  });
+  persist();
+  toggleBulkMode();
+  renderMain();
+  showToast('Tag added to selected quizzes');
+}
+
+// ===================== EXPORT / IMPORT =====================
+function exportLibrary(){
+  const blob = new Blob([JSON.stringify(library,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download='cbt-library-backup.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Exported');
+}
+
+function importLibrary(evt){
+  const file=evt.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const data=JSON.parse(reader.result);
+      if(!Array.isArray(data))throw new Error('bad format');
+      mergeImportedEntries(data);
+    }catch(e){
+      showToast('Import failed — invalid file');
+    }
+    evt.target.value='';
+  };
+  reader.readAsText(file);
+}
+
+function mergeImportedEntries(data){
+  const existingIds = new Set(library.map(x=>x.id));
+  let added=0;
+  data.forEach(item=>{
+    if(item && item.title && item.link){
+      if(!item.id || existingIds.has(item.id)) item.id = uid();
+      if(item.pinned===undefined) item.pinned=false;
+      if(!item.tags) item.tags=[];
+      if(item.notes===undefined) item.notes='';
+      if(item.progress===undefined) item.progress=null;
+      if(item.lastOpened===undefined) item.lastOpened=null;
+      library.push(item);
+      added++;
+    }
+  });
+  persist();
+  renderSidebar();
+  renderMain();
+  showToast('Imported '+added+' quiz(zes)');
+}
+
+// ===================== SHARE LINK =====================
+function copyShareLink(){
+  try{
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(library))));
+    const url = location.origin + location.pathname + '#lib=' + encoded;
+    document.getElementById('share-link-text').value = url;
+    document.getElementById('share-modal-overlay').classList.add('show');
+  }catch(e){ showToast('Could not generate share link'); }
+}
+function closeShareModal(){ document.getElementById('share-modal-overlay').classList.remove('show'); }
+function copyShareText(){
+  const ta=document.getElementById('share-link-text');
+  ta.select();
+  try{ document.execCommand('copy'); showToast('Link copied'); }
+  catch(e){ navigator.clipboard && navigator.clipboard.writeText(ta.value).then(()=>showToast('Link copied')); }
+}
+function checkForSharedLibraryInUrl(){
+  const hash = location.hash;
+  const m = hash.match(/#lib=(.+)/);
+  if(!m) return;
+  try{
+    const data = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
+    if(Array.isArray(data) && confirm(`This link contains ${data.length} quiz entries. Import them into your library?`)){
+      mergeImportedEntries(data);
+    }
+    history.replaceState(null,'',location.pathname);
+  }catch(e){ /* ignore malformed hash */ }
+}
+
+// ===================== QR CODE =====================
+function showQr(link){
+  const encoded = encodeURIComponent(link);
+  document.getElementById('qr-image').src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data='+encoded;
+  document.getElementById('qr-modal-overlay').classList.add('show');
+}
+function closeQrModal(){ document.getElementById('qr-modal-overlay').classList.remove('show'); }
+
+// ===================== LINK CHECKER =====================
+async function checkAllLinks(){
+  if(location.protocol==='file:'){
+    showToast("Link checking needs this dashboard to be hosted online (e.g. Netlify) — browsers block this check for local files.");
+    return;
+  }
+  showToast('Checking links...');
+  for(const item of library){
+    try{
+      const isRelative = !/^https?:\/\//i.test(item.link);
+      const res = await fetch(item.link, {method: isRelative ? 'GET' : 'HEAD', mode: isRelative ? 'same-origin' : 'no-cors'});
+      item.linkStatus = 'ok';
+    }catch(e){
+      item.linkStatus = 'broken';
+    }
+  }
+  persist();
+  renderMain();
+  const broken = library.filter(x=>x.linkStatus==='broken').length;
+  showToast(broken===0 ? 'All links look reachable' : broken+' link(s) may be broken');
+}
+
+// ===================== RANDOM PICKER =====================
+function surpriseMe(){
+  if(library.length===0){ showToast('Add a quiz first!'); return; }
+  // weight towards unfinished/never-opened quizzes
+  const unfinished = library.filter(x=>!x.progress || x.progress.pct<100);
+  const pool = unfinished.length ? unfinished : library;
+  const pick = pool[Math.floor(Math.random()*pool.length)];
+  showToast('Opening: '+pick.title);
+  openLink(pick.id, pick.link);
+}
+
+// ===================== RENDER HELPERS =====================
+function escHtml(s){
+  return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function timeAgo(iso){
+  if(!iso) return 'Never opened';
+  const diff = Date.now() - new Date(iso).getTime();
+  const day = 86400000;
+  if(diff < 3600000) return 'Just now';
+  if(diff < day) return Math.floor(diff/3600000)+'h ago';
+  if(diff < day*30) return Math.floor(diff/day)+'d ago';
+  return new Date(iso).toLocaleDateString();
+}
+
+function renderStatsBar(){
+  const totalQuizzes = library.length;
+  const totalQuestions = library.reduce((s,x)=>s+(x.count||0),0);
+  const withProgress = library.filter(x=>x.progress);
+  const avgPct = withProgress.length ? Math.round(withProgress.reduce((s,x)=>s+x.progress.pct,0)/withProgress.length) : 0;
+  const completed100 = library.filter(x=>x.progress && x.progress.pct>=100).length;
+
+  const badges=[];
+  if(completed100>0) badges.push(`🏆 ${completed100} at 100%`);
+  if(totalQuizzes>=5) badges.push(`🎯 ${totalQuizzes} quizzes in library`);
+  if(withProgress.length===totalQuizzes && totalQuizzes>0) badges.push('⚡ Every quiz started');
+
+  document.getElementById('stats-bar').innerHTML = `
+    <div class="stat-pill"><div class="stat-num">${totalQuizzes}</div><div class="stat-label">Quizzes</div></div>
+    <div class="stat-pill"><div class="stat-num">${totalQuestions}</div><div class="stat-label">Questions</div></div>
+    <div class="stat-pill"><div class="stat-num">${avgPct}%</div><div class="stat-label">Avg. Progress</div></div>
+    <div class="badges-row">${badges.map(b=>`<div class="badge-chip">${b}</div>`).join('')}</div>
+  `;
+}
+
+function renderSidebar(){
+  const modules = [...new Set(library.map(x=>x.module))].sort();
+  const wrap = document.getElementById('module-list');
+  let html = `<div class="module-item ${activeModule==='ALL'?'active':''}" onclick="selectModule('ALL')">
+    <div class="module-item-top"><span>All Modules</span><span class="module-count">${library.length}</span></div></div>`;
+  modules.forEach(m=>{
+    const items = library.filter(x=>x.module===m);
+    const withP = items.filter(x=>x.progress);
+    const avg = withP.length ? Math.round(withP.reduce((s,x)=>s+x.progress.pct,0)/withP.length) : 0;
+    html += `<div class="module-item ${activeModule===m?'active':''}" onclick="selectModule('${escHtml(m).replace(/'/g,"\\'")}')">
+      <div class="module-item-top"><span>${escHtml(m)}</span><span class="module-count">${items.length}</span></div>
+      <div class="module-progress-track"><div class="module-progress-fill" style="width:${avg}%"></div></div>
+    </div>`;
+  });
+  wrap.innerHTML = html;
+
+  // tag filter chips
+  const allTags = [...new Set(library.flatMap(x=>x.tags||[]))].sort();
+  const tagWrap = document.getElementById('tag-filter-row');
+  tagWrap.innerHTML = allTags.map(t=>
+    `<div class="filter-tag-chip ${activeTag===t?'active':''}" onclick="selectTag('${escHtml(t).replace(/'/g,"\\'")}')">${escHtml(t)}</div>`
+  ).join('');
+}
+
+function selectModule(m){ activeModule=m; renderSidebar(); renderMain(); }
+function selectTag(t){ activeTag = (activeTag===t)?null:t; renderSidebar(); renderMain(); }
+
+function sortItems(items){
+  const mode = document.getElementById('sort-select').value;
+  const arr = items.slice();
+  switch(mode){
+    case 'dateAdded_asc': arr.sort((a,b)=>new Date(a.dateAdded)-new Date(b.dateAdded)); break;
+    case 'alpha': arr.sort((a,b)=>a.title.localeCompare(b.title)); break;
+    case 'count_desc': arr.sort((a,b)=>(b.count||0)-(a.count||0)); break;
+    case 'count_asc': arr.sort((a,b)=>(a.count||0)-(b.count||0)); break;
+    case 'lastOpened': arr.sort((a,b)=>new Date(b.lastOpened||0)-new Date(a.lastOpened||0)); break;
+    default: arr.sort((a,b)=>new Date(b.dateAdded)-new Date(a.dateAdded));
+  }
+  // pinned always float to top regardless of sort
+  arr.sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
+  return arr;
+}
+
+function renderMain(){
+  renderStatsBar();
+  const search = document.getElementById('search-input').value.trim().toLowerCase();
+  let items = library.slice();
+  if(activeModule!=='ALL') items = items.filter(x=>x.module===activeModule);
+  if(activeTag) items = items.filter(x=>(x.tags||[]).includes(activeTag));
+  if(search) items = items.filter(x =>
+    x.title.toLowerCase().includes(search) ||
+    x.module.toLowerCase().includes(search) ||
+    x.subtopic.toLowerCase().includes(search) ||
+    (x.tags||[]).some(t=>t.toLowerCase().includes(search))
+  );
+  items = sortItems(items);
+
+  document.getElementById('main-title').textContent = activeModule==='ALL' ? 'All Modules' : activeModule;
+  document.getElementById('main-subtitle').textContent = items.length + (items.length===1?' quiz':' quizzes');
+
+  const area = document.getElementById('content-area');
+
+  if(library.length===0){
+    area.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">📚</div>
+        <div class="empty-state-title">Your library is empty</div>
+        <div class="empty-state-sub">Add your first CBT to start building your index. Group by module and sub-topic so everything stays easy to find as your collection grows.</div>
+        <button class="btn btn-primary" onclick="openAddModal()">+ Add your first CBT</button>
+      </div>`;
+    return;
+  }
+  if(items.length===0){
+    area.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🔍</div>
+        <div class="empty-state-title">No matches</div>
+        <div class="empty-state-sub">Try a different search term or filter, or choose "All Modules" to see everything.</div>
+      </div>`;
+    return;
+  }
+
+  const bySubtopic = {};
+  items.forEach(it=>{
+    const key = it.subtopic || 'General';
+    if(!bySubtopic[key]) bySubtopic[key]=[];
+    bySubtopic[key].push(it);
+  });
+
+  let html='';
+  Object.keys(bySubtopic).forEach(sub=>{
+    const group = bySubtopic[sub];
+    const color = TCOLORS[group[0].color % TCOLORS.length] || TCOLORS[0];
+    html += `<div class="subtopic-group">
+      <div class="subtopic-heading">
+        <div class="subtopic-tab" style="background:${color}"></div>
+        <div class="subtopic-name">${escHtml(sub)}</div>
+        <div class="subtopic-line"></div>
+      </div>
+      <div class="card-grid">`;
+    group.forEach(it=>{
+      const c = TCOLORS[it.color % TCOLORS.length] || TCOLORS[0];
+      const pct = it.progress ? it.progress.pct : 0;
+      const needsReview = it.progress && it.progress.pct>=0 && it.progress.total>0 &&
+        (it.progress.correct/(it.progress.correct+it.progress.wrong||1))*100 < 70 && (it.progress.correct+it.progress.wrong)>0;
+      const progColor = pct>=80?'var(--correct)':(pct>=40?'var(--gold)':'var(--wrong)');
+      html += `<div class="quiz-card" style="border-left:3px solid ${c}" id="card-${it.id}">
+        <div class="quiz-card-top">
+          ${bulkMode?`<input type="checkbox" class="card-select-box" ${selectedIds.has(it.id)?'checked':''} onchange="toggleCardSelect('${it.id}')"/>`:''}
+          <div class="quiz-card-title" style="flex:1">${escHtml(it.title)}</div>
+          <button class="pin-btn ${it.pinned?'pinned':''}" onclick="togglePin('${it.id}')" title="Pin">★</button>
+        </div>
+        <div class="quiz-card-meta">
+          ${it.count?`<span class="meta-chip">${it.count} Q</span>`:''}
+          <span class="meta-chip">${escHtml(it.module)}</span>
+          ${needsReview?`<span class="meta-chip review">⚠ Needs review</span>`:''}
+          ${it.linkStatus==='broken'?`<span class="meta-chip broken">🔗 Broken?</span>`:''}
+          ${(it.tags||[]).map(t=>`<span class="tag-chip">${escHtml(t)}</span>`).join('')}
+        </div>
+        ${it.progress?`
+        <div class="card-progress-label"><span>✔ ${it.progress.correct} ✘ ${it.progress.wrong} – ${it.progress.skip}</span><span>${pct}%</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:${pct}%;background:${progColor}"></div></div>
+        `:`<div class="field-hint" style="margin:0;">Not yet opened this session</div>`}
+        <div class="field-hint" style="margin:0;">Last opened: ${timeAgo(it.lastOpened)}</div>
+        ${it.notes?`<div class="notes-preview">📝 ${escHtml(it.notes)}</div>`:''}
+        <div class="quiz-card-actions">
+          <button class="btn btn-primary btn-sm" onclick="openLink('${it.id}','${escHtml(it.link).replace(/'/g,"\\'")}')">Open ▶</button>
+          <button class="icon-btn" onclick="showQr('${escHtml(it.link).replace(/'/g,"\\'")}')" title="QR Code">▦</button>
+          <button class="icon-btn" onclick="openEditModal('${it.id}')" title="Edit">✎</button>
+          <button class="icon-btn" onclick="deleteEntry('${it.id}')" title="Remove">🗑</button>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  area.innerHTML = html;
+}
+
+document.getElementById('modal-overlay').addEventListener('click', e=>{ if(e.target.id==='modal-overlay') closeModal(); });
+document.getElementById('qr-modal-overlay').addEventListener('click', e=>{ if(e.target.id==='qr-modal-overlay') closeQrModal(); });
+document.getElementById('share-modal-overlay').addEventListener('click', e=>{ if(e.target.id==='share-modal-overlay') closeShareModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); closeQrModal(); closeShareModal(); } });
+
+// ===================== INIT =====================
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+load();
+checkForSharedLibraryInUrl();
+renderSidebar();
+renderMain();
+</script>
+</body>
+</html>
