@@ -720,7 +720,7 @@ function buildNav(){
   const g=document.getElementById('nav-grid');g.innerHTML='';
   activeIndices.forEach((i,pos)=>{
     const b=document.createElement('button');
-    b.className='nav-dot unattempted';b.textContent=i+1;b.id='nav-'+i;
+    b.className='nav-dot unattempted';b.textContent=pos+1;b.id='nav-'+i;
     b.setAttribute('data-mistakes', remainingToClear(i));
     if(wrongFlag[i]) b.title='Needs '+remainingToClear(i)+' more correct in a row to clear from Wrong Answers Only';
     b.onclick=()=>renderQ(i);g.appendChild(b);
