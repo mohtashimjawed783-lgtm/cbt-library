@@ -14,6 +14,8 @@ header{background:var(--navy2);border-bottom:2px solid var(--border);padding:0 2
 .header-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent);letter-spacing:1px;white-space:nowrap;}
 .header-title span{color:var(--gold);}
 .live-score{display:flex;gap:8px;align-items:center;}
+.btn-back-dash{background:var(--panel);border:1.5px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all .15s;}
+.btn-back-dash:hover{border-color:var(--accent);color:var(--white);}
 .score-chip{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:0.78rem;font-weight:600;}
 .sc-correct{background:rgba(34,197,94,0.15);color:var(--correct);border:1px solid rgba(34,197,94,0.3);}
 .sc-wrong{background:rgba(239,68,68,0.15);color:var(--wrong);border:1px solid rgba(239,68,68,0.3);}
@@ -116,6 +118,7 @@ header{background:var(--navy2);border-bottom:2px solid var(--border);padding:0 2
 <body>
 <header>
   <div class="header-inner">
+    <button class="btn-back-dash" id="btn-back-dashboard" style="display:none" onclick="window.close()" title="Return to your CBT Library Dashboard">◀ Back to Dashboard</button>
     <div class="header-title" id="header-title-text">EASA B1 &nbsp;|&nbsp; <span>Module 17 – Propeller</span></div>
     <div class="live-score">
       <div class="score-chip" id="timer-chip" style="display:none;background:rgba(240,180,41,0.15);color:var(--gold);border:1px solid rgba(240,180,41,0.3);">⏱ <span id="hdr-timer">--:--</span></div>
@@ -608,14 +611,46 @@ let current=0,answers=new Array(questions.length).fill(null),statuses=new Array(
 let correctCount=0,wrongCount=0,skipCount=0;
 
 let mode='full'; // 'full' | 'wrong' | 'timed'
-let activeIndices=questions.map((_,i)=>i);
+let activeIndices=[];
 let activePos=0;
 
-// Persistent mistake history — survives Restart Quiz, only cleared explicitly.
+// Randomized question order for Full Quiz mode — generated fresh each time you
+// start a brand-new attempt (or hit Restart), but kept STABLE while resuming
+// an in-progress attempt (so reloading mid-quiz doesn't reshuffle underneath
+// you and break "resume where you left off").
+const ORDER_KEY='cbt_order_'+QUIZ_ID;
+let questionOrder=[];
+function loadOrCreateOrder(){
+  try{
+    const raw=localStorage.getItem(ORDER_KEY);
+    if(raw){
+      const d=JSON.parse(raw);
+      if(Array.isArray(d)&&d.length===questions.length){ questionOrder=d; return; }
+    }
+  }catch(e){}
+  regenerateOrder();
+}
+function regenerateOrder(){
+  questionOrder=shuffleArray(questions.map((_,i)=>i));
+  try{ localStorage.setItem(ORDER_KEY, JSON.stringify(questionOrder)); }catch(e){}
+}
+
+// ----- Mistake tracking (requires 3 CONSECUTIVE correct answers to clear) -----
+// wrongFlag[i]  = currently flagged as "needs review" (shows up in Wrong-Only mode)
+// streak[i]     = consecutive correct answers in a row since the last time you
+//                 got it wrong. Reaching 3 clears wrongFlag. Any wrong answer
+//                 resets streak back to 0 — you have to build 3-in-a-row again.
+// mistakes[i]   = total historical times ever gotten wrong (never decreases,
+//                 only cleared by "Clear Mistake History") — used to sort/weight.
 const MISTAKES_KEY='cbt_mistakes_'+QUIZ_ID;
+const WRONGFLAG_KEY='cbt_wrongflag_'+QUIZ_ID;
+const STREAK_KEY='cbt_streak_'+QUIZ_ID;
 const LASTSEEN_KEY='cbt_lastseen_'+QUIZ_ID;
 let mistakes=new Array(questions.length).fill(0);
+let wrongFlag=new Array(questions.length).fill(false);
+let streak=new Array(questions.length).fill(0);
 let lastSeen=new Array(questions.length).fill(null); // ms timestamp or null (never seen)
+const CLEAR_STREAK_TARGET=3;
 
 function loadLastSeen(){
   try{
@@ -639,23 +674,47 @@ let timedSecondsLeft=0, timedTimerHandle=null, examRevealed=true;
 function loadMistakes(){
   try{
     const raw=localStorage.getItem(MISTAKES_KEY);
-    if(!raw)return;
-    const d=JSON.parse(raw);
-    if(Array.isArray(d)&&d.length===questions.length) mistakes=d;
+    if(raw){ const d=JSON.parse(raw); if(Array.isArray(d)&&d.length===questions.length) mistakes=d; }
+    const rawF=localStorage.getItem(WRONGFLAG_KEY);
+    if(rawF){ const d=JSON.parse(rawF); if(Array.isArray(d)&&d.length===questions.length) wrongFlag=d; }
+    const rawS=localStorage.getItem(STREAK_KEY);
+    if(rawS){ const d=JSON.parse(rawS); if(Array.isArray(d)&&d.length===questions.length) streak=d; }
   }catch(e){}
 }
 function saveMistakes(){
-  try{ localStorage.setItem(MISTAKES_KEY, JSON.stringify(mistakes)); }catch(e){}
+  try{
+    localStorage.setItem(MISTAKES_KEY, JSON.stringify(mistakes));
+    localStorage.setItem(WRONGFLAG_KEY, JSON.stringify(wrongFlag));
+    localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
+  }catch(e){}
+}
+// Call this whenever a question is answered, in ANY mode, to keep mistake
+// tracking consistent everywhere (Full Quiz, Wrong-Only, Smart Review, Timed).
+function recordAnswerForMistakeTracking(i, isCorrect){
+  if(isCorrect){
+    if(wrongFlag[i]){
+      streak[i]++;
+      if(streak[i]>=CLEAR_STREAK_TARGET){ wrongFlag[i]=false; streak[i]=0; }
+    }
+  }else{
+    mistakes[i]=(mistakes[i]||0)+1;
+    wrongFlag[i]=true;
+    streak[i]=0;
+  }
+  saveMistakes();
+  updateWrongCountBadge();
 }
 function clearMistakeHistory(){
-  if(!confirm('Clear your mistake history? This resets what "Wrong Answers Only" mode shows you.'))return;
+  if(!confirm('Clear your mistake history? This resets what "Wrong Answers Only" mode shows you, and any in-progress 3-correct streaks.'))return;
   mistakes=new Array(questions.length).fill(0);
+  wrongFlag=new Array(questions.length).fill(false);
+  streak=new Array(questions.length).fill(0);
   saveMistakes();
   updateWrongCountBadge();
   if(mode==='wrong') setMode('full');
 }
 function updateWrongCountBadge(){
-  const n=mistakes.filter(m=>m>0).length;
+  const n=wrongFlag.filter(Boolean).length;
   document.getElementById('wrong-count-badge').textContent=n;
 }
 function shuffleArray(arr){
@@ -677,10 +736,12 @@ let smartSessionCorrect=0, smartSessionWrong=0;
 
 function smartWeight(i){
   // Cap the "staleness" bonus so a question you've simply never seen yet
-  // doesn't outweigh one you keep actually getting wrong — mistakes should
-  // dominate the ranking, staleness is a secondary nudge, not the main driver.
+  // doesn't outweigh one you're currently struggling with — urgency (are you
+  // still mid-streak toward clearing it?) dominates the ranking, staleness is
+  // a secondary nudge, not the main driver.
   const daysSince = lastSeen[i] ? Math.min((Date.now()-lastSeen[i])/86400000, 14) : 3;
-  return (1 + mistakes[i]*5) * (1 + daysSince);
+  const urgency = wrongFlag[i] ? (1 + (CLEAR_STREAK_TARGET-streak[i])*8) : 1;
+  return urgency * (1 + daysSince);
 }
 function pickNextSmartIndex(excludeIdx){
   const all=questions.map((_,i)=>i);
@@ -751,12 +812,14 @@ function setMode(m){
   document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
 
   if(m==='wrong'){
-    const wrongIdxs=questions.map((_,i)=>i).filter(i=>mistakes[i]>0);
+    const wrongIdxs=questions.map((_,i)=>i).filter(i=>wrongFlag[i]);
     if(wrongIdxs.length===0){
-      alert('No mistake history yet. Answer some questions wrong first (in any mode) and they\'ll show up here for focused review.');
+      alert('No mistake history yet. Answer some questions wrong first (in any mode) and they\'ll show up here for focused review — each one needs '+CLEAR_STREAK_TARGET+' correct answers in a row to clear.');
       return;
     }
-    wrongIdxs.sort((a,b)=>mistakes[b]-mistakes[a]); // worst-missed first
+    // Least progress toward clearing shown first (0/3 streak = most urgent),
+    // tie-broken by total historical mistakes (worst first).
+    wrongIdxs.sort((a,b)=>(streak[a]-streak[b]) || (mistakes[b]-mistakes[a]));
     activeIndices=wrongIdxs;
     modeAnswers={};
     mode='wrong';
@@ -777,11 +840,12 @@ function setMode(m){
     if(minStr===null)return;
     const minutes=Math.max(1,parseInt(minStr,10)||30);
 
-    // Weighted sample: questions you've missed more often are more likely to
-    // be included (a lightweight spaced-repetition effect), but it's still a
-    // realistic simulated mix, not ONLY your weak spots.
+    // Weighted sample: questions you're currently struggling with (still mid-
+    // streak toward clearing) are more likely to be included — a lightweight
+    // spaced-repetition effect — but it's still a realistic simulated mix,
+    // not ONLY your weak spots.
     const weighted=[];
-    questions.forEach((_,i)=>{ const w=1+mistakes[i]; for(let k=0;k<w;k++) weighted.push(i); });
+    questions.forEach((_,i)=>{ const w=Math.max(1,Math.round(smartWeight(i))); for(let k=0;k<w;k++) weighted.push(i); });
     const chosen=new Set();
     let guard=0;
     while(chosen.size<count && chosen.size<questions.length && guard<count*50){
@@ -821,7 +885,7 @@ function setMode(m){
     smartAdvance();
 
   }else{ // full
-    activeIndices=questions.map((_,i)=>i);
+    activeIndices=questionOrder;
     mode='full';
     examRevealed=true;
     document.getElementById('mode-btn-full').classList.add('active');
@@ -829,8 +893,8 @@ function setMode(m){
     document.getElementById('timer-chip').style.display='none';
     document.getElementById('nav-section').style.display='';
     buildNav();
-    const firstUnattempted=statuses.findIndex(s=>s==='unattempted');
-    renderQ(firstUnattempted===-1?0:firstUnattempted);
+    const firstUnattemptedPos=questionOrder.findIndex(idx=>statuses[idx]==='unattempted');
+    renderQ(firstUnattemptedPos===-1?questionOrder[0]:questionOrder[firstUnattemptedPos]);
   }
 }
 
@@ -868,14 +932,24 @@ function init(){
   loadProgress();
   loadMistakes();
   loadLastSeen();
+  loadOrCreateOrder();
+  activeIndices=questionOrder;
   updateWrongCountBadge();
   buildNav();
   updateScoreHeader();
   reportProgressToOpener();
-  let resumeIdx=0;
-  const firstUnattempted=statuses.findIndex(s=>s==='unattempted');
-  resumeIdx=firstUnattempted===-1?0:firstUnattempted;
+  try{
+    if(window.opener && !window.opener.closed){
+      document.getElementById('btn-back-dashboard').style.display='';
+    }
+  }catch(e){}
+  const firstUnattemptedPos=questionOrder.findIndex(idx=>statuses[idx]==='unattempted');
+  const resumeIdx=firstUnattemptedPos===-1?questionOrder[0]:questionOrder[firstUnattemptedPos];
   renderQ(resumeIdx);
+}
+
+function remainingToClear(i){
+  return wrongFlag[i] ? (CLEAR_STREAK_TARGET-streak[i]) : 0;
 }
 
 function buildNav(){
@@ -883,7 +957,8 @@ function buildNav(){
   activeIndices.forEach((i,pos)=>{
     const b=document.createElement('button');
     b.className='nav-dot unattempted';b.textContent=i+1;b.id='nav-'+i;
-    b.setAttribute('data-mistakes', mistakes[i]||0);
+    b.setAttribute('data-mistakes', remainingToClear(i));
+    if(wrongFlag[i]) b.title='Needs '+remainingToClear(i)+' more correct in a row to clear from Wrong Answers Only';
     b.onclick=()=>renderQ(i);g.appendChild(b);
   });
 }
@@ -893,7 +968,7 @@ function updateNav(){
   activeIndices.forEach(i=>{
     const el=document.getElementById('nav-'+i);
     if(!el)return;
-    el.setAttribute('data-mistakes', mistakes[i]||0);
+    el.setAttribute('data-mistakes', remainingToClear(i));
     if(mode==='full'){
       el.className='nav-dot '+(i===current?'current':statuses[i]);
     }else{
@@ -975,7 +1050,7 @@ function renderQ(idx){
     document.getElementById('btn-end-smart').style.display='none';
     const isFirst=activePos===0, isLast=activePos===activeIndices.length-1;
     document.getElementById('btn-prev').style.display=isFirst?'none':'';
-    document.getElementById('btn-skip').style.display=mode==='timed'?'none':'';
+    document.getElementById('btn-skip').style.display=mode==='full'?'':'none';
     document.getElementById('btn-skip').disabled=answeredVal!==null;
     document.getElementById('btn-next').style.display=isLast?'none':'';
     document.getElementById('btn-finish').style.display=(isLast&&mode!=='timed')?'':'none';
@@ -1001,10 +1076,11 @@ function selectAnswer(optIdx){
     if(answers[current]!==null)return;
     answers[current]=optIdx;
     const isCorrect=(optIdx===questions[current].ans);
-    if(isCorrect){statuses[current]='correct';correctCount++; mistakes[current]=Math.max(0,(mistakes[current]||0)-1);}
-    else{statuses[current]='wrong';wrongCount++; mistakes[current]=(mistakes[current]||0)+1;}
+    if(isCorrect){statuses[current]='correct';correctCount++;}
+    else{statuses[current]='wrong';wrongCount++;}
     lastSeen[current]=Date.now();
-    saveMistakes();saveLastSeen();updateWrongCountBadge();
+    recordAnswerForMistakeTracking(current,isCorrect);
+    saveLastSeen();
     updateScoreHeader();
     renderQ(current);
     saveProgress();
@@ -1014,18 +1090,15 @@ function selectAnswer(optIdx){
     if(!visit||visit.answered!==null)return;
     visit.answered=optIdx;
     const isCorrect=(optIdx===questions[current].ans);
-    if(isCorrect){ mistakes[current]=Math.max(0,(mistakes[current]||0)-1); smartSessionCorrect++; }
-    else{ mistakes[current]=(mistakes[current]||0)+1; smartSessionWrong++; }
-    saveMistakes();updateWrongCountBadge();
+    if(isCorrect){ smartSessionCorrect++; } else { smartSessionWrong++; }
+    recordAnswerForMistakeTracking(current,isCorrect);
     renderQ(current);
     if(isCorrect){ setTimeout(()=>smartAdvance(),1200); }
   }else{
     if(modeAnswers[current]!==undefined)return;
     modeAnswers[current]=optIdx;
     const isCorrect=(optIdx===effectiveAns(current));
-    if(isCorrect){ mistakes[current]=Math.max(0,(mistakes[current]||0)-1); }
-    else{ mistakes[current]=(mistakes[current]||0)+1; }
-    saveMistakes();updateWrongCountBadge();
+    recordAnswerForMistakeTracking(current,isCorrect);
     renderQ(current);
     if(mode==='wrong'&&isCorrect&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),1200);}
     else if(mode==='timed'&&activePos<activeIndices.length-1){setTimeout(()=>navigate(1),400);}
@@ -1069,9 +1142,12 @@ function submitExam(auto){
   document.getElementById('quiz-screen').style.display='none';
   document.getElementById('results-screen').style.display='block';
   window.scrollTo(0,0);
-  const total=activeIndices.length,pct=total?Math.round(ec/total*100):0;
+  // Timed Exam counts unanswered questions against you (realistic exam scoring).
+  // Wrong-Answers-Only only scores what you actually attempted.
+  const total = mode==='timed' ? activeIndices.length : (ec+ew);
+  const pct=total?Math.round(ec/total*100):0;
   document.getElementById('res-pct').textContent=pct+'%';
-  document.getElementById('sum-total').textContent=total;
+  document.getElementById('sum-total').textContent=activeIndices.length;
   document.getElementById('sum-correct').textContent=ec;
   document.getElementById('sum-wrong').textContent=ew;
   document.getElementById('sum-skip').textContent=unanswered;
@@ -1119,7 +1195,9 @@ function showResults(){
   document.getElementById('quiz-screen').style.display='none';
   document.getElementById('results-screen').style.display='block';
   window.scrollTo(0,0);
-  const total=questions.length,pct=Math.round(correctCount/total*100);
+  const total=questions.length;
+  const attempted=correctCount+wrongCount;
+  const pct=attempted?Math.round(correctCount/attempted*100):0;
   document.getElementById('res-pct').textContent=pct+'%';
   document.getElementById('sum-total').textContent=total;
   document.getElementById('sum-correct').textContent=correctCount;
@@ -1163,13 +1241,15 @@ function filterReview(type,btn){
 }
 
 function restartQuiz(){
-  // Restart resets Full Quiz progress only — mistake history is intentionally
-  // NOT cleared here, since it's meant to persist across attempts. Use
-  // "Clear Mistake History" in the mode bar if you want that reset too.
+  // Restart resets Full Quiz progress AND gives you a freshly randomized
+  // question order. Mistake history is intentionally NOT cleared here, since
+  // it's meant to persist across attempts — use "Clear Mistake History" in
+  // the mode bar if you want that reset too.
   answers=new Array(questions.length).fill(null);
   statuses=new Array(questions.length).fill('unattempted');
   correctCount=0;wrongCount=0;skipCount=0;
   clearProgress();
+  regenerateOrder();
   updateScoreHeader();
   reportProgressToOpener();
   document.getElementById('results-screen').style.display='none';
