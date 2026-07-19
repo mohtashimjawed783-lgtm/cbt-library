@@ -99,10 +99,13 @@ header{
 .radar-cross{stroke:var(--accent);stroke-width:1;opacity:0.18;}
 .radar-sweep{transform-origin:200px 200px;animation:radar-spin 5s linear infinite;}
 @keyframes radar-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-.hero-jet{
-  position:absolute;top:26px;left:-10px;width:150px;height:60px;opacity:0.16;
-  fill:var(--text);transform:rotate(-6deg);pointer-events:none;
+.hero-jet-img{
+  position:absolute;top:-40px;left:-60px;width:340px;height:auto;
+  mix-blend-mode:screen;opacity:0.85;pointer-events:none;
+  mask-image:radial-gradient(ellipse 220px 180px at 55% 55%, black 45%, transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 220px 180px at 55% 55%, black 45%, transparent 80%);
 }
+[data-theme="light"] .hero-jet-img{opacity:0.4;mix-blend-mode:multiply;filter:invert(1) hue-rotate(180deg);}
 .hero-inner{position:relative;max-width:1400px;margin:0 auto;}
 .hero-eyebrow{
   font-family:'Rajdhani',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:2.4px;
@@ -165,6 +168,16 @@ header{
 .layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:250px 1fr;gap:26px;padding:20px 20px 60px;align-items:start;}
 
 .sidebar{position:sticky;top:90px;align-self:start;}
+.sidebar-toggle-mobile{
+  display:flex;width:100%;justify-content:space-between;align-items:center;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:12px 15px;color:var(--text);font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:0.9rem;cursor:pointer;margin-bottom:10px;
+}
+.sidebar-toggle-arrow{transition:transform .2s;color:var(--accent);}
+.sidebar-toggle-mobile.open .sidebar-toggle-arrow{transform:rotate(180deg);}
+.sidebar-content{display:none;}
+.sidebar-content.open{display:block;}
 .sidebar-title{font-family:'Rajdhani',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:11px;padding-left:4px;}
 .module-list{display:flex;flex-direction:column;gap:5px;}
 .module-item{
@@ -267,7 +280,7 @@ select.sort-select{background:var(--panel);border:1.5px solid var(--border);bord
   .hero-title{font-size:1.8rem;}
   .hero-sub{font-size:0.88rem;}
   .hero-radar{width:280px;height:280px;right:-90px;opacity:0.32;}
-  .hero-jet{width:110px;top:16px;opacity:0.12;}
+  .hero-jet-img{width:180px;top:-20px;left:-40px;}
 
   .layout{grid-template-columns:1fr;gap:16px;padding:16px 14px 50px;}
 
@@ -321,7 +334,7 @@ select.sort-select{background:var(--panel);border:1.5px solid var(--border);bord
 @media(max-width:480px){
   .footer-img-wrap{height:160px;}
   .footer-tagline{font-size:0.75rem;}
-  .hero-jet{display:none;}
+  .hero-jet-img{display:none;}
   .hero-radar{width:220px;height:220px;right:-100px;}
   .hero-title{font-size:1.5rem;}
   .search-input{width:100%;}
@@ -378,9 +391,7 @@ select.sort-select{background:var(--panel);border:1.5px solid var(--border);bord
     </defs>
     <circle cx="200" cy="200" r="4" fill="var(--gold)"/>
   </svg>
-  <svg class="hero-jet" viewBox="0 0 200 80" aria-hidden="true">
-    <path d="M10,40 L70,36 L110,10 L120,10 L100,36 L160,32 L185,22 L190,26 L172,38 L190,42 L172,46 L190,50 L185,54 L160,44 L100,40 L120,66 L110,66 L70,40 Z" />
-  </svg>
+  <img src="hero-aircraft.jpg" class="hero-jet-img" alt="" aria-hidden="true"/>
   <div class="hero-inner">
     <div class="hero-eyebrow">◈ TECHNICAL TRAINING FLIGHT DECK</div>
     <h1 class="hero-title">Your Library. <span>Fully Instrumented.</span></h1>
@@ -392,16 +403,21 @@ select.sort-select{background:var(--panel);border:1.5px solid var(--border);bord
 
 <div class="layout">
   <div class="sidebar">
-    <div class="sidebar-title">Modules</div>
-    <div class="module-list" id="module-list"></div>
-    <div class="filter-tags-row" id="tag-filter-row"></div>
-    <div class="sidebar-tools">
-      <button class="btn btn-ghost btn-sm" onclick="exportLibrary()">⭳ Export Library</button>
-      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('import-file').click()">⭱ Import Library</button>
-      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importLibrary(event)"/>
-      <button class="btn btn-ghost btn-sm" onclick="copyShareLink()">🔗 Copy Share Link</button>
-      <button class="btn btn-ghost btn-sm" onclick="checkAllLinks()">✅ Check Links</button>
-      <div class="sidebar-hint">Export/Import back up this list (.json) — to add a quiz itself, use <strong>+ Add CBT</strong> above. "Check Links" only works once this dashboard is hosted online (not as a local file).</div>
+    <button class="sidebar-toggle-mobile" id="sidebar-toggle-btn" onclick="toggleSidebarMobile()">
+      <span>☰ Modules &amp; Tools</span><span class="sidebar-toggle-arrow" id="sidebar-toggle-arrow">▾</span>
+    </button>
+    <div class="sidebar-content" id="sidebar-content">
+      <div class="sidebar-title">Modules</div>
+      <div class="module-list" id="module-list"></div>
+      <div class="filter-tags-row" id="tag-filter-row"></div>
+      <div class="sidebar-tools">
+        <button class="btn btn-ghost btn-sm" onclick="exportLibrary()">⭳ Export Library</button>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('import-file').click()">⭱ Import Library</button>
+        <input type="file" id="import-file" accept=".json" style="display:none" onchange="importLibrary(event)"/>
+        <button class="btn btn-ghost btn-sm" onclick="copyShareLink()">🔗 Copy Share Link</button>
+        <button class="btn btn-ghost btn-sm" onclick="checkAllLinks()">✅ Check Links</button>
+        <div class="sidebar-hint">Export/Import back up this list (.json) — to add a quiz itself, use <strong>+ Add CBT</strong> above. "Check Links" only works once this dashboard is hosted online (not as a local file).</div>
+      </div>
     </div>
   </div>
 
@@ -585,6 +601,14 @@ function toggleTheme(){
   const next = cur==='dark' ? 'light' : 'dark';
   try{ localStorage.setItem(THEME_KEY, next); }catch(e){}
   applyTheme(next);
+}
+
+// ===================== SIDEBAR TOGGLE (desktop + mobile) =====================
+// Modules/tags/tools stay collapsed by default everywhere (see CSS) so people
+// land on their quizzes right away. This just shows/hides that block.
+function toggleSidebarMobile(){
+  document.getElementById('sidebar-content').classList.toggle('open');
+  document.getElementById('sidebar-toggle-btn').classList.toggle('open');
 }
 
 // ===================== CROSS-WINDOW PROGRESS TRACKING =====================
